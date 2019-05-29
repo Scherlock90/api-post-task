@@ -7,6 +7,16 @@ body {
   margin: 20px;
 }
 
+#root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 #main {
   background: #f1f1f1 !important;
   width: 90%;
@@ -183,5 +193,19 @@ a {
 
 .uk-card-footer .uk-button-primary {
   cursor: pointer;
+}
+
+.container-posts-main {
+  width: 1200px;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+}
+
+@media screen and (max-width: 1500px) {
+  .container-posts-main .uk-width-1-2\@m {
+    margin: 5px 50px 5px 50px;
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=main.css.map */

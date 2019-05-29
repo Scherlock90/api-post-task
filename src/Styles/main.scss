@@ -1,3 +1,8 @@
+// variables
+$break-big: 1500px;
+
+
+// main code
 html{
     background: #f1f1f1 !important;
 }
@@ -5,7 +10,11 @@ body{
     background: #f1f1f1 !important;
     margin: 20px;
 }
-
+#root {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
 #main {
     //background: #ECEFF1 !important;
     background: #f1f1f1 !important;
@@ -136,5 +145,17 @@ a {
 .uk-card-footer{
     .uk-button-primary{
         cursor: pointer;
+    }
+}
+
+.container-posts-main{
+    width: 1200px;
+    display: grid;
+    justify-items: center;
+    @media screen and (max-width: $break-big) {
+        .uk-width-1-2\@m{
+            margin: 5px 50px 5px 50px;
+            width: 100%;
+        }
     }
 }

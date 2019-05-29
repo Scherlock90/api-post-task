@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import '../Styles/main.css';
 
 export default function Post(props) {
 
@@ -26,23 +27,17 @@ export default function Post(props) {
     // console.log(postsArray.map(ee => ee.userId === parseToNumber));
     // // console.log(arraCop.map(ee => ee.body));
     return (
-        <div>
-            <div>
-                {arraCop.map((postsUsers, i) => 
-                    {
-                        return (
-                            <ul key={i}>
-                                <div>
-                                    {postsUsers.title}
-                                </div>
-                                <div>
-                                    {postsUsers.body}
-                                </div>
-                            </ul>
-                        );
-                    })
-                }
-            </div>
+        <div className="container-posts-main">
+            {arraCop.map((postsUsers, i) => 
+                {
+                    return (
+                        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
+                            <h3 class="uk-card-title">{postsUsers.title}</h3>
+                            <p>Lorem ipsum <a href="#">dolor</a>{postsUsers.body}</p>
+                        </div>
+                    );
+                })
+            }
         </div>
     )
 }
