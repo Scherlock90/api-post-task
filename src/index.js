@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Post from './components/Post';
-import Comments from './components/Comments';
+import PostComments from './components/PostComments';
 import './Styles/main.css';
 
 // import PostsIndex from './components/PostsIndex';
@@ -18,12 +18,11 @@ import './Styles/main.css';
 // The <Switch> component will only show the first route contained within it that matches a pattern
 ReactDOM.render(
   // <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/home" component={Home} />
           <Route path="/:userId/posts" component={Post} />
-          <Route path="/:postId/comments" component={Comments} />
+          <Route path="/:postId/post-comments" component={PostComments} />
         </Switch>
     </BrowserRouter>
   // </Provider>

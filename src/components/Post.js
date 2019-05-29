@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/main.css';
+import TextTruncate from 'react-text-truncate';
 
 export default function Post(props) {
 
@@ -68,11 +69,17 @@ export default function Post(props) {
             {arraCop.map((postsUsers, i) => {
                 return (
                     <div className="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
-                        <h3 className="uk-card-title">{postsUsers.title}</h3>
-                        <p>{postsUsers.body}</p>
+                        <h3 className="uk-card-title">
+                            <TextTruncate
+                                line={1}
+                                element="span"
+                                truncateText="…"
+                                text={postsUsers.title}
+                            />
+                        </h3>
                         <div className="uk-card-footer">
                                 <Link to={{
-                                    pathname: `/${postsUsers.userId}/comments`,
+                                    pathname: `/${postsUsers.userId}/post-comments`,
                                 }} key={postsUsers.userId} username={postsUsers.name} 
                                  className="uk-button uk-button-primary">View Comments</Link>
                             </div>

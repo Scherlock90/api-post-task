@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/main.css';
 
-export default function Comments (props) {
+export default function PostComments(props) {
     const [commentsArray, setCommentsArray] = useState([]);
     const [authorCommentsName, setAuthorCommentsName] = useState([]);
 
@@ -32,9 +32,9 @@ export default function Comments (props) {
     })
     const nameAuthorComments = authorCommentsName.filter(aurhorName => {
         return aurhorName.postId === parseToNumber
-        }
+    }
     )
-    // console.log(arraCop.map(ee => ee));
+    console.log(arraCop.map(ee => ee));
     return (
         <div className="container-posts-main">
             <div className="header-posts">
@@ -42,21 +42,21 @@ export default function Comments (props) {
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-left">
                             <h3 className="uk-card-title">
-                            {arraCop.map((postBack) => (
-                                <Link className="arrow-back"  to={{
-                                    pathname: `/${postBack.postId}/posts`,
-                                }} >
-                                    <span uk-icon="icon: reply; ratio: 2"></span> Back
-                                </Link>
+                                {arraCop.filter(ee => ee.postId).map(postBack => (
+                                    <Link className="arrow-back" to={{
+                                        pathname: `/${postBack.postId}/posts`,
+                                    }} key={postBack.id}>
+                                        <span uk-icon="icon: reply; ratio: 2"></span> Back
+                                    </Link>
+                                    )
                                 )
-                                )
-                            }
+                                }
                             </h3>
                         </div>
                     </div>
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-center">
-                             <h3 className="uk-card-title main-author-post">{nameAuthorComments.map((author => author.email))}</h3>
+                            <h3 className="uk-card-title main-author-post">{nameAuthorComments.map((author => author.email))}</h3>
                         </div>
                     </div>
                     <div>
