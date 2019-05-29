@@ -1,0 +1,187 @@
+html {
+  background: #f1f1f1 !important;
+}
+
+body {
+  background: #f1f1f1 !important;
+  margin: 20px;
+}
+
+#main {
+  background: #f1f1f1 !important;
+  width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#appContainer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+header {
+  margin: auto;
+}
+
+.footer {
+  margin: auto;
+  font-size: 1em;
+}
+
+.nav {
+  list-style-type: none;
+}
+
+.nav li {
+  display: inline-block;
+  padding: 12px 16px;
+  color: white;
+  background-color: black;
+  border-right: 1px solid white;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+.splash-screen {
+  background-color: #333;
+  opacity: .7;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  -webkit-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
+}
+
+.loadingBar {
+  margin: auto;
+  text-align: center;
+  padding: 10px 0;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.loadingBar div {
+  width: 6px;
+  height: 30px;
+  display: inline-block;
+  margin: 0 4px;
+  background-color: #fff;
+  -webkit-animation: loading-bar-animation 0.6s ease-out infinite;
+          animation: loading-bar-animation 0.6s ease-out infinite;
+}
+
+.loadingBar div:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+
+.loadingBar div:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.loadingBar div:nth-child(4) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+@-webkit-keyframes loading-bar-animation {
+  0%,
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes loading-bar-animation {
+  0%,
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+.mainContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.containerUser {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 10px;
+}
+
+.containerUser .main-grid2 {
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.containerUser .uk-child-width-expand\@s > :not([class*=uk-width]) {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  margin: 10px;
+}
+
+.containerUser [class*=uk-child-width] > * {
+  width: 20%;
+}
+
+.containerUser .uk-card-body {
+  padding: 12px 5px;
+}
+
+.containerUser .uk-card-header {
+  padding: 15px 15px;
+}
+
+.cards-main-left {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.uk-card-footer .uk-button-primary {
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */
