@@ -88,8 +88,8 @@ export default function Post(props) {
                             <div className="uk-width-1-3@m">
                                 <div className="uk-card uk-card-default uk-card-body button-go-to-post">
                                     <Link to={{
-                                        pathname: `/${postsUsers.userId}/post-comments`,
-                                    }} key={postsUsers.userId} username={postsUsers.name}
+                                        pathname: `/${postsUsers.id}/post-comments`,
+                                    }} key={postsUsers.id} username={postsUsers.name}
                                         className="uk-button"> <span uk-icon="icon: chevron-right; ratio: 2"></span>
                                     </Link>
                                 </div>
