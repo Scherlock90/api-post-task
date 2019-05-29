@@ -208,4 +208,28 @@ a {
     width: 100%;
   }
 }
+
+.container-posts-main .header-posts {
+  width: 1200px;
+  height: 100px;
+  margin: 30px;
+}
+
+.container-posts-main .header-posts .div-header {
+  margin: 20px;
+  width: 33%;
+  display: inline;
+}
+
+.container-posts-main .header-posts .main-cards-posts-center {
+  text-align: center;
+}
+
+.container-posts-main .header-posts .main-cards-posts-left {
+  text-align: left;
+}
+
+.container-posts-main .header-posts .main-cards-posts-right {
+  text-align: right;
+}
 /*# sourceMappingURL=main.css.map */

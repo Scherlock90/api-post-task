@@ -158,4 +158,23 @@ a {
             width: 100%;
         }
     }
+    .header-posts{
+        width: 1200px;
+        height: 100px;
+        margin: 30px;
+        .div-header{
+            margin: 20px;
+            width: 33%;
+            display: inline;
+        }
+        .main-cards-posts-center{
+            text-align: center;
+        }
+        .main-cards-posts-left{
+            text-align: left;
+        }
+        .main-cards-posts-right{
+            text-align: right;
+        }
+    }    
 }
