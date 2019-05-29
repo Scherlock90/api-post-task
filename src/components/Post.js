@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Post (props) {
+export default function Post(props) {
 
     const [postsArray, setPostsArray] = useState([]);
     const { match: { params } } = props;
@@ -18,24 +18,31 @@ export default function Post (props) {
                 setPostsArray(data);
             });
     }, [])
-    const arraCop = postsArray.map(ee => ee.userId === parseToNumber)
-    // .filter((ee2, i) => (
-    //     <div key={i}>
-    //         {ee2.body}
-    //     </div>
-    // ))
-    console.log(postsArray);
-    console.log(idLog);
-    console.log(postsArray.map(ee => ee.userId === parseToNumber));
-    console.log(arraCop);
+    const arraCop = postsArray.filter(postUsers => {
+        return postUsers.userId === parseToNumber
+    })
+    // console.log(postsArray);
+    // console.log(idLog);
+    // console.log(postsArray.map(ee => ee.userId === parseToNumber));
+    // // console.log(arraCop.map(ee => ee.body));
     return (
         <div>
-            <div style={styleComponent}>
-                {arraCop}
+            <div>
+                {arraCop.map((postsUsers, i) => 
+                    {
+                        return (
+                            <ul key={i}>
+                                <div>
+                                    {postsUsers.title}
+                                </div>
+                                <div>
+                                    {postsUsers.body}
+                                </div>
+                            </ul>
+                        );
+                    })
+                }
             </div>
         </div>
     )
-}
-const styleComponent = {
-    color: 'black'
 }
