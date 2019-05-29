@@ -23,7 +23,7 @@ ReactDOM.render(
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route path="/:userId/posts" component={Post} />
-          <Route path="/comments" component={Comments} />
+          <Route path="/:postId/comments" component={Comments} />
         </Switch>
     </BrowserRouter>
   // </Provider>

@@ -35,6 +35,7 @@ export default function Post(props) {
         return aurhorName.id === parseToNumber
         }
     )
+    // console.log(postsArray);
     return (
         <div className="container-posts-main">
             <div className="header-posts">
@@ -69,7 +70,12 @@ export default function Post(props) {
                     <div className="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
                         <h3 className="uk-card-title">{postsUsers.title}</h3>
                         <p>{postsUsers.body}</p>
-                        <p><a href="#">View comments</a> </p>
+                        <div className="uk-card-footer">
+                                <Link to={{
+                                    pathname: `/${postsUsers.userId}/comments`,
+                                }} key={postsUsers.userId} username={postsUsers.name} 
+                                 className="uk-button uk-button-primary">View Comments</Link>
+                            </div>
                     </div>
                 );
             })

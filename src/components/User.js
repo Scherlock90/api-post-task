@@ -14,7 +14,7 @@ export default function User() {
             });
     }, [])
 
-    console.log(usersArray);
+    // console.log(usersArray);
 
     return (
         <div className="containerUser">
