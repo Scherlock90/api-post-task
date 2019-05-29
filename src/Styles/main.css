@@ -237,4 +237,21 @@ a {
   font-size: 200%;
   font-weight: 600;
 }
+
+.container-posts-main .container-post-cards {
+  width: 1200px;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin: 20px;
+}
+
+.container-posts-main .container-post-cards .uk-card-default {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.container-posts-main .container-post-cards .button-go-to-post {
+  text-align: right;
+}
 /*# sourceMappingURL=main.css.map */

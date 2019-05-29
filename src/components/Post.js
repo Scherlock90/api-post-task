@@ -34,7 +34,7 @@ export default function Post(props) {
     })
     const nameAuthor = authorName.filter(aurhorName => {
         return aurhorName.id === parseToNumber
-        }
+    }
     )
     // console.log(postsArray);
     return (
@@ -52,7 +52,7 @@ export default function Post(props) {
                     </div>
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-center">
-                             <h3 className="uk-card-title main-author-post">{nameAuthor.map((author => author.name))}</h3>
+                            <h3 className="uk-card-title main-author-post">{nameAuthor.map((author => author.name))}</h3>
                         </div>
                     </div>
                     <div>
@@ -68,21 +68,31 @@ export default function Post(props) {
             </div>
             {arraCop.map((postsUsers, i) => {
                 return (
-                    <div className="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
-                        <h3 className="uk-card-title">
-                            <TextTruncate
-                                line={1}
-                                element="span"
-                                truncateText="…"
-                                text={postsUsers.title}
-                            />
-                        </h3>
-                        <div className="uk-card-footer">
-                                <Link to={{
-                                    pathname: `/${postsUsers.userId}/post-comments`,
-                                }} key={postsUsers.userId} username={postsUsers.name} 
-                                 className="uk-button uk-button-primary">View Comments</Link>
+                    <div className="container-post-cards" key={i} >
+                        <div className="uk-text-center" uk-grid='false'>
+                            <div className="uk-width-auto@m">
+                                <div className="uk-card uk-card-default uk-card-body">Auto</div>
                             </div>
+                            <div className="uk-width-expand@m">
+                                <div className="uk-card uk-card-default uk-card-body">
+                                    <TextTruncate
+                                        line={1}
+                                        element="span"
+                                        truncateText="…"
+                                        text={postsUsers.title}
+                                    />
+                                </div>
+                            </div>
+                            <div className="uk-width-1-3@m">
+                                <div className="uk-card uk-card-default uk-card-body button-go-to-post">
+                                    <Link to={{
+                                        pathname: `/${postsUsers.userId}/post-comments`,
+                                    }} key={postsUsers.userId} username={postsUsers.name}
+                                        className="uk-button"> <span uk-icon="icon: chevron-right; ratio: 2"></span>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 );
             })
