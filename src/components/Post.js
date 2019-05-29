@@ -71,9 +71,11 @@ export default function Post(props) {
                     <div className="container-post-cards" key={i} >
                         <div className="uk-text-center" uk-grid='false'>
                             <div className="uk-width-auto@m">
-                                <div className="uk-card uk-card-default uk-card-body">Auto</div>
+                                <div className="uk-card uk-card-default uk-card-body">
+                                    <span uk-icon="icon: trash; ratio: 2"></span>
+                                </div>
                             </div>
-                            <div className="uk-width-expand@m">
+                            <div className="uk-width-expand@m card-center-title">
                                 <div className="uk-card uk-card-default uk-card-body">
                                     <TextTruncate
                                         line={1}

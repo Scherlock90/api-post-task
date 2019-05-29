@@ -254,4 +254,9 @@ a {
 .container-posts-main .container-post-cards .button-go-to-post {
   text-align: right;
 }
+
+.container-posts-main .container-post-cards .card-center-title {
+  padding-left: 10px;
+  text-align: left;
+}
 /*# sourceMappingURL=main.css.map */
