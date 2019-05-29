@@ -232,4 +232,9 @@ a {
 .container-posts-main .header-posts .main-cards-posts-right {
   text-align: right;
 }
+
+.container-posts-main .header-posts .main-author-post {
+  font-size: 200%;
+  font-weight: 600;
+}
 /*# sourceMappingURL=main.css.map */

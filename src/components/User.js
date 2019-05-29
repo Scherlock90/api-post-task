@@ -4,9 +4,7 @@ import axios from 'axios';
 
 export default function User() {
     const [usersArray, setUsersArray] = useState([]);
-
     useEffect(() => {
-
         axios.get("https://jsonplaceholder.typicode.com/users")
             .then(response =>
                 response.data
