@@ -305,3 +305,11 @@ a {
   -webkit-writing-mode: vertical-lr;
   text-orientation: upright;
 }
+
+.icon-add-post {
+  color: blue;
+}
+
+.icon-add-post:hover {
+  color: #1e87f0;
+}

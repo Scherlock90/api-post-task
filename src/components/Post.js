@@ -91,7 +91,7 @@ export default function Post(props) {
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-right">
                             <h3 className="uk-card-title">
-                                <span uk-icon="icon:  plus-circle; ratio: 2" onClick={toggleModal}></span>
+                                <span className="icon-add-post" uk-icon="icon:  plus-circle; ratio: 2" onClick={toggleModal}></span>
                             </h3>
                         </div>
                     </div>
