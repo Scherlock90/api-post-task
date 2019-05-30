@@ -1,19 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactModal from 'react-modal';
 import axios from 'axios';
 import '../Styles/main.css';
 
 export default function PostComments(props) {
+    const [modalMainOpen, setModalMainOpen] = useState(false);
     const [commentsArray, setCommentsArray] = useState([]);
     const [authorCommentsName, setAuthorCommentsName] = useState([]);
     const [usersName, setUsersName] = useState([]);
     const [postsOne, setPostsOne] = useState([]);
+
+    const [name, setNameAdd] = useState('');
+    const [email, setEmailAdd] = useState('');
+    const [body, setBodyAdd] = useState('');
 
     const { match: { params } } = props;
     const idLog = params.postId;
     const parseToNumber = Number(idLog);
 
     const URL = 'https://jsonplaceholder.typicode.com';
+
+
+    function toggleModal(modalMainOpen) {
+        setModalMainOpen(true)
+        return modalMainOpen
+    }
+    function closeModal(modalMainOpen) {
+        setModalMainOpen(false)
+        return modalMainOpen
+    }
+
+    const handleChangeName = event => {
+        setNameAdd(event.target.value)
+    }
+    const handleChangeEmail = event => {
+        setEmailAdd(event.target.value)
+    }
+    const handleChangeBody = event => {
+        setBodyAdd(event.target.value)
+    }
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        axios.post(`${URL}/comments`, { name, email,body })
+            .then(res => {
+                setNameAdd(res.data.name);
+                setEmailAdd(res.data.email);
+                setBodyAdd(res.data.body)
+                console.log(res);
+                console.log(res.data);
+            })
+    }
 
     useEffect(() => {
         axios.get(`${URL}/comments/`)
@@ -72,9 +110,7 @@ export default function PostComments(props) {
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-right">
                             <h3 className="uk-card-title">
-                                <Link className="arrow-back" to="/#">
-                                    <span uk-icon="icon:  plus-circle; ratio: 2"></span>
-                                </Link>
+                                <span uk-icon="icon:  plus-circle; ratio: 2" onClick={toggleModal}></span>
                             </h3>
                         </div>
                     </div>
@@ -123,6 +159,56 @@ export default function PostComments(props) {
                 })
                 }
             </div>
+            <ReactModal
+                isOpen={modalMainOpen}
+                contentLabel="onRequestClose Example"
+                onRequestClose={closeModal}
+                className="Modal"
+                overlayClassName="Overlay mainOverlay"
+            >
+                <div className="containerModal">
+                    <div className="containerMyModal" >
+                        <div className="cardPost">
+                            <div className="box">
+                                <div className="little-add-post-title">Add comment</div>
+                                <div className="bigger-add-post-title">Add comment </div>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="cotainer-label">
+                                        <label>
+                                            <div className="container-input-label">
+                                                <div className="title-span-add-post">Name</div>
+                                                <div>
+                                                    <input type="text" name="name" value={name} placeholder="Name" onChange={handleChangeName} />
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <label>
+                                            <div className="container-input-label">
+                                                <div className="body-span-add-post">Email</div>
+                                                <div>
+                                                    <input type="text" name="email" value={email} placeholder="Email" onChange={handleChangeEmail} />
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <label>
+                                            <div className="container-input-label">
+                                                <div className="body-span-add-post">Body</div>
+                                                <div>
+                                                    <input type="text" name="body" value={body} placeholder="Body" onChange={handleChangeBody} />
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <button className="uk-button uk-button-primary" type="submit">Save</button>
+                                        <button className="uk-button uk-button-secondary" onClick={closeModal}>Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ReactModal>
         </div>
     )
 }
