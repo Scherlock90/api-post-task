@@ -307,6 +307,7 @@ a {
 }
 
 .icon-add-post {
+  cursor: pointer;
   color: blue;
 }
 
