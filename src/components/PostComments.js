@@ -144,8 +144,8 @@ export default function PostComments(props) {
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-left">
                             <h3 className="uk-card-title cont-button">
-                                <span className="icon-add-comments" uk-icon="icon:  arrow-down; ratio: 2" onClick={e => activeComments(e)}></span>
-                                <div className="title-button-add-comment">Show Commments</div>
+                                <span className="icon-add-comments" uk-icon={isActive ? 'icon:  arrow-up; ratio: 2': 'icon:  arrow-down; ratio: 2'} onClick={e => activeComments(e)}></span>
+                                <div className="title-button-add-comment"> {isActive ? 'Hide comments': 'Show Commments'}</div>
                             </h3>
                         </div>
                     </div>
