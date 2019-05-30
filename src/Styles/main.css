@@ -259,4 +259,14 @@ a {
   padding-left: 10px;
   text-align: left;
 }
+
+.container-posts-main .container-post-cards .title-one-post {
+  font-size: 180%;
+  font-weight: 600;
+  margin: 20px;
+}
+
+.container-posts-main .container-post-cards .body-one-post {
+  font-size: 120%;
+}
 /*# sourceMappingURL=main.css.map */

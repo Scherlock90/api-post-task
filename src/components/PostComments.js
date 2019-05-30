@@ -83,14 +83,14 @@ export default function PostComments(props) {
             <div>
                 {posts2.map((postsUsers, i) => {
                     return (
-                        <div className="container-post-cards" key={i} >
+                        <div className="container-post-cards one-post-container" key={i} >
                             <div className="uk-text-center" uk-grid='false'>
                                 <div className="uk-width-expand@m card-center-title">
                                     <div className="uk-card uk-card-default uk-card-body">
-                                        <div>
+                                        <div className="title-one-post">
                                             {postsUsers.title}
                                         </div>
-                                        <div>
+                                        <div className="body-one-post">
                                             {postsUsers.body}
                                         </div>
                                     </div>
@@ -104,10 +104,20 @@ export default function PostComments(props) {
             <div>
                 {arraCop.map((commentsPost, i) => {
                     return (
-                        <div className="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
-                            <h3 className="uk-card-title">{commentsPost.name}</h3>
-                            <p>{commentsPost.body}</p>
-                            <p>{commentsPost.email}</p>
+                        <div className="container-post-cards" key={i} >
+                            <div className="uk-text-center" uk-grid='false'>
+                                <div className="uk-width-expand@m card-center-title">
+                                    <div className="uk-card uk-card-default uk-card-body">
+                                        <h3 className="uk-card-title">{commentsPost.name}</h3>
+                                        <div>
+                                            {commentsPost.body}
+                                        </div>
+                                        <div>
+                                            {commentsPost.email}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     );
                 })
