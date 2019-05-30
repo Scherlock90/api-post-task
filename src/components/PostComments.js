@@ -26,32 +26,25 @@ export default function PostComments(props) {
         axios.get(`${URL}/posts/`)
             .then(res => res.data)
             .then(data => {
-                setAuthorCommentsName(data);
                 setPostsOne(data);
             });
         axios.get(`${URL}/users/`)
             .then(res => res.data)
             .then(data => {
-                setUsersName(data);                
+                setUsersName(data);
             });
     }, [])
     const arraCop = commentsArray.filter(postUsers => {
         return postUsers.postId === parseToNumber
     })
-    const nameAuthorComments = authorCommentsName.filter(aurhorName => {
-        return aurhorName.userId === parseToNumber
-    }
-    )
-    const nameAuthor = usersName.filter(aurhorName => {
-        return aurhorName.id === parseToNumber
-    }
-    )
     const posts2 = postsOne.filter(aurhorName => {
         return aurhorName.id === parseToNumber
-    }
-    )
-    console.log(posts2);
-    // console.log(arraCop.map(ee => ee));
+    })
+    const nameAuthor = usersName.filter(aurhorName => {
+        return aurhorName.id === Number(posts2.map(ee => ee.userId))
+    })
+    console.log(posts2.map(ee => ee.userId));
+    console.log(arraCop.map(ee => ee));
     return (
         <div className="container-posts-main">
             <div className="header-posts">
@@ -62,18 +55,18 @@ export default function PostComments(props) {
                                 {posts2.filter(ee => ee.userId).map(postBack => (
                                     <Link className="arrow-back" to={{
                                         pathname: `/${postBack.userId}/posts`,
-                                    }} >
+                                    }}>
                                         <span uk-icon="icon: reply; ratio: 2"></span> Back
                                     </Link>
-                                )
-                                )
-                                }
+                                ))}
                             </h3>
                         </div>
                     </div>
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-center">
-                            <h3 className="uk-card-title main-author-post">{nameAuthorComments.map((author => author.email))}</h3>
+                            <h3 className="uk-card-title main-author-post"> 
+                                {nameAuthor.map((postsUsers => postsUsers.name))}
+                            </h3>
                         </div>
                     </div>
                     <div>
@@ -88,36 +81,33 @@ export default function PostComments(props) {
                 </div>
             </div>
             <div>
-                {nameAuthor.map((postsUsers => postsUsers.name))
-                }
-            </div>
-            <div>
-            {posts2.map((postsUsers, i) => {
-                return (
-                    <div className="container-post-cards" key={i} >
-                        <div className="uk-text-center" uk-grid='false'>
-                            <div className="uk-width-expand@m card-center-title">
-                                <div className="uk-card uk-card-default uk-card-body">
-                                    <div>
-                                        {postsUsers.title}
-                                    </div>
-                                    <div>
-                                        {postsUsers.body}
+                {posts2.map((postsUsers, i) => {
+                    return (
+                        <div className="container-post-cards" key={i} >
+                            <div className="uk-text-center" uk-grid='false'>
+                                <div className="uk-width-expand@m card-center-title">
+                                    <div className="uk-card uk-card-default uk-card-body">
+                                        <div>
+                                            {postsUsers.title}
+                                        </div>
+                                        <div>
+                                            {postsUsers.body}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                );
-            })
-            }
+                    );
+                })
+                }
             </div>
-             <div>
+            <div>
                 {arraCop.map((commentsPost, i) => {
                     return (
                         <div className="uk-card uk-card-default uk-card-body uk-width-1-2@m" key={i}>
                             <h3 className="uk-card-title">{commentsPost.name}</h3>
                             <p>{commentsPost.body}</p>
+                            <p>{commentsPost.email}</p>
                         </div>
                     );
                 })
