@@ -204,6 +204,15 @@ a {
         .body-one-post{
             font-size: 120%;
         }
+        .comments-header{
+            font-size: 120%;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            .span-email{
+                text-decoration: underline;
+            }
+        }
     }  
 }
 

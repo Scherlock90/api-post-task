@@ -165,12 +165,9 @@ export default function PostComments(props) {
                                 <div className="uk-text-center" uk-grid='false'>
                                     <div className="uk-width-expand@m card-center-title">
                                         <div className="uk-card uk-card-default uk-card-body">
-                                            <h3 className="uk-card-title">{commentsPost.name}</h3>
+                                            <h3 className="uk-card-title comments-header"><span> {commentsPost.name}</span> <span className="span-email"><a href="email" >{commentsPost.email}</a></span></h3>
                                             <div>
                                                 {commentsPost.body}
-                                            </div>
-                                            <div>
-                                                {commentsPost.email}
                                             </div>
                                         </div>
                                     </div>

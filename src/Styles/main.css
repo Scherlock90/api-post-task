@@ -228,6 +228,17 @@ a {
   font-size: 120%;
 }
 
+.container-posts-main .container-post-cards .comments-header {
+  font-size: 120%;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-posts-main .container-post-cards .comments-header .span-email {
+  text-decoration: underline;
+}
+
 .Modal {
   display: grid;
   position: absolute;
