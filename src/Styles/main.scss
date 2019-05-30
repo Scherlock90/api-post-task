@@ -285,4 +285,38 @@ a {
          color: #1e87f0;
      }
  }
+ .icon-go-to-trash{
+     cursor: pointer;
+     :hover{
+        color: #1e87f0;
+     }
+ }
+ .container-for-buttons-commments{
+     display: flex;
+     justify-content: space-between;
+     .cont-button{
+         display: grid;
+         justify-content: center;
+         align-items: center;
+         .icon-add-comments{
+            cursor: pointer;
+            color: blue;
+            text-align: center;
+            &:hover {
+                color: #1e87f0;
+            }             
+         }
+     }
+     .title-button-add-comment{
+         font-size: 60%;
+     }
+    
+ }
+ .container-comments-show{
+    display: none;
+    &--active{
+        display: block;
+    }
+}
+ 
   

@@ -104,7 +104,7 @@ export default function Post(props) {
                         <div className="uk-text-center" uk-grid='false'>
                             <div className="uk-width-auto@m">
                                 <div className="uk-card uk-card-default uk-card-body">
-                                    <span uk-icon="icon: trash; ratio: 2"></span>
+                                    <span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2"></span>
                                 </div>
                             </div>
                             <div className="uk-width-expand@m card-center-title">

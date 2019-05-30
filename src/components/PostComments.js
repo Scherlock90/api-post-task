@@ -10,6 +10,7 @@ export default function PostComments(props) {
     const [authorCommentsName, setAuthorCommentsName] = useState([]);
     const [usersName, setUsersName] = useState([]);
     const [postsOne, setPostsOne] = useState([]);
+    const [isActive, setActive] = useState(false);
 
     const [name, setNameAdd] = useState('');
     const [email, setEmailAdd] = useState('');
@@ -30,6 +31,13 @@ export default function PostComments(props) {
         setModalMainOpen(false)
         return modalMainOpen
     }
+    function activeComments () {
+        if (isActive === false){
+        setActive(true);    
+        }  else {
+          setActive(false)
+        }
+      }
 
     const handleChangeName = event => {
         setNameAdd(event.target.value)
@@ -107,16 +115,10 @@ export default function PostComments(props) {
                             </h3>
                         </div>
                     </div>
-                    <div>
-                        <div className="uk-card uk-card-body main-cards-posts-right">
-                            <h3 className="uk-card-title">
-                                <span className="icon-add-post" uk-icon="icon:  plus-circle; ratio: 2" onClick={toggleModal}></span>
-                            </h3>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
-            <div>
+            <div className="container-to-comments">
                 {posts2.map((postsUsers, i) => {
                     return (
                         <div className="container-post-cards one-post-container" key={i} >
@@ -138,26 +140,46 @@ export default function PostComments(props) {
                 }
             </div>
             <div>
-                {arraCop.map((commentsPost, i) => {
-                    return (
-                        <div className="container-post-cards" key={i} >
-                            <div className="uk-text-center" uk-grid='false'>
-                                <div className="uk-width-expand@m card-center-title">
-                                    <div className="uk-card uk-card-default uk-card-body">
-                                        <h3 className="uk-card-title">{commentsPost.name}</h3>
-                                        <div>
-                                            {commentsPost.body}
-                                        </div>
-                                        <div>
-                                            {commentsPost.email}
+            <div className="container-for-buttons-commments">
+                    <div>
+                        <div className="uk-card uk-card-body main-cards-posts-left">
+                            <h3 className="uk-card-title cont-button">
+                                <span className="icon-add-comments" uk-icon="icon:  arrow-down; ratio: 2" onClick={e => activeComments(e)}></span>
+                                <div className="title-button-add-comment">Show Commments</div>
+                            </h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="uk-card uk-card-body main-cards-posts-right">
+                            <h3 className="uk-card-title cont-button">
+                                <span className="icon-add-comments" uk-icon="icon:  plus-circle; ratio: 2" onClick={toggleModal}></span>
+                                <div className="title-button-add-comment">Add Comment</div>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div className={isActive ? 'container-comments-show--active': 'container-comments-show'}>
+                    {arraCop.map((commentsPost, i) => {
+                        return (
+                            <div className="container-post-cards" key={i} >
+                                <div className="uk-text-center" uk-grid='false'>
+                                    <div className="uk-width-expand@m card-center-title">
+                                        <div className="uk-card uk-card-default uk-card-body">
+                                            <h3 className="uk-card-title">{commentsPost.name}</h3>
+                                            <div>
+                                                {commentsPost.body}
+                                            </div>
+                                            <div>
+                                                {commentsPost.email}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })
-                }
+                        );
+                    })
+                    }
+                </div>
             </div>
             <ReactModal
                 isOpen={modalMainOpen}

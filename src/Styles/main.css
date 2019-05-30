@@ -314,3 +314,44 @@ a {
 .icon-add-post:hover {
   color: #1e87f0;
 }
+
+.icon-go-to-trash {
+  cursor: pointer;
+}
+
+.icon-go-to-trash :hover {
+  color: #1e87f0;
+}
+
+.container-for-buttons-commments {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-for-buttons-commments .cont-button {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-for-buttons-commments .cont-button .icon-add-comments {
+  cursor: pointer;
+  color: blue;
+  text-align: center;
+}
+
+.container-for-buttons-commments .cont-button .icon-add-comments:hover {
+  color: #1e87f0;
+}
+
+.container-for-buttons-commments .title-button-add-comment {
+  font-size: 60%;
+}
+
+.container-comments-show {
+  display: none;
+}
+
+.container-comments-show--active {
+  display: block;
+}
