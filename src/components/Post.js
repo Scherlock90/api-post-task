@@ -94,14 +94,7 @@ function Post(props) {
     }
     )
 
-    const postItems = props.posts.filter(ee => ee.userId == parseToNumber).map((post) => {
-        return (
-            <div key={post.id}>
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-            </div>
-        );
-    });
+    const postItems = props.posts.filter(ee => ee.userId == parseToNumber);
     // console.log(postsArray);
     return (
         <div className="container-posts-main">
@@ -133,7 +126,14 @@ function Post(props) {
             {/* <div> {title}</div> */}
             {/* <Posts /> */}
             {/* {arraCop} */}
-            {postItems}
+            {postItems.map((post) => {
+        return (
+            <div key={post.id}>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+            </div>
+        );
+    })}
             {/* {arraCop.map((postsUsers, i) => {
                 return (
                     <div className="container-post-cards" key={i} >
