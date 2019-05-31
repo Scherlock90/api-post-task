@@ -1,12 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
 import '../Styles/main.css';
+import PostForm from './components/PostForm';
+import Posts from './components/Posts'
+import { FETCH_POSTS, NEW_POST } from './actions/types'
 
+import { connect } from 'react-redux';
+import { fetchPosts } from '../components/actions/postActions';
 
-export default function Post(props) {
+// const fetchPosts = () => (dispatch) => {
+//     axios
+//         .get('https://jsonplaceholder.typicode.com/posts')
+//         .then((posts) =>
+//             dispatch({
+//                 type: FETCH_POSTS,
+//                 payload: posts.data
+//             })
+//         )
+//         .catch((err) => {
+//             console.log(err);
+//         });
+// };
+
+function Post(props) {
 
     const [postsArray, setPostsArray] = useState([]);
     const [authorName, setAuthorName] = useState([]);
@@ -38,7 +57,6 @@ export default function Post(props) {
     }
     const handleSubmit = event => {
         event.preventDefault();
-
         axios.post(`${URL}/posts`, { title: title, body: body })
             .then(res => {
                 setTitleAdd(res.data.title);
@@ -48,27 +66,42 @@ export default function Post(props) {
             })
     }
 
-    useEffect(() => {
-        axios.get(`${URL}/posts/`)
-            .then(response =>
-                response.data
-            )
-            .then(data => {
-                setPostsArray(data);
-            });
+    useEffect(() => { 
+        
+        props.fetchPosts();
+        
+        // axios.get(`${URL}/posts/`)
+        //     .then(response =>
+        //         response.data
+        //     )
+        //     .then(data => {
+        //         setPostsArray(data);
+        //     });
         axios.get(`${URL}/users`)
             .then(res => res.data)
             .then(data => {
                 setAuthorName(data);
             });
+           
     }, [])
-    const arraCop = postsArray.filter(postUsers => {
-        return postUsers.userId === parseToNumber
-    })
+    const arraCop = postsArray;
+    console.log(postsArray);
+    // const arraCop = postsArray.filter(postUsers => {
+    //     return postUsers.userId === parseToNumber
+    // })
     const nameAuthor = authorName.filter(aurhorName => {
         return aurhorName.id === parseToNumber
     }
     )
+
+    const postItems = props.posts.filter(ee => ee.userId == parseToNumber).map((post) => {
+        return (
+            <div key={post.id}>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+            </div>
+        );
+    });
     // console.log(postsArray);
     return (
         <div className="container-posts-main">
@@ -98,7 +131,10 @@ export default function Post(props) {
                 </div>
             </div>
             {/* <div> {title}</div> */}
-            {arraCop.map((postsUsers, i) => {
+            {/* <Posts /> */}
+            {/* {arraCop} */}
+            {postItems}
+            {/* {arraCop.map((postsUsers, i) => {
                 return (
                     <div className="container-post-cards" key={i} >
                         <div className="uk-text-center" uk-grid='false'>
@@ -130,7 +166,7 @@ export default function Post(props) {
                     </div>
                 );
             })
-            }
+            } */}
             <ReactModal
                 isOpen={modalMainOpen}
                 contentLabel="onRequestClose Example"
@@ -145,7 +181,8 @@ export default function Post(props) {
                                 <div className="little-add-post-title">Add post</div>
                                 <div className="bigger-add-post-title">Add post</div>
                                 <form onSubmit={handleSubmit}>
-                                    <div className="cotainer-label">
+                                    <PostForm />
+                                    {/* <div className="cotainer-label">
                                         <label>
                                             <div className="container-input-label">
                                                 <div className="title-span-add-post">Title</div>
@@ -162,7 +199,7 @@ export default function Post(props) {
                                                 </div>
                                             </div>
                                         </label>
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <button className="uk-button uk-button-primary" type="submit">Save</button>
                                         <button className="uk-button uk-button-secondary" onClick={closeModal}>Cancel</button>
@@ -176,3 +213,11 @@ export default function Post(props) {
         </div>
     )
 }
+
+
+const mapStateToProps = (state) => ({
+	posts: state.posts.items,
+	newPost: state.posts.item
+});
+
+export default connect(mapStateToProps, { fetchPosts })(Post);

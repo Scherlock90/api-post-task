@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Post from './components/Post';
 import PostComments from './components/PostComments';
 import './Styles/main.css';
+import store from './components/store';
 
 // import PostsIndex from './components/PostsIndex';
 // import PostsNew from './components/PostsNew';
@@ -17,7 +18,7 @@ import './Styles/main.css';
 
 // The <Switch> component will only show the first route contained within it that matches a pattern
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -25,7 +26,7 @@ ReactDOM.render(
           <Route path="/:postId/post-comments" component={PostComments} />
         </Switch>
     </BrowserRouter>
-  // </Provider>
+  </Provider>
   ,
   document.getElementById('root')
 );
