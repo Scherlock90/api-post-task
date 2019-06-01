@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import Posts from './components/Posts'
 import { FETCH_POSTS, NEW_POST } from './actions/types'
 
 import { connect } from 'react-redux';
-import { fetchPosts } from '../components/actions/postActions';
+import { fetchPosts, createPost } from '../components/actions/postActions';
 
 // const fetchPosts = () => (dispatch) => {
 //     axios
@@ -59,17 +59,21 @@ function Post(props) {
         event.preventDefault();
         axios.post(`${URL}/posts`, { title: title, body: body })
             .then(res => {
-                setTitleAdd(res.data.title);
-                setBodyAdd(res.data.body);
+                const post = {
+                    title: res.title,
+                    body: res.body
+                };
+                // setTitleAdd(res.data.title);
+                // setBodyAdd(res.data.body);
+                props.createPost(post);
                 console.log(res);
                 console.log(res.data);
-            })
+            }) 
     }
 
     useEffect(() => { 
         
         props.fetchPosts();
-        
         // axios.get(`${URL}/posts/`)
         //     .then(response =>
         //         response.data
@@ -82,7 +86,13 @@ function Post(props) {
             .then(data => {
                 setAuthorName(data);
             });
-           
+    }, [])
+    useCallback((nextProps) => {
+        
+        if (nextProps.newPost) {
+			props.posts.unshift(nextProps.newPost);
+		}
+		  
     }, [])
     const arraCop = postsArray;
     console.log(postsArray);
@@ -126,15 +136,15 @@ function Post(props) {
             {/* <div> {title}</div> */}
             {/* <Posts /> */}
             {/* {arraCop} */}
-            {postItems.map((post) => {
-        return (
-            <div key={post.id}>
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-            </div>
-        );
-    })}
-            {/* {arraCop.map((postsUsers, i) => {
+            {/* {postItems.map((post) => {
+                return (
+                    <div key={post.id}>
+                        <h3>{post.title}</h3>
+                        <p>{post.body}</p>
+                    </div>
+                );
+            })} */}
+            {postItems.map((postsUsers, i) => {
                 return (
                     <div className="container-post-cards" key={i} >
                         <div className="uk-text-center" uk-grid='false'>
@@ -166,7 +176,8 @@ function Post(props) {
                     </div>
                 );
             })
-            } */}
+            }
+            {/* <Posts /> */}
             <ReactModal
                 isOpen={modalMainOpen}
                 contentLabel="onRequestClose Example"
@@ -181,8 +192,8 @@ function Post(props) {
                                 <div className="little-add-post-title">Add post</div>
                                 <div className="bigger-add-post-title">Add post</div>
                                 <form onSubmit={handleSubmit}>
-                                    <PostForm />
-                                    {/* <div className="cotainer-label">
+                                    {/* <PostForm /> */}
+                                    <div className="cotainer-label">
                                         <label>
                                             <div className="container-input-label">
                                                 <div className="title-span-add-post">Title</div>
@@ -199,7 +210,7 @@ function Post(props) {
                                                 </div>
                                             </div>
                                         </label>
-                                    </div> */}
+                                    </div>
                                     <div>
                                         <button className="uk-button uk-button-primary" type="submit">Save</button>
                                         <button className="uk-button uk-button-secondary" onClick={closeModal}>Cancel</button>
@@ -220,4 +231,4 @@ const mapStateToProps = (state) => ({
 	newPost: state.posts.item
 });
 
-export default connect(mapStateToProps, { fetchPosts })(Post);
+export default connect(mapStateToProps, { fetchPosts, createPost })(Post);

@@ -8,6 +8,8 @@ import Post from './components/Post';
 import PostComments from './components/PostComments';
 import './Styles/main.css';
 import store from './components/store';
+import App from './App'
+import Posts from './components/components/Posts'
 
 // import PostsIndex from './components/PostsIndex';
 // import PostsNew from './components/PostsNew';
@@ -22,11 +24,12 @@ ReactDOM.render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/:userId/posts" component={Post} />
+          <Route path="/:userId/posts" component={Posts} />
           <Route path="/:postId/post-comments" component={PostComments} />
         </Switch>
     </BrowserRouter>
   </Provider>
+  // <App />
   ,
   document.getElementById('root')
 );
