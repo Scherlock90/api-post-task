@@ -13,7 +13,8 @@ class Comments extends Component {
 		this.state = {
 			modalMainOpen: false,
             dataUsers: [],
-            isActive: false
+            isActive: false,
+            dataPost: []
 		};
 	}
 	//fecthuje stare dane
@@ -25,7 +26,12 @@ class Comments extends Component {
 				this.setState({
 					dataUsers: posts.data
 				})
-			)
+            )
+        axios.get(`https://jsonplaceholder.typicode.com/posts/`)
+        .then(res => this.setState({
+            dataPost: res.data
+        }))
+        
 	}
 
 	//sluży do przesyłania nowych propoów
@@ -74,6 +80,9 @@ class Comments extends Component {
 		}
 		)
 
+        const posts2 = this.state.dataPost.filter(aurhorName => {
+            return aurhorName.id === parseToNumber
+        })
 		return (
 			<div className="container-posts-main">
             <div className="header-posts">
@@ -88,8 +97,8 @@ class Comments extends Component {
                     
                 </div>
             </div>
-            {/* <div className="container-to-comments">
-                {commentsItem.map((postsUsers, i) => {
+            <div className="container-to-comments">
+                {posts2.map((postsUsers, i) => {
                     return (
                         <div className="container-post-cards one-post-container" key={i} >
                             <div className="uk-text-center" uk-grid='false'>
@@ -108,7 +117,7 @@ class Comments extends Component {
                     );
                 })
                 }
-            </div> */}
+            </div>
             <div>
             <div className="container-for-buttons-commments">
                     <div>
