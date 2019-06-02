@@ -1,8 +1,9 @@
-import { FETCH_POSTS, NEW_POST } from '../actions/types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS } from '../actions/types';
 
 const initialState = {
 	items: [],
-	item: {}
+	item: {},
+	itemComent: []
 };
 
 export default function(state = initialState, action) {
@@ -17,6 +18,11 @@ export default function(state = initialState, action) {
 				...state,
 				item: action.payload
 			};
+		case FETCH_COMMENTS:
+			return {
+				...state,
+				itemComent: action.payload
+			}
 		default:
 			return state;
 	}

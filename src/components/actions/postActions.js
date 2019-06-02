@@ -1,21 +1,7 @@
-import { FETCH_POSTS, NEW_POST, FETCH_USERS } from './types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS } from './types';
 import axios from 'axios';
 
 const url = 'https://jsonplaceholder.typicode.com/users';
-
-export const fetchUsers = () => (dispatch) => {
-	axios
-		.get(' https://jsonplaceholder.typicode.com/users')
-		.then((posts) =>
-			dispatch({
-				type:  FETCH_USERS,
-				payload: posts.data
-			})
-		)
-		.catch((err) => {
-			console.log(err);
-		});
-};
 
 export const fetchPosts = () => (dispatch) => {
 	axios
@@ -45,4 +31,20 @@ export const createPost = (postData) => (dispatch) => {
 			})
 		)
 		.catch((err) => console.log(err));
+};
+
+
+
+export const fetchComments = () => (dispatch) => {
+	axios
+		.get(' https://jsonplaceholder.typicode.com/comments')
+		.then((comments) =>
+			dispatch({
+				type:  FETCH_COMMENTS,
+				payload: comments.data
+			})
+		)
+		.catch((err) => {
+			console.log(err);
+		});
 };

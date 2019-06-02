@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Post from './components/Post';
 import PostComments from './components/PostComments';
+import Comments from './components/components/Comments';
 import './Styles/main.css';
 import store from './components/store';
 import App from './App'
@@ -25,7 +26,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/:userId/posts" component={Posts} />
-          <Route path="/:postId/post-comments" component={PostComments} />
+          <Route path="/:postId/post-comments" component={Comments} />
         </Switch>
     </BrowserRouter>
   </Provider>
