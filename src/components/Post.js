@@ -191,8 +191,9 @@ function Post(props) {
                             <div className="box">
                                 <div className="little-add-post-title">Add post</div>
                                 <div className="bigger-add-post-title">Add post</div>
+                               
                                 <form onSubmit={handleSubmit}>
-                                    {/* <PostForm /> */}
+                                {/* <PostForm userId={parseToNumber} /> */}
                                     <div className="cotainer-label">
                                         <label>
                                             <div className="container-input-label">
