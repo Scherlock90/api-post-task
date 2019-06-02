@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../actions/postActions';
-import PostForm from './PostForm';
+import PostCommentForm from './PostCommentForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
@@ -35,11 +35,11 @@ class Comments extends Component {
 	}
 
 	//sluży do przesyłania nowych propoów
-	// componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.newComment) {
-	// 		this.props.posts.unshift(nextProps.newComment);
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.newComment) {
+			this.props.comment.unshift(nextProps.newComment);
+		}
+	}
      activeComments = (e) => {
         e.preventDefault();
         if (this.state.isActive === false){
@@ -170,7 +170,7 @@ class Comments extends Component {
 								<div className="box">
 									<div className="little-add-post-title">Add post</div>
 									<div className="bigger-add-post-title">Add post</div>
-									{/* <PostForm userId={this.parseToNumber} /> */}
+									<PostCommentForm postId={this.parseToNumber} />
 									<button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button>
 								</div>
 							</div>
@@ -190,7 +190,8 @@ class Comments extends Component {
 // };
 
 const mapStateToProps = (state) => ({
-	comment: state.posts.itemComent
+    comment: state.posts.itemComent,
+    newComment: state.posts.itemNewComment
 });
 
 export default connect(mapStateToProps, { fetchComments })(Comments);

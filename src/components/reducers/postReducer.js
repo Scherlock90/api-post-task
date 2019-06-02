@@ -1,12 +1,13 @@
-import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS } from '../actions/types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
 
 const initialState = {
 	items: [],
 	item: {},
-	itemComent: []
+	itemComent: [],
+	itemNewComment: {}
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
 	switch (action.type) {
 		case FETCH_POSTS:
 			return {
@@ -22,6 +23,11 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				itemComent: action.payload
+			}
+		case NEW_COMMENT:
+			return {
+				...state,
+				itemNewComment: action.payload
 			}
 		default:
 			return state;

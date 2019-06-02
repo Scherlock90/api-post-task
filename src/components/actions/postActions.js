@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS } from './types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT } from './types';
 import axios from 'axios';
 
 const url = 'https://jsonplaceholder.typicode.com/users';
@@ -47,4 +47,20 @@ export const fetchComments = () => (dispatch) => {
 		.catch((err) => {
 			console.log(err);
 		});
+};
+
+export const createComment = (postData) => (dispatch) => {
+	axios
+		.post('https://jsonplaceholder.typicode.com/comments', postData, {
+			headers: {
+				'Content-type': 'application/json'
+			}
+		})
+		.then((comment) =>
+			dispatch({
+				type: NEW_COMMENT,
+				payload: comment.data
+			})
+		)
+		.catch((err) => console.log(err));
 };
