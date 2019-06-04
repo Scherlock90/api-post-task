@@ -7,6 +7,8 @@ import ReactModal from 'react-modal';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
 
+const URL = 'https://jsonplaceholder.typicode.com';
+
 class Comments extends Component {
 	constructor(props) {
 		super(props);
@@ -16,15 +18,23 @@ class Comments extends Component {
             isActive: false,
             dataPost: []
 		};
-	}
+    }
 	//fecthuje stare dane
 	componentDidMount() {
 		this.props.fetchComments();
 		
-        axios.get(`https://jsonplaceholder.typicode.com/posts/`)
-        .then(res => this.setState({
+        axios.get(`${URL}/posts/`)
+        .then(res => 
+            this.setState({
             dataPost: res.data
-        }))
+        })
+        )
+        axios.get(`${URL}/users/`)
+        .then(res =>  
+            this.setState({
+            dataUsers: res.data
+        })
+        )
         
 	}
 
@@ -68,19 +78,33 @@ class Comments extends Component {
 		const commentsItem = this.props.comment.filter(ee => ee.postId === parseToNumber);
 		// console.log(postItems);
 		// console.log(this.state.dataUsers);
-
-		const nameAuthor = this.state.dataUsers.filter(aurhorName => {
-			return aurhorName.id === parseToNumber
+            
+        const comments = this.state.dataPost.filter(aurhorName => {
+            return aurhorName.id === parseToNumber
+        })
+        const nameAuthor = this.state.dataUsers.filter(aurhorName => {
+			return aurhorName.id === Number(comments.map(ee => ee.userId))
 		}
 		)
 
-        const posts2 = this.state.dataPost.filter(aurhorName => {
-            return aurhorName.id === parseToNumber
-        })
+        console.log(nameAuthor);
 		return (
 			<div className="container-posts-main">
             <div className="header-posts">
                 <div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid="false">
+                    <div>
+                        <div className="uk-card uk-card-body main-cards-posts-left">
+                            <h3 className="uk-card-title">
+                                {comments.filter(ee => ee.userId).map(postBack => (
+                                    <Link className="arrow-back" to={{
+                                        pathname: `/${postBack.userId}/posts`,
+                                    }}>
+                                        <span uk-icon="icon: reply; ratio: 2"></span> Back
+                                    </Link>
+                                ))}
+                            </h3>
+                        </div>
+                    </div>
                     <div>
                         <div className="uk-card uk-card-body main-cards-posts-center">
                             <h3 className="uk-card-title main-author-post"> 
@@ -92,7 +116,7 @@ class Comments extends Component {
                 </div>
             </div>
             <div className="container-to-comments">
-                {posts2.map((postsUsers, i) => {
+                {comments.map((postsUsers, i) => {
                     return (
                         <div className="container-post-cards one-post-container" key={i} >
                             <div className="uk-text-center" uk-grid='false'>
