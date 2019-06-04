@@ -9,6 +9,7 @@ class PostCommentForm extends Component {
 		this.state = {
 			name: '',
 			body: '',
+			email: '',
 			postId: null
 		};
 	}
@@ -21,12 +22,13 @@ class PostCommentForm extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		const post = {
+		const comment = {
 			name: this.state.name,
 			body: this.state.body,
+			email: this.state.email,
 			postId: this.props.postId
 		};
-		this.props.createComment(post);
+		this.props.createComment(comment);
 	};
 
 	render() {
@@ -44,6 +46,12 @@ class PostCommentForm extends Component {
 						<label>Body: </label>
 						<hr />
 						<textarea value={this.state.body} name="body" onChange={this.onChange} />
+					</div>
+					<br />	
+					<div>
+						<label>email: </label>
+						<hr />
+						<textarea value={this.state.email} name="email" onChange={this.onChange} />
 					</div>
 					<br />	
 					<button type="submit">Submit</button>

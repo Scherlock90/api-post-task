@@ -70,7 +70,7 @@ export default function User() {
                         </div>
                     </div>
                 ))}
-                <form onSubmit={handleSubmit}>
+                {/* <form onSubmit={handleSubmit}>
                     <div className="cotainer-label">
                         <label>
                             <div className="container-input-label">
@@ -84,7 +84,7 @@ export default function User() {
                     <div>
                         <button className="uk-button uk-button-primary" type="submit">Save</button>
                     </div>
-                </form>
+                </form> */}
             </div>
         </div>
     )

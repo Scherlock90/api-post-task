@@ -20,13 +20,7 @@ class Comments extends Component {
 	//fecthuje stare dane
 	componentDidMount() {
 		this.props.fetchComments();
-		axios
-			.get(' https://jsonplaceholder.typicode.com/users')
-			.then((posts) =>
-				this.setState({
-					dataUsers: posts.data
-				})
-            )
+		
         axios.get(`https://jsonplaceholder.typicode.com/posts/`)
         .then(res => this.setState({
             dataPost: res.data
@@ -170,7 +164,7 @@ class Comments extends Component {
 								<div className="box">
 									<div className="little-add-post-title">Add post</div>
 									<div className="bigger-add-post-title">Add post</div>
-									<PostCommentForm postId={this.parseToNumber} />
+									<PostCommentForm postId={parseToNumber} />
 									<button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button>
 								</div>
 							</div>
