@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
+import Spinner from 'react-spinner-material';
 
 class Posts extends Component {
 	constructor(props) {
@@ -61,7 +62,7 @@ class Posts extends Component {
 			return aurhorName.id === parseToNumber
 		}
 		)
-
+		let loading;
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
@@ -77,7 +78,8 @@ class Posts extends Component {
 						</div>
 						<div>
 							<div className="uk-card uk-card-body main-cards-posts-center">
-								<h3 className="uk-card-title main-author-post">{nameAuthor.map((author => author.name))}</h3>
+								<h3 className="uk-card-title main-author-post">{ loading = nameAuthor.length ? (nameAuthor.map((author => author.name)))
+								: ( loading = loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )}</h3>
 							</div>
 						</div>
 						<div>
@@ -89,7 +91,7 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{postItems.map((postsUsers, i) => {
+				{ loading = postItems.length ? (postItems.map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
@@ -120,7 +122,7 @@ class Posts extends Component {
 							</div>
 						</div>
 					);
-				})
+				})) : ( loading = loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
 				<ReactModal
 					isOpen={this.state.modalMainOpen}

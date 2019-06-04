@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Spinner from 'react-spinner-material';
 
 export default function User() {
     const [usersArray, setUsersArray] = useState([]);
@@ -34,11 +35,11 @@ export default function User() {
     
 
     // console.log(usersArray);
-
+    let loading;
     return (
         <div className="containerUser">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="true">
-                {usersArray.map(user => (
+                { loading = usersArray.length ? ( usersArray.map(user => (
                     <div className="uk-card uk-card-default uk-card-body" key={user.id}>
                         <div className="uk-card-header">
                             <div className="uk-grid-small uk-flex-middle" >
@@ -69,7 +70,8 @@ export default function User() {
                             </div>
                         </div>
                     </div>
-                ))}
+                ))): ( loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
+            }
                 {/* <form onSubmit={handleSubmit}>
                     <div className="cotainer-label">
                         <label>

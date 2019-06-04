@@ -5,7 +5,7 @@ import PostCommentForm from './PostCommentForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
-import TextTruncate from 'react-text-truncate';
+import Spinner from 'react-spinner-material';
 
 const URL = 'https://jsonplaceholder.typicode.com';
 
@@ -76,8 +76,6 @@ class Comments extends Component {
 		const parseToNumber = Number(idLog);
 
 		const commentsItem = this.props.comment.filter(ee => ee.postId === parseToNumber);
-		// console.log(postItems);
-		// console.log(this.state.dataUsers);
             
         const comments = this.state.dataPost.filter(aurhorName => {
             return aurhorName.id === parseToNumber
@@ -85,9 +83,8 @@ class Comments extends Component {
         const nameAuthor = this.state.dataUsers.filter(aurhorName => {
 			return aurhorName.id === Number(comments.map(ee => ee.userId))
 		}
-		)
-
-        console.log(nameAuthor);
+        )
+        let loading;
 		return (
 			<div className="container-posts-main">
             <div className="header-posts">
@@ -116,7 +113,7 @@ class Comments extends Component {
                 </div>
             </div>
             <div className="container-to-comments">
-                {comments.map((postsUsers, i) => {
+                { loading = comments.length ? (comments.map((postsUsers, i) => {
                     return (
                         <div className="container-post-cards one-post-container" key={i} >
                             <div className="uk-text-center" uk-grid='false'>
@@ -133,7 +130,9 @@ class Comments extends Component {
                             </div>
                         </div>
                     );
-                })
+                })) : (
+                    loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
+                )
                 }
             </div>
             <div>
@@ -156,7 +155,7 @@ class Comments extends Component {
                     </div>
                 </div>
                 <div className={this.state.isActive ? 'container-comments-show--active': 'container-comments-show'}>
-                    {commentsItem.map((commentsPost, i) => {
+                    {loading = commentsItem.length ? (commentsItem.map((commentsPost, i) => {
                         return (
                             <div className="container-post-cards" key={i} >
                                 <div className="uk-text-center" uk-grid='false'>
@@ -171,7 +170,7 @@ class Comments extends Component {
                                 </div>
                             </div>
                         );
-                    })
+                    })): ( loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
                     }
                 </div>
             </div>
