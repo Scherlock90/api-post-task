@@ -43,7 +43,7 @@ export const deletedPost = (id) => (dispatch) => {
 		.then((post) =>
 			dispatch({
 				type: DELETED_POST,
-				payload: post.data.filter(ee => ee.id !== id)
+				payload: post.data
 			})
 		)
 		.catch((err) => console.log(err));

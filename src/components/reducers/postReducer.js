@@ -22,13 +22,9 @@ export default function (state = initialState, action) {
 			};
 		case DELETED_POST:
 			return {
-				...state,
-				deletedPost: {
-					...state.deletedPost,
-					   [action.id]: [...state.deletedPost[action.id]]
-					   .filter((x, index) => index !== action.index)
-					},
-			};
+                ...state,
+                deletedPost: action.payload
+            };
 		case FETCH_COMMENTS:
 			return {
 				...state,

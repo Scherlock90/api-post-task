@@ -27,7 +27,7 @@ class Posts extends Component {
 				this.setState({
 					dataUsers: posts.data
 				})
-			)
+			)			
 	}
 
 	//send new props adding
@@ -39,13 +39,15 @@ class Posts extends Component {
 	//send new props deleting
 	componentDidUpdate (prevProps, prevState) {
 		if (prevProps.deletedPost) {
-			this.props.posts.shift(prevProps.deletedPost);
+			const { posts } = this.props
+            const letang = posts.splice(posts.findIndex( (post)=> post.id === this.state.postId), 1);
+
+           console.log(letang );
 		}
+		
 	}
-	
+
 	handleDeletedPost = (id) => {
-		let ss = id;
-		console.log('to jest wewnętrzna tablica tej funkcji + powyżej')
 		this.setState({
 			postId: id
 		})
@@ -67,7 +69,7 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
-		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber).filter( ee => ee.id != this.state.postId);
+		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber);
 
 		const nameAuthor = this.state.dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
@@ -170,7 +172,7 @@ class Posts extends Component {
 const mapStateToProps = (state) => ({
 	posts: state.posts.items,
 	newPost: state.posts.item,
-	deletedPost: state.posts.deletedPost
+	deletedPost2: state.posts.deletedPost
 });
 
 export default connect(mapStateToProps, { fetchPosts, deletedPost })(Posts);
