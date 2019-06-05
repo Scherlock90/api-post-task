@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/postActions';
+import { fetchPosts, deletedPost } from '../actions/postActions';
 import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
@@ -14,12 +14,17 @@ class Posts extends Component {
 		super(props);
 		this.state = {
 			modalMainOpen: false,
-			dataUsers: []
+			dataUsers: [],
+			postId: '',
+			dataPost: []
 		};
 	}
 	//fecthuje stare dane
-	componentDidMount() {
-		this.props.fetchPosts();
+	async componentDidMount() {
+		const dataPost = this.props.fetchPosts();
+		this.setState({
+			dataPost: dataPost
+		})
 		axios
 			.get(' https://jsonplaceholder.typicode.com/users')
 			.then((posts) =>
@@ -36,6 +41,27 @@ class Posts extends Component {
 		}
 	}
 
+	// componentDidUpdate (prevProps, prevState) {
+	// 	this.handleDeletedPost();
+	// 	if (prevProps.deletedPost) {
+	// 		// this.props.posts.shift(prevProps.deletedPost);
+	// 		// this.props.deletedPost();
+	// 	}
+	// }
+	
+	handleDeletedPost = (id) => {
+		// e.preventDefault();
+		let ss = id;
+		console.log(ss);
+		this.props.deletedPost(id);
+		
+		const san = this.props.posts.filter( ee => ee.id != id);
+		console.log(san);
+		console.log('to jest wewnętrzna tablica tej funkcji + powyżej')
+		this.setState({
+			postId: id
+		})
+	}
 	toggleModal = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -49,12 +75,11 @@ class Posts extends Component {
 		})
 	}
 	render() {
-
 		const { match: { params } } = this.props;
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
-		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber);
+		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber).filter( ee => ee.id != this.state.postId);
 		// console.log(postItems);
 		// console.log(this.state.dataUsers);
 
@@ -72,14 +97,14 @@ class Posts extends Component {
 								<h3 className="uk-card-title">
 									<Link className="arrow-back" to="/">
 										<span uk-icon="icon: reply; ratio: 2"></span> Back
-                                </Link>
+                                	</Link>
 								</h3>
 							</div>
 						</div>
 						<div>
 							<div className="uk-card uk-card-body main-cards-posts-center">
 								<h3 className="uk-card-title main-author-post">{ loading = nameAuthor.length ? (nameAuthor.map((author => author.name)))
-								: ( loading = loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )}</h3>
+								: ( loading  =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )}</h3>
 							</div>
 						</div>
 						<div>
@@ -97,7 +122,7 @@ class Posts extends Component {
 							<div className="uk-text-center" uk-grid='false'>
 								<div className="uk-width-auto@m">
 									<div className="uk-card uk-card-default uk-card-body">
-										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2"></span>
+										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={() => this.handleDeletedPost(postsUsers.id)} ></span>
 									</div>
 								</div>
 								<div className="uk-width-expand@m card-center-title">
@@ -158,7 +183,8 @@ class Posts extends Component {
 
 const mapStateToProps = (state) => ({
 	posts: state.posts.items,
-	newPost: state.posts.item
+	newPost: state.posts.item,
+	deletedPost: state.posts.deletedPost
 });
 
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+export default connect(mapStateToProps, { fetchPosts, deletedPost })(Posts);
