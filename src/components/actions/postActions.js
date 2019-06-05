@@ -35,7 +35,7 @@ export const createPost = (postData) => (dispatch) => {
 
 export const deletedPost = (id) => (dispatch) => {
 	axios
-		.delete('https://jsonplaceholder.typicode.com/posts', id, {
+		.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
 			headers: {
 				'Content-type': 'application/json'
 			}
@@ -43,7 +43,7 @@ export const deletedPost = (id) => (dispatch) => {
 		.then((post) =>
 			dispatch({
 				type: DELETED_POST,
-				payload: post.data
+				payload: post.data.filter(ee => ee.id !== id)
 			})
 		)
 		.catch((err) => console.log(err));

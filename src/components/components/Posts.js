@@ -15,16 +15,12 @@ class Posts extends Component {
 		this.state = {
 			modalMainOpen: false,
 			dataUsers: [],
-			postId: '',
-			dataPost: []
+			postId: ''
 		};
 	}
-	//fecthuje stare dane
-	async componentDidMount() {
-		const dataPost = this.props.fetchPosts();
-		this.setState({
-			dataPost: dataPost
-		})
+	//fetch data
+	 componentDidMount() {
+		this.props.fetchPosts();
 		axios
 			.get(' https://jsonplaceholder.typicode.com/users')
 			.then((posts) =>
@@ -34,29 +30,21 @@ class Posts extends Component {
 			)
 	}
 
-	//sluży do przesyłania nowych propoów
+	//send new props adding
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.newPost) {
 			this.props.posts.unshift(nextProps.newPost);
 		}
 	}
-
-	// componentDidUpdate (prevProps, prevState) {
-	// 	this.handleDeletedPost();
-	// 	if (prevProps.deletedPost) {
-	// 		// this.props.posts.shift(prevProps.deletedPost);
-	// 		// this.props.deletedPost();
-	// 	}
-	// }
+	//send new props deleting
+	componentDidUpdate (prevProps, prevState) {
+		if (prevProps.deletedPost) {
+			this.props.posts.shift(prevProps.deletedPost);
+		}
+	}
 	
 	handleDeletedPost = (id) => {
-		// e.preventDefault();
 		let ss = id;
-		console.log(ss);
-		this.props.deletedPost(id);
-		
-		const san = this.props.posts.filter( ee => ee.id != id);
-		console.log(san);
 		console.log('to jest wewnętrzna tablica tej funkcji + powyżej')
 		this.setState({
 			postId: id
@@ -80,8 +68,6 @@ class Posts extends Component {
 		const parseToNumber = Number(idLog);
 
 		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber).filter( ee => ee.id != this.state.postId);
-		// console.log(postItems);
-		// console.log(this.state.dataUsers);
 
 		const nameAuthor = this.state.dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
@@ -122,7 +108,7 @@ class Posts extends Component {
 							<div className="uk-text-center" uk-grid='false'>
 								<div className="uk-width-auto@m">
 									<div className="uk-card uk-card-default uk-card-body">
-										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={() => this.handleDeletedPost(postsUsers.id)} ></span>
+										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={()=> this.handleDeletedPost(postsUsers.id)} ></span>
 									</div>
 								</div>
 								<div className="uk-width-expand@m card-center-title">

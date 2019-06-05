@@ -5,7 +5,7 @@ const initialState = {
 	item: {},
 	itemComent: [],
 	itemNewComment: {},
-	deletedPost: {}
+	deletedPost: []
 };
 
 export default function (state = initialState, action) {
