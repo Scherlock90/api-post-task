@@ -187,8 +187,7 @@ class Comments extends Component {
 								<div className="box">
 									<div className="little-add-post-title">Add post</div>
 									<div className="bigger-add-post-title">Add post</div>
-									<PostCommentForm postId={parseToNumber} />
-									<button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button>
+									<PostCommentForm postId={parseToNumber} closeModal={this.closeModal} />
 								</div>
 							</div>
 						</div>

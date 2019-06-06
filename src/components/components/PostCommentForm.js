@@ -54,7 +54,8 @@ class PostCommentForm extends Component {
 						<textarea value={this.state.email} name="email" placeholder="e-mail" onChange={this.onChange}  required/>
 					</div>
 					<br />	
-					<button type="submit">Submit</button>
+					<button className="uk-button uk-button-primary" type="submit">Save</button>
+					<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
 				</form>
 			</div>
 		);

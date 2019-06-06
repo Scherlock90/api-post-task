@@ -75,7 +75,7 @@ class Posts extends Component {
 			return aurhorName.id === parseToNumber
 		}
 		).map((author => author.name))) : ( <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
-		
+
 		let loading;
 		return (
 			<div className="container-posts-main">
@@ -150,8 +150,8 @@ class Posts extends Component {
 								<div className="box">
 									<div className="little-add-post-title">Add post</div>
 									<div className="bigger-add-post-title">Add post</div>
-									<PostForm userId={parseToNumber} />
-									<button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button>
+									<PostForm userId={parseToNumber} closeModal={this.closeModal} />
+									{/* <button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button> */}
 								</div>
 							</div>
 						</div>
