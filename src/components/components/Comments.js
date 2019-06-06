@@ -19,7 +19,7 @@ class Comments extends Component {
             dataPost: []
 		};
     }
-	//fecthuje stare dane
+
 	componentDidMount() {
 		this.props.fetchComments();
 		
@@ -36,9 +36,8 @@ class Comments extends Component {
         })
         )
         
-	}
-
-	//sluży do przesyłania nowych propoów
+    }
+    
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.newComment) {
 			this.props.comment.unshift(nextProps.newComment);

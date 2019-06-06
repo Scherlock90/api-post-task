@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts, deletedPost } from '../actions/postActions';
@@ -6,7 +6,6 @@ import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
-import TextTruncate from 'react-text-truncate';
 import Spinner from 'react-spinner-material';
 
 class Posts extends Component {
@@ -15,7 +14,8 @@ class Posts extends Component {
 		this.state = {
 			modalMainOpen: false,
 			dataUsers: [],
-			postId: ''
+			postId: '',
+			dataPost: ''
 		};
 	}
 	//fetch data
@@ -27,23 +27,36 @@ class Posts extends Component {
 				this.setState({
 					dataUsers: posts.data
 				})
-			)			
+			)		
 	}
 
-	//send new props adding
+	// send new props adding
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.newPost) {
 			this.props.posts.unshift(nextProps.newPost);
 		}
 	}
+
 	//send new props deleting
 	componentDidUpdate (prevProps, prevState) {
-		if (prevProps.deletedPost) {
+		const dataPost =  this.state.dataPost.slice(this.state.postId);
+		if(this.state.dataPost <= 0) {
+			this.handleData();
+		} else {
+			console.log('stop')
+		}
+		if (prevProps) {
 			const { posts } = this.props
-			const letang = posts.splice(posts.findIndex( (post)=> post.id === this.state.postId), 1);
+			const letang = posts.slice(this.state.postId);
            console.log(letang );
 		}
-		
+	}
+	handleData = () => {
+		const { posts } = this.props;
+		const letang = posts;
+		this.setState({
+			dataPost: letang
+		})
 	}
 
 	handleDeletedPost = (id) => {
@@ -65,18 +78,19 @@ class Posts extends Component {
 	}
 	render() {
 		const { match: { params } } = this.props;
-		const { dataUsers } = this.state;
+		const { dataUsers, dataPost } = this.state;
+
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
-		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber);
-
+		const postItems = dataPost.slice(this.state.postId);
 		const nameAuthor = dataUsers.length ? ( dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
 		}
-		).map((author => author.name))) : ( <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
-
+		).map((author => author.name))) : ( <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />);
 		let loading;
+		// console.log(this.state.dataPost);
+		
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
@@ -104,7 +118,7 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{ loading = postItems.length ? (postItems.map((postsUsers, i) => {
+				{ loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
@@ -115,12 +129,7 @@ class Posts extends Component {
 								</div>
 								<div className="uk-width-expand@m card-center-title">
 									<div className="uk-card uk-card-default uk-card-body">
-										<TextTruncate
-											line={1}
-											element="span"
-											truncateText="…"
-											text={postsUsers.title}
-										/>
+										{postsUsers.title}
 									</div>
 								</div>
 								<div className="uk-width-1-3@m">

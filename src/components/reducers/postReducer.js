@@ -21,10 +21,11 @@ export default function (state = initialState, action) {
 				item: action.payload
 			};
 		case DELETED_POST:
-			return {
-                ...state,
-                items: action.payload
-            };
+			const newItems = state.items.filter(p => p.id !== action.payload);
+        return {
+            ...state,
+            items: [ ...newItems ],
+        };
 		case FETCH_COMMENTS:
 			return {
 				...state,
