@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
 		case DELETED_POST:
 			return {
                 ...state,
-                deletedPost: action.payload
+                items: action.payload
             };
 		case FETCH_COMMENTS:
 			return {

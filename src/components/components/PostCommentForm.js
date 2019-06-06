@@ -39,19 +39,19 @@ class PostCommentForm extends Component {
 					<div>
 						<label>Title: </label>
 						<hr />
-						<input name="name" type="text" value={this.state.name} onChange={this.onChange} />
+						<input name="name" type="text" placeholder="Name" value={this.state.name} onChange={this.onChange} required />
 					</div>
 					<br />
 					<div>
 						<label>Body: </label>
 						<hr />
-						<textarea value={this.state.body} name="body" onChange={this.onChange} />
+						<textarea value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
 					</div>
 					<br />	
 					<div>
 						<label>email: </label>
 						<hr />
-						<textarea value={this.state.email} name="email" onChange={this.onChange} />
+						<textarea value={this.state.email} name="email" placeholder="e-mail" onChange={this.onChange}  required/>
 					</div>
 					<br />	
 					<button type="submit">Submit</button>

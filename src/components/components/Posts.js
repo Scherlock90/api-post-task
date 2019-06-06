@@ -40,8 +40,7 @@ class Posts extends Component {
 	componentDidUpdate (prevProps, prevState) {
 		if (prevProps.deletedPost) {
 			const { posts } = this.props
-            const letang = posts.splice(posts.findIndex( (post)=> post.id === this.state.postId), 1);
-
+			const letang = posts.splice(posts.findIndex( (post)=> post.id === this.state.postId), 1);
            console.log(letang );
 		}
 		
@@ -66,15 +65,17 @@ class Posts extends Component {
 	}
 	render() {
 		const { match: { params } } = this.props;
+		const { dataUsers } = this.state;
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
 		const postItems = this.props.posts.filter(ee => ee.userId === parseToNumber);
 
-		const nameAuthor = this.state.dataUsers.filter(aurhorName => {
+		const nameAuthor = dataUsers.length ? ( dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
 		}
-		)
+		).map((author => author.name))) : ( <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+		
 		let loading;
 		return (
 			<div className="container-posts-main">
@@ -91,8 +92,7 @@ class Posts extends Component {
 						</div>
 						<div>
 							<div className="uk-card uk-card-body main-cards-posts-center">
-								<h3 className="uk-card-title main-author-post">{ loading = nameAuthor.length ? (nameAuthor.map((author => author.name)))
-								: ( loading  =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )}</h3>
+								<h3 className="uk-card-title main-author-post">{nameAuthor}</h3>
 							</div>
 						</div>
 						<div>
