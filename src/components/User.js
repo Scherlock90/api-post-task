@@ -5,23 +5,9 @@ import Spinner from 'react-spinner-material';
 
 export default function User() {
     const [usersArray, setUsersArray] = useState([]);
-    const [name, setNameUser] = useState('');
-
+    
     const URL = 'https://jsonplaceholder.typicode.com';
 
-    const handleChangeName = event => {
-        setNameUser(event.target.value)
-    }
-    const handleSubmit = event => {
-        event.preventDefault();
-
-        axios.post(`${URL}/users`, { name: name})
-            .then(res => {
-                setNameUser(res.data.name);
-                console.log(res);
-                console.log(res.data.name);
-            })
-    }
     useEffect(() => {
         axios.get(`${URL}/users`)
             .then(response =>
@@ -31,11 +17,8 @@ export default function User() {
                 setUsersArray(data);
             });
     }, [])
-
-    
-
-    // console.log(usersArray);
     let loading;
+
     return (
         <div className="containerUser">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="true">
@@ -72,21 +55,6 @@ export default function User() {
                     </div>
                 ))): ( loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
             }
-                {/* <form onSubmit={handleSubmit}>
-                    <div className="cotainer-label">
-                        <label>
-                            <div className="container-input-label">
-                                <div className="title-span-add-post">Name</div>
-                                <div>
-                                    <input type="text" name="name" value={name} placeholder="name" onChange={handleChangeName} />
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div>
-                        <button className="uk-button uk-button-primary" type="submit">Save</button>
-                    </div>
-                </form> */}
             </div>
         </div>
     )

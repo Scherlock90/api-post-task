@@ -14,7 +14,8 @@ class Posts extends Component {
 			modalMainOpen: false,
 			dataUsers: [],
 			postId: '',
-			dataPost: ''
+			dataPost: '',
+			isActive: false
 		};
 		console.log('constructor');
 	}
@@ -61,9 +62,21 @@ class Posts extends Component {
 		const { posts } = this.props;
 		const letang = posts;
 		this.setState({
-			dataPost: letang
+			dataPost: letang,
+			isActive: true
 		})
 	}
+	activeComments = (e) => {
+        if (this.state.isActive === false) {
+            this.setState({
+                isActive: true
+            })
+        } else {
+            this.setState({
+                isActive: false
+            })
+        }
+    }
 
 	handleDeletedPost = (id) => {
 		this.setState({
@@ -149,7 +162,7 @@ class Posts extends Component {
 							</div>
 						</div>
 					);
-				})) : (loading = loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+				})) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
 				<ReactModal
 					isOpen={this.state.modalMainOpen}
