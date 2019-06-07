@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import {_} from 'underscore'
+import { _ } from 'underscore'
 
 class Posts extends Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ class Posts extends Component {
 		};
 	}
 	//fetch data
-	 componentDidMount() {
+	componentDidMount() {
 		this.props.fetchPosts();
 		axios
 			.get(' https://jsonplaceholder.typicode.com/users')
@@ -28,7 +28,7 @@ class Posts extends Component {
 				this.setState({
 					dataUsers: posts.data
 				})
-			)		
+			)
 	}
 
 	// send new props adding
@@ -39,23 +39,22 @@ class Posts extends Component {
 	}
 
 	//send new props deleting
-	componentDidUpdate (prevProps, prevState) {
-		const {dataPost} = this.state;
-		const dataPostss =  dataPost;
-		if(this.state.dataPost <= 0) {
+	componentDidUpdate(prevProps, prevState) {
+		const { dataPost } = this.state;
+		const dataPostss = dataPost;
+		if (this.state.dataPost.length <= 0 ) {
 			this.handleData();
-		} else {
+		} else  {
 			console.log('stop');
 			console.log(dataPostss);
 		}
 		if (prevProps) {
 			const { posts } = this.props;
-			const indexPosts = posts.findIndex( (post)=> post.id === this.state.postId)
+			const indexPosts = posts.findIndex((post) => post.id === this.state.postId)
 			if (indexPosts !== -1) {
-			const letang = posts.splice(indexPosts, 1);
-			console.log(letang );
-		}
-			
+				const letang = posts.splice(indexPosts, 1);
+				console.log(letang);
+			}
 		}
 	}
 	handleData = () => {
@@ -91,7 +90,7 @@ class Posts extends Component {
 		const parseToNumber = Number(idLog);
 
 		const postItems = dataPost;
-		const nameAuthor =  dataUsers.filter(aurhorName => {
+		const nameAuthor = dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
 		}
 		).map((author => author.name))
@@ -124,13 +123,13 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{ loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
+				{loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
 								<div className="uk-width-auto@m">
 									<div className="uk-card uk-card-default uk-card-body">
-										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={()=> this.handleDeletedPost(postsUsers.id)} ></span>
+										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={() => this.handleDeletedPost(postsUsers.id)} ></span>
 									</div>
 								</div>
 								<div className="uk-width-expand@m card-center-title">
@@ -150,7 +149,7 @@ class Posts extends Component {
 							</div>
 						</div>
 					);
-				})) : ( loading = loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+				})) : (loading = loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
 				<ReactModal
 					isOpen={this.state.modalMainOpen}
