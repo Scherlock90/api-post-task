@@ -32,13 +32,10 @@ class PostForm extends Component {
 	render() {
 		return (
 			<div className="container-post-form-main">
-				<div>
 					<div className="title-post-form"> Add Post</div>
 					<div className="container-post-form2">
 						<h1 className="title-modal-post">Add Post</h1>
-
 						<form onSubmit={this.onSubmit}>
-
 							<table class="uk-table uk-table-justify uk-table-divider">
 								<tbody>
 									<tr>
@@ -56,15 +53,13 @@ class PostForm extends Component {
 								</tbody>
 							</table>
 							<div className="container-button-post">
-								
+
 								<button className="uk-button uk-button-primary" type="submit">Save</button>
 								<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
 							</div>
 						</form>
-						
 					</div>
 					<div className="title-post-form-down"> </div>
-				</div>
 			</div>
 		);
 	}
