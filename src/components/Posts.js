@@ -14,8 +14,7 @@ class Posts extends Component {
 			modalMainOpen: false,
 			dataUsers: [],
 			postId: '',
-			dataPost: '',
-			isActive: false
+			dataPost: []
 		};
 		console.log('constructor');
 	}
@@ -62,21 +61,9 @@ class Posts extends Component {
 		const { posts } = this.props;
 		const letang = posts;
 		this.setState({
-			dataPost: letang,
-			isActive: true
+			dataPost: letang
 		})
 	}
-	activeComments = (e) => {
-        if (this.state.isActive === false) {
-            this.setState({
-                isActive: true
-            })
-        } else {
-            this.setState({
-                isActive: false
-            })
-        }
-    }
 
 	handleDeletedPost = (id) => {
 		this.setState({
