@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createComment } from '../actions/postActions';
 
@@ -33,37 +32,43 @@ class PostCommentForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Add Post</h1>
-				<form onSubmit={this.onSubmit}>
-					<div>
-						<label>Title: </label>
-						<hr />
-						<input name="name" type="text" placeholder="Name" value={this.state.name} onChange={this.onChange} required />
-					</div>
-					<br />
-					<div>
-						<label>Body: </label>
-						<hr />
-						<textarea value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
-					</div>
-					<br />	
-					<div>
-						<label>email: </label>
-						<hr />
-						<textarea value={this.state.email} name="email" placeholder="e-mail" onChange={this.onChange}  required/>
-					</div>
-					<br />	
-					<button className="uk-button uk-button-primary" type="submit">Save</button>
-					<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
-				</form>
+			<div className="container-post-form-main">
+				<div className="title-post-form"> Add comment</div>
+				<div className="container-post-form2">
+					<h1 className="title-modal-post">Add Comment</h1>
+					<form onSubmit={this.onSubmit}>
+						<table className="uk-table uk-table-justify uk-table-divider">
+							<tbody>
+								<tr>
+									<td className="body-container-form">Title</td>
+									<td className="body-container-form2">
+										<input className="text-place-post-form" name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
+									</td>
+								</tr>
+								<tr>
+									<td className="body-container-form">email:</td>
+									<td className="body-container-form2">
+										<input className="text-place-post-form" name="email" type="text" value={this.state.title} placeholder="E-mail" onChange={this.onChange} required />
+									</td>
+								</tr>
+								<tr>
+									<td className="body-container-form">Body</td>
+									<td className="body-container-form2">
+										<textarea className="text-place-post-form text-area-main" value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div className="container-button-post">
+							<button className="uk-button uk-button-primary" type="submit">Save</button>
+							<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
+						</div>
+					</form>
+				</div>
+				<div className="title-post-form-down"> </div>
 			</div>
 		);
 	}
 }
-
-// PostForm.propTypes = {
-// 	createPost: PropTypes.func.isRequired
-// };
 
 export default connect(null, { createComment })(PostCommentForm);

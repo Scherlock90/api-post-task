@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, deletedPost } from '../actions/postActions';
 import PostForm from './PostForm';
@@ -29,7 +28,7 @@ class Posts extends Component {
 					dataUsers: posts.data
 				})
 			)
-			console.log('componentWillReceiveProps');
+		console.log('componentWillReceiveProps');
 	}
 
 	// send new props adding
@@ -44,19 +43,19 @@ class Posts extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		const { dataPost } = this.state;
 		const dataPostss = dataPost;
-		if (this.state.dataPost.length <= 0 ) {
+		if (this.state.dataPost.length <= 0) {
 			this.handleData();
-		} else  {
+		} else {
 			console.log('stop');
 			console.log(dataPostss);
 		}
-			const { posts } = this.props;
-			const indexPosts = posts.findIndex((post) => post.id === this.state.postId)
-			if (indexPosts !== -1) {
-				const letang = posts.splice(indexPosts, 1);
-				console.log(letang);
-			}
-			console.log('didUpdate');
+		const { posts } = this.props;
+		const indexPosts = posts.findIndex((post) => post.id === this.state.postId)
+		if (indexPosts !== -1) {
+			const letang = posts.splice(indexPosts, 1);
+			console.log(letang);
+		}
+		console.log('didUpdate');
 	}
 	handleData = () => {
 		const { posts } = this.props;
@@ -164,7 +163,6 @@ class Posts extends Component {
 							<div className="cardPost">
 								<div className="box">
 									<PostForm userId={parseToNumber} closeModal={this.closeModal} />
-									{/* <button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button> */}
 								</div>
 							</div>
 						</div>
@@ -174,14 +172,6 @@ class Posts extends Component {
 		);
 	}
 }
-
-// Posts.propTypes = {
-// 	// posts is postReducer name
-// 	fetchPosts: PropTypes.func.isRequired,
-// 	posts: PropTypes.array.isRequired,
-// 	newPost: PropTypes.object
-// };
-
 const mapStateToProps = (state) => ({
 	posts: state.posts.items,
 	newPost: state.posts.item,
