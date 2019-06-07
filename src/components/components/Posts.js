@@ -163,8 +163,6 @@ class Posts extends Component {
 						<div className="containerMyModal" >
 							<div className="cardPost">
 								<div className="box">
-									<div className="little-add-post-title">Add post</div>
-									<div className="bigger-add-post-title">Add post</div>
 									<PostForm userId={parseToNumber} closeModal={this.closeModal} />
 									{/* <button className="uk-button uk-button-secondary" onClick={this.closeModal}>Cancel</button> */}
 								</div>

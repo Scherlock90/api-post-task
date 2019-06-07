@@ -123,6 +123,10 @@ a {
         margin: 10px;
         display: flex;
         justify-content: center;
+        .main-title{
+            text-align: left !important;
+            margin: 5px;
+        }
     }
     .uk-child-width-expand\@s>:not([class*=uk-width]){
         flex:none;
@@ -324,4 +328,48 @@ a {
     }
 }
  
-  
+.container-post-form-main{
+    height: auto;
+    width: 400px;
+    .container-post-form2{
+        padding: 1em;
+        border: #363434 solid 2px;
+        .body-container-form{
+            width: 20%;
+            text-align: left;
+            padding-left: 1em;
+            .text-place-post-form{
+                width: 100%;
+            }
+        }
+        .body-container-form2{
+            width: 80%;
+            .text-place-post-form{
+                width: 100%;
+            }
+            .text-area-main{
+                height: 10em;
+            }
+        }
+    }
+    .title-post-form{
+        text-align: left;
+        font-size: 80%;
+        border: #363434 solid 2px;
+        height: 25px;
+    }
+    .title-post-form-down{
+        text-align: left;
+        font-size: 80%;
+        border: #363434 solid 2px;
+        height: 25px;
+    }
+    .title-modal-post{
+        margin: 1em;
+    }
+    .container-button-post{
+        width: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -130,6 +130,11 @@ a {
   justify-content: center;
 }
 
+.containerUser .main-grid2 .main-title {
+  text-align: left !important;
+  margin: 5px;
+}
+
 .containerUser .uk-child-width-expand\@s > :not([class*=uk-width]) {
   flex: none;
   margin: 10px;
@@ -361,4 +366,60 @@ a {
 
 .container-comments-show--active {
   display: block;
+}
+
+.container-post-form-main {
+  height: auto;
+  width: 400px;
+}
+
+.container-post-form-main .container-post-form2 {
+  padding: 1em;
+  border: #363434 solid 2px;
+}
+
+.container-post-form-main .container-post-form2 .body-container-form {
+  width: 20%;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.container-post-form-main .container-post-form2 .body-container-form .text-place-post-form {
+  width: 100%;
+}
+
+.container-post-form-main .container-post-form2 .body-container-form2 {
+  width: 80%;
+}
+
+.container-post-form-main .container-post-form2 .body-container-form2 .text-place-post-form {
+  width: 100%;
+}
+
+.container-post-form-main .container-post-form2 .body-container-form2 .text-area-main {
+  height: 10em;
+}
+
+.container-post-form-main .title-post-form {
+  text-align: left;
+  font-size: 80%;
+  border: #363434 solid 2px;
+  height: 25px;
+}
+
+.container-post-form-main .title-post-form-down {
+  text-align: left;
+  font-size: 80%;
+  border: #363434 solid 2px;
+  height: 25px;
+}
+
+.container-post-form-main .title-modal-post {
+  margin: 1em;
+}
+
+.container-post-form-main .container-button-post {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
 }

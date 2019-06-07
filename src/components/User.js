@@ -45,7 +45,7 @@ export default function User() {
                             <div className="uk-grid-small uk-flex-middle" >
                                 <div className="uk-width-auto">
                                     <div className="uk-width-expand">
-                                        <h3 className="uk-card-title uk-margin-remove-bottom">{user.name}</h3>
+                                        <h3 className="uk-card-title uk-margin-remove-bottom main-title">{user.name}</h3>
                                     </div>
                                 </div>
                             </div>

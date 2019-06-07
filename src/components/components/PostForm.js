@@ -31,24 +31,40 @@ class PostForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Add Post</h1>
-				<form onSubmit={this.onSubmit}>
-					<div>
-						<label>Title: </label>
-						<hr />
-						<input name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
+			<div className="container-post-form-main">
+				<div>
+					<div className="title-post-form"> Add Post</div>
+					<div className="container-post-form2">
+						<h1 className="title-modal-post">Add Post</h1>
+
+						<form onSubmit={this.onSubmit}>
+
+							<table class="uk-table uk-table-justify uk-table-divider">
+								<tbody>
+									<tr>
+										<td class="body-container-form">Title</td>
+										<td class="body-container-form2">
+											<input className="text-place-post-form" name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
+										</td>
+									</tr>
+									<tr>
+										<td class="body-container-form">Body</td>
+										<td class="body-container-form2">
+											<textarea className="text-place-post-form text-area-main" value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div className="container-button-post">
+								
+								<button className="uk-button uk-button-primary" type="submit">Save</button>
+								<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
+							</div>
+						</form>
+						
 					</div>
-					<br />
-					<div>
-						<label>Body: </label>
-						<hr />
-						<textarea value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
-					</div>
-					<br />	
-					<button className="uk-button uk-button-primary" type="submit">Save</button>
-					<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
-				</form>
+					<div className="title-post-form-down"> </div>
+				</div>
 			</div>
 		);
 	}
