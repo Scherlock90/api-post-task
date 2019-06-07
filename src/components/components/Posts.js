@@ -42,12 +42,12 @@ class Posts extends Component {
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const { dataPost } = this.state;
-		const dataPostss = dataPost;
-		if (this.state.dataPost.length <= 0) {
+		const postsData = dataPost;
+		if (postsData.length <= 0) {
 			this.handleData();
-		} else {
+		} else{
 			console.log('stop');
-			console.log(dataPostss);
+			console.log(postsData);
 		}
 		const { posts } = this.props;
 		const indexPosts = posts.findIndex((post) => post.id === this.state.postId)
