@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './components/components/Home';
-import Comments from './components/components/Comments';
+import Home from './components/Home';
+import Comments from './components/Comments';
 import './Styles/main.css';
-import store from './components/store';
-import Posts from './components/components/Posts'
+import store from './store';
+import Posts from './components/Posts'
 
 ReactDOM.render(
   <Provider store={store}>
