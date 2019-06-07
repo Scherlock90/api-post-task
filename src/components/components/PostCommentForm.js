@@ -46,7 +46,7 @@ class PostCommentForm extends Component {
 									</td>
 								</tr>
 								<tr>
-									<td className="body-container-form">email:</td>
+									<td className="body-container-form">E-mail:</td>
 									<td className="body-container-form2">
 										<input className="text-place-post-form" name="email" type="text" value={this.state.title} placeholder="E-mail" onChange={this.onChange} required />
 									</td>

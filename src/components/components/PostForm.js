@@ -35,17 +35,17 @@ class PostForm extends Component {
 				<div className="container-post-form2">
 					<h1 className="title-modal-post">Add Post</h1>
 					<form onSubmit={this.onSubmit}>
-						<table class="uk-table uk-table-justify uk-table-divider">
+						<table className="uk-table uk-table-justify uk-table-divider">
 							<tbody>
 								<tr>
-									<td class="body-container-form">Title</td>
-									<td class="body-container-form2">
+									<td className="body-container-form">Title</td>
+									<td className="body-container-form2">
 										<input className="text-place-post-form" name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
 									</td>
 								</tr>
 								<tr>
-									<td class="body-container-form">Body</td>
-									<td class="body-container-form2">
+									<td className="body-container-form">Body</td>
+									<td className="body-container-form2">
 										<textarea className="text-place-post-form text-area-main" value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
 									</td>
 								</tr>

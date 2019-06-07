@@ -178,4 +178,5 @@ const mapStateToProps = (state) => ({
 	deletedPost2: state.posts.deletedPost
 });
 
+ReactModal.setAppElement('#root');
 export default connect(mapStateToProps, { fetchPosts, deletedPost })(Posts);

@@ -90,7 +90,7 @@ class Comments extends Component {
                             <div className="uk-card uk-card-body main-cards-posts-left">
                                 <h3 className="uk-card-title">
                                     {comments.filter(ee => ee.userId).map(postBack => (
-                                        <Link className="arrow-back" to={{
+                                        <Link className="arrow-back" key={postBack.id} to={{
                                             pathname: `/${postBack.userId}/posts`,
                                         }}>
                                             <span uk-icon="icon: reply; ratio: 2"></span> Back
@@ -195,4 +195,5 @@ const mapStateToProps = (state) => ({
     newComment: state.posts.itemNewComment
 });
 
+ReactModal.setAppElement('#root');
 export default connect(mapStateToProps, { fetchComments })(Comments);
