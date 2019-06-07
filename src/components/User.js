@@ -5,7 +5,7 @@ import Spinner from 'react-spinner-material';
 
 export default function User() {
     const [usersArray, setUsersArray] = useState([]);
-    
+
     const URL = 'https://jsonplaceholder.typicode.com';
 
     useEffect(() => {
@@ -17,8 +17,8 @@ export default function User() {
                 setUsersArray(data);
             });
     }, [])
-    let loading;
 
+    let loading;
     return (
         <div className="containerUser">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="true">
