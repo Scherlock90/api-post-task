@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import { _ } from 'underscore'
 
 class Posts extends Component {
 	constructor(props) {
@@ -18,6 +17,7 @@ class Posts extends Component {
 			postId: '',
 			dataPost: ''
 		};
+		console.log('constructor');
 	}
 	//fetch data
 	componentDidMount() {
@@ -29,6 +29,7 @@ class Posts extends Component {
 					dataUsers: posts.data
 				})
 			)
+			console.log('componentWillReceiveProps');
 	}
 
 	// send new props adding
@@ -36,6 +37,7 @@ class Posts extends Component {
 		if (nextProps.newPost) {
 			this.props.posts.unshift(nextProps.newPost);
 		}
+		console.log('componentDidMount');
 	}
 
 	//send new props deleting
@@ -48,14 +50,13 @@ class Posts extends Component {
 			console.log('stop');
 			console.log(dataPostss);
 		}
-		if (prevProps) {
 			const { posts } = this.props;
 			const indexPosts = posts.findIndex((post) => post.id === this.state.postId)
 			if (indexPosts !== -1) {
 				const letang = posts.splice(indexPosts, 1);
 				console.log(letang);
 			}
-		}
+			console.log('didUpdate');
 	}
 	handleData = () => {
 		const { posts } = this.props;
@@ -95,7 +96,7 @@ class Posts extends Component {
 		}
 		).map((author => author.name))
 		let loading;
-
+		console.log('render');
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
