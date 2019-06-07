@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createComment } from '../actions/postActions';
+import * as EmailValidator from 'email-validator';
 
 class PostCommentForm extends Component {
 	constructor(props) {
@@ -48,7 +49,7 @@ class PostCommentForm extends Component {
 								<tr>
 									<td className="body-container-form">E-mail:</td>
 									<td className="body-container-form2">
-										<input className="text-place-post-form" name="email" type="text" value={this.state.title} placeholder="E-mail" onChange={this.onChange} required />
+										<input className="text-place-post-form" name="email" type="email" value={this.state.email} placeholder="E-mail" onChange={this.onChange} required />
 									</td>
 								</tr>
 								<tr>
