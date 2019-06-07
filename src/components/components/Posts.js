@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
+import {_} from 'underscore'
 
 class Posts extends Component {
 	constructor(props) {
@@ -39,16 +40,22 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate (prevProps, prevState) {
-		const dataPost =  this.state.dataPost.slice(this.state.postId);
+		const {dataPost} = this.state;
+		const dataPostss =  dataPost;
 		if(this.state.dataPost <= 0) {
 			this.handleData();
 		} else {
-			console.log('stop')
+			console.log('stop');
+			console.log(dataPostss);
 		}
 		if (prevProps) {
-			const { posts } = this.props
-			const letang = posts.slice(this.state.postId);
-           console.log(letang );
+			const { posts } = this.props;
+			const indexPosts = posts.findIndex( (post)=> post.id === this.state.postId)
+			if (indexPosts !== -1) {
+			const letang = posts.splice(indexPosts, 1);
+			console.log(letang );
+		}
+			
 		}
 	}
 	handleData = () => {
@@ -83,14 +90,13 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
-		const postItems = dataPost.slice(this.state.postId);
-		const nameAuthor = dataUsers.length ? ( dataUsers.filter(aurhorName => {
+		const postItems = dataPost;
+		const nameAuthor =  dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
 		}
-		).map((author => author.name))) : ( <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />);
+		).map((author => author.name))
 		let loading;
-		// console.log(this.state.dataPost);
-		
+
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
