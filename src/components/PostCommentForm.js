@@ -43,7 +43,7 @@ class PostCommentForm extends Component {
 								<tr>
 									<td className="body-container-form">Title</td>
 									<td className="body-container-form2">
-										<input className="text-place-post-form" name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
+										<input className="text-place-post-form" name="name" type="text" value={this.state.name} placeholder="Name" onChange={this.onChange} required />
 									</td>
 								</tr>
 								<tr>
