@@ -504,3 +504,7 @@ a {
     width: 100%;
   }
 }
+
+.react-confirm-alert-overlay {
+  background: rgba(22, 2, 2, 0.4) !important;
+}

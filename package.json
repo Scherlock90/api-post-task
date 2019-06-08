@@ -5,11 +5,7 @@
   "homepage": "https://Scherlock90.github.io/api-post-task/",
   "dependencies": {
     "axios": "^0.18.0",
-    "email-validator": "^2.0.4",
     "gh-pages": "^2.0.1",
-    "lodash": "^4.17.11",
-    "lodash.remove": "^4.7.0",
-    "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-confirm-alert": "^2.4.1",
     "react-dom": "^16.8.6",
@@ -25,9 +21,7 @@
     "redux-react-hook": "^3.3.2",
     "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0",
-    "sugar": "^2.0.6",
-    "uikit": "^3.1.5",
-    "underscore": "^1.9.1"
+    "uikit": "^3.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

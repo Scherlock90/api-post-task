@@ -381,6 +381,8 @@ a {
     }
     @media screen and (max-width: $break-medium) {
         width: 100%;
-    }
-   
+    }  
+}
+.react-confirm-alert-overlay{
+    background: rgba(22,2,2,.4) !important;
 }
