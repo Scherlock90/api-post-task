@@ -52,8 +52,8 @@ class PostForm extends Component {
 							</tbody>
 						</table>
 						<div className="container-button-post">
-							<button className="uk-button uk-button-primary" type="submit">Save</button>
-							<button className="uk-button uk-button-danger" onClick={this.props.closeModal}>Cancel</button>
+							<button className="uk-button uk-button-danger main-button-style" onClick={this.props.closeModal}>Cancel</button>
+							<button className="uk-button uk-button-primary main-button-style" type="submit">Save</button>							
 						</div>
 					</form>
 				</div>

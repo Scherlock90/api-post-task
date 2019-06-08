@@ -2,6 +2,23 @@
 $break-big: 1500px;
 $break-very-big: 2000px;
 
+
+//mixins
+@mixin flex-center-text{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    align-content: center;
+}
+
+@mixin center-items {
+    display: grid;
+    justify-content: center;
+    align-items:center;
+    align-content: center;
+}
+
+
 // main code
 html{
     background: #f1f1f1 !important;
@@ -15,109 +32,18 @@ body{
     justify-items: center;
     justify-content: center;
 }
-#main {
-    //background: #ECEFF1 !important;
-    background: #f1f1f1 !important;
-		width: 90%;
-		margin: auto;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-#appContainer {
-    flex: 1 0 auto;
-}
-
-header {
-	margin: auto;
-}
-
-.footer {
-    margin: auto;
-		font-size: 1em;
-}
-
-.nav {
-	list-style-type: none;
-	li {
-		display: inline-block;
-		padding: 12px 16px;
-		color: white;
-		background-color: black;
-		border-right: 1px solid white;
-	}
-}
-
 a {
 	text-decoration: none;
 	color: blue;
 }
 
-.splash-screen {
-    background-color: #333;
-    opacity: .7;
-    width:100%;
-    height:100%;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:9999;
-    transition: opacity 0.3s linear;
-}
-
-.loadingBar {
-    margin: auto;
-    text-align: center;
-    padding: 10px 0;
-    height:100%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    div {
-        width: 6px;
-        height: 30px;
-        display: inline-block;
-        margin: 0 4px;
-        background-color: #fff;
-        animation: loading-bar-animation 0.6s ease-out infinite;
-    }
-	
-	div:nth-child(2) {
-		animation-delay: 0.1s;
-	}
-	div:nth-child(3) {
-		animation-delay: 0.2s;
-	}
-	div:nth-child(4) {
-		animation-delay: 0.3s;
-	}
-}
-
-@keyframes loading-bar-animation {
-    0%,
-    100% {
-        -webkit-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        transform: scale(1.0);
-    }
-    50% {
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        transform: scale(0);
-    }
-}
 .mainContainer{
     display: flex;
     justify-content: center;
 }
 .containerUser{
     width: auto;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    @include flex-center-text;
     margin: 10px;
     .main-grid2{
         margin: 10px;
@@ -221,7 +147,7 @@ a {
 }
 
 .Modal {
-    display: grid;
+    @include center-items;
     position: fixed;
     top: 0;
     left: 0;
@@ -229,18 +155,12 @@ a {
     bottom: 0;
     background-color: rgba(22, 2, 2 , .4);
     text-align: center;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
     .containerModal{
       height: 100%;
       width: 100%;
       margin-left: auto;
       margin-right: auto;
-      display: grid;
-      justify-content: center;
-      align-items:center;
-      align-content: center;
+      @include center-items;
       .containerMyModal{
         background-color: #f1f1f1;
         .cardPost{
@@ -271,10 +191,7 @@ a {
         }
         .littleContainerName{
           width: auto;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          align-content: center;            
+          @include flex-center-text;             
           .nameModalImage{            
             text-transform: uppercase;
             font-size: 30px;
@@ -371,5 +288,10 @@ a {
         width: auto;
         display: flex;
         justify-content: flex-end;
+        .main-button-style{   
+            @include flex-center-text;      
+            width: 100px;
+            margin: 0.5em;
+        }
     }
 }
