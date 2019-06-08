@@ -49,6 +49,9 @@ a {
     width: auto;
     @include flex-center-text;
     margin: 10px;
+    .uk-card-default{
+        background: transparent;
+    }
     .main-grid2{
         margin: 10px;
         display: flex;
