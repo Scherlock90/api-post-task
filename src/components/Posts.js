@@ -14,10 +14,10 @@ class Posts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			modalMainOpen: false,
 			dataUsers: [],
+			dataPost: [],
 			postId: '',
-			dataPost: []
+			modalMainOpen: false
 		};
 	}
 	informationAlert= () => {
@@ -53,21 +53,24 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
-		if(prevProps.posts !== this.props.posts){
-			this.handleData();
-		}
-		const indexPosts = this.props.posts.findIndex((post) => post.id === this.state.postId);
-		if (indexPosts !== -1) {
-			this.informationAlert();
-			this.props.posts.splice(indexPosts, 1);
-		}	
+		const {posts} = this.props;
+		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
 		
-		console.log('didupdate');
+		if(prevProps.posts !== posts){
+			this.handleData();
+		} else if (indexPosts !== -1)
+		{
+			this.informationAlert();
+			const log = posts.splice(indexPosts, 1);
+			console.log(log);
+		}	
 	}
-	
+
 	handleData = (e) => {
-		const letang = this.props.posts;
-		const postsData = this.state.dataPost;
+		const {posts} = this.props;
+		const {dataPost} = this.state;
+		const letang = posts;
+		const postsData = dataPost;
 
 		if (postsData.length <= 0) {			
 			this.setState({
@@ -96,18 +99,27 @@ class Posts extends Component {
 		})
 	}
 	render() {
-		const { match: { params } } = this.props;
+		const { match: { params }, posts } = this.props;
 		const { dataUsers, dataPost } = this.state;
 
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
-
-		// const postItems = dataPost;
-		const nameAuthor = dataUsers.filter(aurhorName => {
-			return aurhorName.id === parseToNumber
-		}
-		).map((author => author.name))
 		let loading;
+		const logArray = posts;
+		const postItems = dataPost;
+
+		const nameAuthor = dataUsers
+			.filter(aurhorName => {
+				return aurhorName.id === parseToNumber
+			})
+			.map((author => author.name))
+		
+			if(posts.length !== dataPost.length){
+				console.log('arrray is loading')
+			} else {
+				console.log(logArray);
+			}
+		
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
@@ -135,7 +147,7 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{loading = dataPost.length ? (dataPost.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
+				{loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
