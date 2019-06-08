@@ -1,7 +1,8 @@
 // variables
 $break-small: 400px;
 $break-medium: 600px;
-$break-tablet: 1000px;
+$break-tablet: 900px;
+$break-big-tablet: 1200px;
 $break-big: 1500px;
 $break-very-big: 2000px;
 
@@ -91,6 +92,20 @@ a {
             width: 100%;
         }
     }
+    @media screen and (max-width: $break-big-tablet) {
+        width: auto;
+        display: block;
+        max-width: 850px;
+       
+    }
+    @media screen and (max-width: $break-tablet) {
+        width: auto;
+        display: block;
+        max-width: 650px;
+        #h1 {order: 2; width: 50%;}
+        #h2 {order: 1;}
+        #h3 {order: 3; width: 50%; display: flex; align-items: center;}
+    }
     @media screen and (max-width: $break-small) {
         width: 350px;
         display: block;
@@ -102,6 +117,18 @@ a {
         width: 1200px;
         height: 100px;
         margin: 30px;
+        @media screen and (max-width: $break-big-tablet) {
+            width: 1000px;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+        @media screen and (max-width: $break-tablet) {
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
         @media screen and (max-width: $break-small) {
             width: auto;
             height: auto;
@@ -129,6 +156,9 @@ a {
     .container-post-cards{
         @media screen and (max-width: $break-tablet) {
             width: auto;
+            #c1 {order: 2; width: 50%;}
+            #c2 {order: 1;}
+            #c3 {order: 3; width: 50%;}
         }
         @media screen and (max-width: $break-small) {
             width: 350px;
@@ -273,6 +303,9 @@ a {
 .container-post-form-main{
     height: auto;
     width: 400px;
+    @media screen and (max-width: $break-medium) {
+        width: auto;
+    }
     .container-post-form2{
         padding: 1em;
         border: #363434 solid 2px;
