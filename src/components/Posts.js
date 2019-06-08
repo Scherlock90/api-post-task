@@ -26,13 +26,8 @@ class Posts extends Component {
 		  message: 'If you are sure you want to delete the post press delete the second time?',
 		  buttons: [
 			{
-			  label: 'OK',
-			//   onClick: () => alert('aaa')
-			},
-			// {
-			//   label: 'No',
-			// //   onClick: () => alert('Click No')
-			// }
+			  label: 'OK'
+			}
 		  ]
 		});
 	  };
@@ -58,29 +53,25 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
-		const { dataPost } = this.state;
-		const postsData = dataPost;
-		if (postsData.length <= 0) {
-			this.handleData();
-		} else{
-			console.log('stop');
-			console.log(postsData);
-		}
-		const { posts } = this.props;
-		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
+		const indexPosts = this.props.posts.findIndex((post) => post.id === this.state.postId);
 
 		if (indexPosts !== -1) {
 			this.informationAlert();
-			const letang = posts.splice(indexPosts, 1);
-			console.log(letang);
+			this.props.posts.splice(indexPosts, 1);
 		}
+		this.handleData();
 	}
-	handleData = () => {
-		const { posts } = this.props;
-		const letang = posts;
-		this.setState({
-			dataPost: letang
-		})
+	handleData = (e) => {
+		const letang = this.props.posts;
+		const postsData = this.state.dataPost;
+
+		if (postsData.length <= 0) {
+			this.setState({
+				dataPost: letang
+			})
+		} else {
+			console.log('stop')
+		}		
 	}
 
 	handleDeletedPost = (id) => {
