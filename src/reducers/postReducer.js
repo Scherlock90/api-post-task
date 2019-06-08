@@ -4,8 +4,7 @@ const initialState = {
 	items: [],
 	item: {},
 	itemComent: [],
-	itemNewComment: {},
-	deletedPost: []
+	itemNewComment: {}
 };
 
 export default function (state = initialState, action) {
@@ -21,11 +20,11 @@ export default function (state = initialState, action) {
 				item: action.payload
 			};
 		case DELETED_POST:
-			const newItems = state.items.filter(p => p.id !== action.payload);
-        return {
-            ...state,
-            items: [ ...newItems ],
-        };
+			return {
+				...state,
+				items: action.payload
+			}
+			
 		case FETCH_COMMENTS:
 			return {
 				...state,

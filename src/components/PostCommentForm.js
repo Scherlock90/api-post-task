@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createComment } from '../actions/postActions';
-import * as EmailValidator from 'email-validator';
 
 class PostCommentForm extends Component {
 	constructor(props) {
