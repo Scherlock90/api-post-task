@@ -53,19 +53,23 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
+		if(prevProps.posts !== this.props.posts){
+			this.handleData();
+		}
 		const indexPosts = this.props.posts.findIndex((post) => post.id === this.state.postId);
-
 		if (indexPosts !== -1) {
 			this.informationAlert();
 			this.props.posts.splice(indexPosts, 1);
-		}
-		this.handleData();
+		}	
+		
+		console.log('didupdate');
 	}
+	
 	handleData = (e) => {
 		const letang = this.props.posts;
 		const postsData = this.state.dataPost;
 
-		if (postsData.length <= 0) {
+		if (postsData.length <= 0) {			
 			this.setState({
 				dataPost: letang
 			})
