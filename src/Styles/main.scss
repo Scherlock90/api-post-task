@@ -1,4 +1,7 @@
 // variables
+$break-small: 400px;
+$break-medium: 600px;
+$break-tablet: 1000px;
 $break-big: 1500px;
 $break-very-big: 2000px;
 
@@ -294,4 +297,19 @@ a {
             margin: 0.5em;
         }
     }
+}
+
+.containerUser [class*=uk-child-width] > * {
+    @media screen and (max-width: $break-big) {
+        width: 100%;
+        max-width: 320px;
+    }
+    @media screen and (max-width: $break-tablet) {
+        width: 100%;
+        max-width: 320px;
+    }
+    @media screen and (max-width: $break-medium) {
+        width: 100%;
+    }
+   
 }

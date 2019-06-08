@@ -340,3 +340,23 @@ a {
   width: 100px;
   margin: 0.5em;
 }
+
+@media screen and (max-width: 1500px) {
+  .containerUser [class*=uk-child-width] > * {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .containerUser [class*=uk-child-width] > * {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .containerUser [class*=uk-child-width] > * {
+    width: 100%;
+  }
+}
