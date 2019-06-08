@@ -82,15 +82,14 @@ a {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1250px) {
   .container-posts-main {
     width: auto;
     display: block;
-    max-width: 850px;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 959px) {
   .container-posts-main {
     width: auto;
     display: block;
@@ -137,16 +136,22 @@ a {
   margin: 30px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
   .container-posts-main .header-posts {
     width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container-posts-main .header-posts {
+    width: 100%;
     height: auto;
     display: block;
     margin: 0;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 959px) {
   .container-posts-main .header-posts {
     width: auto;
     height: auto;
@@ -192,20 +197,38 @@ a {
   margin: 20px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1500px) {
   .container-posts-main .container-post-cards {
-    width: auto;
+    width: 1000px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container-posts-main .container-post-cards {
+    width: 800px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .container-posts-main .container-post-cards {
+    width: 600px;
   }
   .container-posts-main .container-post-cards #c1 {
-    order: 2;
-    width: 50%;
+    width: 20%;
+    display: flex;
+    margin-top: 0;
   }
   .container-posts-main .container-post-cards #c2 {
-    order: 1;
+    width: 50%;
   }
   .container-posts-main .container-post-cards #c3 {
-    order: 3;
-    width: 50%;
+    width: 30%;
+    margin-top: 0;
+  }
+  .container-posts-main .container-post-cards .uk-card-body {
+    padding: 20px 30px;
   }
 }
 
@@ -220,6 +243,7 @@ a {
   }
   .container-posts-main .container-post-cards #c2 {
     order: 1;
+    width: 100%;
   }
   .container-posts-main .container-post-cards #c3 {
     order: 3;
@@ -464,7 +488,7 @@ a {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 959px) {
   .containerUser [class*=uk-child-width] > * {
     width: 100%;
     max-width: 320px;

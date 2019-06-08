@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import TextTruncate from 'react-text-truncate';
 
 class Posts extends Component {
 	constructor(props) {
@@ -150,7 +151,10 @@ class Posts extends Component {
 								</div>
 								<div id="c2" className="uk-width-expand@m card-center-title">
 									<div className="uk-card uk-card-default uk-card-body">
-										{postsUsers.title}
+										<TextTruncate
+											line={1}
+											text={postsUsers.title}
+										/>
 									</div>
 								</div>
 								<div id="c3" className="uk-width-1-3@m">

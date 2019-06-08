@@ -1,8 +1,8 @@
 // variables
 $break-small: 400px;
 $break-medium: 600px;
-$break-tablet: 900px;
-$break-big-tablet: 1200px;
+$break-tablet: 959px;
+$break-laptop-with-touch: 1250px;
 $break-big: 1500px;
 $break-very-big: 2000px;
 
@@ -92,11 +92,9 @@ a {
             width: 100%;
         }
     }
-    @media screen and (max-width: $break-big-tablet) {
+    @media screen and (max-width: $break-laptop-with-touch) {
         width: auto;
-        display: block;
-        max-width: 850px;
-       
+        display: block;   
     }
     @media screen and (max-width: $break-tablet) {
         width: auto;
@@ -117,8 +115,11 @@ a {
         width: 1200px;
         height: 100px;
         margin: 30px;
-        @media screen and (max-width: $break-big-tablet) {
+        @media screen and (max-width: $break-big) {
             width: 1000px;
+        }
+        @media screen and (max-width: $break-laptop-with-touch) {
+            width: 100%;
             height: auto;
             display: block;
             margin: 0;
@@ -154,22 +155,34 @@ a {
         }
     }  
     .container-post-cards{
+        width: 1200px;
+        box-shadow: 0 5px 15px rgba(0,0,0,.08);
+        margin: 20px;
+        @media screen and (max-width: $break-big) {
+            width: 1000px;
+            margin:0;
+        }
+        @media screen and (max-width: $break-laptop-with-touch) {
+            width: 800px;
+            margin:0;
+        }
         @media screen and (max-width: $break-tablet) {
-            width: auto;
-            #c1 {order: 2; width: 50%;}
-            #c2 {order: 1;}
-            #c3 {order: 3; width: 50%;}
+            width: 600px;
+            #c1 { width: 20%; display: flex; margin-top:0}
+            #c2 {width: 50%}
+            #c3 { width: 30%; margin-top: 0;}
+            .uk-card-body{
+                padding: 20px 30px;
+            }
         }
         @media screen and (max-width: $break-small) {
             width: 350px;
             margin: 0;
             #c1 {order: 2; width: 50%;}
-            #c2 {order: 1;}
+            #c2 {order: 1; width: 100%;}
             #c3 {order: 3; width: 50%;}
         }
-        width: 1200px;
-        box-shadow: 0 5px 15px rgba(0,0,0,.08);
-        margin: 20px;
+        
         .uk-card-default{
             background-color: transparent;
             box-shadow: none;
