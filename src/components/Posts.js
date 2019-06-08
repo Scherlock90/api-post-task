@@ -63,7 +63,7 @@ class Posts extends Component {
 			this.handleData();
 		} else{
 			console.log('stop');
-			// console.log(postsData);
+			console.log(postsData);
 		}
 		const { posts } = this.props;
 		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
@@ -71,7 +71,7 @@ class Posts extends Component {
 		if (indexPosts !== -1) {
 			this.informationAlert();
 			const letang = posts.splice(indexPosts, 1);
-			// console.log(letang);
+			console.log(letang);
 		}
 	}
 	handleData = () => {
@@ -106,7 +106,7 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 
-		const postItems = dataPost;
+		// const postItems = dataPost;
 		const nameAuthor = dataUsers.filter(aurhorName => {
 			return aurhorName.id === parseToNumber
 		}
@@ -139,7 +139,7 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
+				{loading = dataPost.length ? (dataPost.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
