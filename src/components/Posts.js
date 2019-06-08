@@ -116,7 +116,7 @@ class Posts extends Component {
 			<div className="container-posts-main">
 				<div className="header-posts">
 					<div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid="false">
-						<div>
+						<div id="h1">
 							<div className="uk-card uk-card-body main-cards-posts-left">
 								<h3 className="uk-card-title">
 									<Link className="arrow-back" to="/">
@@ -125,12 +125,12 @@ class Posts extends Component {
 								</h3>
 							</div>
 						</div>
-						<div>
+						<div id="h2">
 							<div className="uk-card uk-card-body main-cards-posts-center">
 								<h3 className="uk-card-title main-author-post">{nameAuthor}</h3>
 							</div>
 						</div>
-						<div>
+						<div id="h3">
 							<div className="uk-card uk-card-body main-cards-posts-right">
 								<h3 className="uk-card-title">
 									<span className="icon-add-post" uk-icon="icon:  plus-circle; ratio: 2" onClick={this.toggleModal}></span>
@@ -143,17 +143,17 @@ class Posts extends Component {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
-								<div className="uk-width-auto@m">
+								<div id="c1" className="uk-width-auto@m">
 									<div className="uk-card uk-card-default uk-card-body">
 										<span className="icon-go-to-trash" uk-icon="icon: trash; ratio: 2" onClick={() => this.handleDeletedPost(postsUsers.id)} ></span>
 									</div>
 								</div>
-								<div className="uk-width-expand@m card-center-title">
+								<div id="c2" className="uk-width-expand@m card-center-title">
 									<div className="uk-card uk-card-default uk-card-body">
 										{postsUsers.title}
 									</div>
 								</div>
-								<div className="uk-width-1-3@m">
+								<div id="c3" className="uk-width-1-3@m">
 									<div className="uk-card uk-card-default uk-card-body button-go-to-post">
 										<Link to={{
 											pathname: `/${postsUsers.id}/post-comments`,
