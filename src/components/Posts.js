@@ -58,19 +58,24 @@ class Posts extends Component {
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const {posts} = this.props;
-		if(prevProps.posts !== posts){
-			this.handleData();
-		} else {
-			if (posts !== posts.dataPost.all) {
-				let indexPosts = posts.dataPost.all.findIndex((post) => post.id === this.state.postId);
-				if (indexPosts !== -1) {
-					// this.informationAlert();
-					const log = posts.dataPost.all.splice(indexPosts, 1);
-					console.log(log);
+		const {dataPost} = this.state;
+
+			if (prevProps.posts !== posts) {
+				this.handleData();
+			} else {
+				if (dataPost) {
+					let indexPosts = dataPost.findIndex((post) => post.id === this.state.postId);
+					if (indexPosts !== -1) {
+						// this.informationAlert();
+						const log = dataPost.splice(indexPosts, 1);
+						console.log(log);
+					}
 				}
 			}
-		}
-		console.log(this.props.posts);	
+
+		// console.log(dataPost.length);
+		// console.log(posts.dataPost.all.length);
+		// console.log(posts);
 	}
 
 	handleData = (e) => {
@@ -120,12 +125,12 @@ class Posts extends Component {
 			})
 			.map((author => author.name))
 		
-			if(posts.length !== dataPost.length){
+			if(posts.length == dataPost.length){
 				console.log('arrray is loading')
 			} else {
 				console.log(logArray);
 			}
-			
+			console.log(posts);
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
