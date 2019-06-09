@@ -33,7 +33,7 @@ export const createPost = (postData) => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const deletedPost = (id) => {
+export const deletedPost = (id) => (dispatch) => {
 	dispatch({
 		type: DELETED_POST, 
 		payload: id 

@@ -9,6 +9,7 @@ import Spinner from 'react-spinner-material';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import TextTruncate from 'react-text-truncate';
+import {persistData} from './LocalStorage';
 
 class Posts extends Component {
 	constructor(props) {
@@ -17,16 +18,17 @@ class Posts extends Component {
 			dataUsers: [],
 			dataPost: [],
 			postId: '',
-			modalMainOpen: false
+			modalMainOpen: false,
+			
 		};
 	}
 	informationAlert= () => {
 		confirmAlert({
 		  title: 'Delete post',
-		  message: 'If you are sure you want to delete the post press delete the second time?',
+		  message: 'If you are sure you want to delete the post press delete the second time',
 		  buttons: [
 			{
-			  label: 'OK'
+			  label: 'Yes'
 			}
 		  ]
 		});
@@ -46,32 +48,36 @@ class Posts extends Component {
 
 	// send new props adding
 	componentWillReceiveProps(nextProps) {
+		const {posts} = this.props;
+		let indexPosts = posts;
 		if (nextProps.newPost) {
-			this.props.posts.unshift(nextProps.newPost);
+			indexPosts.unshift(nextProps.newPost);
 		}
 	}
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const {posts} = this.props;
-		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
-		
 		if(prevProps.posts !== posts){
 			this.handleData();
-		} else if (indexPosts !== -1)
-		{
-			this.informationAlert();
-			const log = posts.splice(indexPosts, 1);
-			console.log(log);
-		}	
+		} else {
+			if (posts !== posts.dataPost.all) {
+				let indexPosts = posts.dataPost.all.findIndex((post) => post.id === this.state.postId);
+				if (indexPosts !== -1) {
+					// this.informationAlert();
+					const log = posts.dataPost.all.splice(indexPosts, 1);
+					console.log(log);
+				}
+			}
+		}
+		console.log(this.props.posts);	
 	}
 
 	handleData = (e) => {
 		const {posts} = this.props;
 		const {dataPost} = this.state;
-		const letang = posts;
-		const postsData = dataPost;
-
+		let letang = posts.dataPost.all;
+		let postsData = dataPost;
 		if (postsData.length <= 0) {			
 			this.setState({
 				dataPost: letang
@@ -119,7 +125,7 @@ class Posts extends Component {
 			} else {
 				console.log(logArray);
 			}
-		
+			
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
