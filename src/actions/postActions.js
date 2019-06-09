@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETED_POST } from './types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETED_POST, UPDATE_POST } from './types';
 import axios, {dispatch} from 'axios';
 
 const url = 'https://jsonplaceholder.typicode.com/users';
@@ -34,12 +34,40 @@ export const createPost = (postData) => (dispatch) => {
 };
 
 export const deletedPost = (id) => (dispatch) => {
-	dispatch({
-		type: DELETED_POST, 
-		payload: id 
-	});
+	axios
+		.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
+			headers: {
+				'Content-type': 'application/json'
+			}
+		})
+		.then((post) =>
+			dispatch({
+				type: NEW_POST,
+				payload: post.data
+			})
+		)
+		.catch((err) => console.log(err));
+	// dispatch({
+	// 	type: DELETED_POST, 
+	// 	payload: id 
+	// });
  };
 
+ export const updatePost = (id) => (dispatch) => {
+	axios
+		.put(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
+			headers: {
+				'Content-type': 'application/json'
+			}
+		})
+		.then((post) =>
+			dispatch({
+				type: UPDATE_POST,
+				payload: post.data
+			})
+		)
+		.catch((err) => console.log(err));
+ };
 
 export const fetchComments = () => (dispatch) => {
 	axios

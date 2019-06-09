@@ -50,9 +50,13 @@ class Posts extends Component {
 	componentWillReceiveProps(nextProps) {
 		const {posts} = this.props;
 		let indexPosts = posts;
-		if (nextProps.newPost) {
-			indexPosts.push(nextProps.newPost);
+		const llog = nextProps.newPost;
+		if (!llog) {
+			indexPosts.unshift(nextProps.newPost);
+		} else {
+			console.log('logut');
 		}
+		console.log(llog);
 	}
 
 	//send new props deleting

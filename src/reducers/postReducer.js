@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, DELETED_POST, FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
+import { FETCH_POSTS, NEW_POST, DELETED_POST, FETCH_COMMENTS, NEW_COMMENT, UPDATE_POST } from '../actions/types';
 
 const initialState = {
 	items: [],
@@ -24,6 +24,16 @@ export default function (state = initialState, action) {
 				...state,
 				items: action.payload
 			}
+		case UPDATE_POST:
+			return Object.assign({}, state, { item: action.payload }, {
+				all: state.all.map(updatePost => {
+					if (updatePost.id === action.payload.id) {
+						return action.payload;
+					}
+					return updatePost
+				})
+			}
+			);
 			
 		case FETCH_COMMENTS:
 			return {
