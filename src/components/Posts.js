@@ -22,7 +22,7 @@ class Posts extends Component {
 			
 		};
 	}
-	informationAlert= () => {
+	informationAlert = () => {
 		confirmAlert({
 		  title: 'Delete post',
 		  message: 'If you are sure you want to delete the post press delete the second time',
@@ -49,10 +49,15 @@ class Posts extends Component {
 	// send new props adding
 	componentWillReceiveProps(nextProps) {
 		const {posts} = this.props;
+		const {dataPost} = this.state;
 		let indexPosts = posts;
 		const llog = nextProps.newPost;
 		if (!llog) {
-			indexPosts.push(nextProps.newPost);
+			this.setState( prevState => ({
+				dataPost: prevState.dataPost.concat(nextProps.newPost)
+			}))
+			// dataPost.unshift(nextProps.newPost);
+			// this.setState({posts: indexPosts})
 		} else {
 			console.log('logut');
 		}
@@ -61,31 +66,36 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
-		const {posts} = this.props;
-		const {dataPost} = this.state;
+		const {posts, deletedPost} = this.props;
+		const {dataPost, postId} = this.state;
 
 			if (prevProps.posts !== posts) {
 				this.handleData();
 			} else {
 				if (dataPost) {
-					let indexPosts = dataPost.findIndex((post) => post.id === this.state.postId);
-					if (indexPosts !== -1) {
+					//  posts.dataPost.all.slice(p => p.id !== postId)
+					let indexPosts = dataPost.findIndex((post) => post.id === postId);
+					let n = Number(indexPosts);
+					// console.log(n + 1);
+					if (n !== -1) {
 						// this.informationAlert();
-						const log = dataPost.splice(indexPosts, 1);
+						const log = dataPost.splice(n, 1);
 						console.log(log);
+						const san = deletedPost;
+						console.log(san);
 					}
 				}
 			}
 
 		// console.log(dataPost.length);
 		// console.log(posts.dataPost.all.length);
-		// console.log(posts);
+		console.log(posts);
 	}
 
 	handleData = (e) => {
 		const {posts} = this.props;
 		const {dataPost} = this.state;
-		let letang = posts.dataPost.all;
+		let letang = posts.LocalStorageData;
 		let postsData = dataPost;
 		if (postsData.length <= 0) {			
 			this.setState({
@@ -120,7 +130,7 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 		let loading;
-		const logArray = posts;
+		// const logArray = posts;
 		const postItems = dataPost;
 
 		const nameAuthor = dataUsers
@@ -129,12 +139,12 @@ class Posts extends Component {
 			})
 			.map((author => author.name))
 		
-			if(posts.length == dataPost.length){
-				console.log('arrray is loading')
-			} else {
-				console.log(logArray);
-			}
-			console.log(posts);
+			// if(posts.length === dataPost.length){
+			// 	console.log('arrray is loading')
+			// } else {
+			// 	console.log(logArray);
+			// }
+			// console.log(posts);
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
@@ -217,7 +227,7 @@ class Posts extends Component {
 const mapStateToProps = (state) => ({
 	posts: state.posts.items,
 	newPost: state.posts.item,
-	deletedPost2: state.posts.deletedPost
+	deletedPost: state.posts.items
 });
 
 ReactModal.setAppElement('#root');

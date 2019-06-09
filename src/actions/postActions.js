@@ -33,7 +33,7 @@ export const createPost = (postData) => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const deletedPost = (id) => (dispatch) => {
+export const deletedPost = (id) => (dispatch)=>  {
 	axios
 		.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
 			headers: {
@@ -53,21 +53,21 @@ export const deletedPost = (id) => (dispatch) => {
 	// });
  };
 
- export const updatePost = (id) => (dispatch) => {
-	axios
-		.put(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
-			headers: {
-				'Content-type': 'application/json'
-			}
-		})
-		.then((post) =>
-			dispatch({
-				type: UPDATE_POST,
-				payload: post.data
-			})
-		)
-		.catch((err) => console.log(err));
- };
+//  export const updatePost = (id) => (dispatch) => {
+// 	axios
+// 		.put(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
+// 			headers: {
+// 				'Content-type': 'application/json'
+// 			}
+// 		})
+// 		.then((post) =>
+// 			dispatch({
+// 				type: UPDATE_POST,
+// 				payload: post.data
+// 			})
+// 		)
+// 		.catch((err) => console.log(err));
+//  };
 
 export const fetchComments = () => (dispatch) => {
 	axios
