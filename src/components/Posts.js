@@ -51,7 +51,7 @@ class Posts extends Component {
 		const {posts} = this.props;
 		let indexPosts = posts;
 		if (nextProps.newPost) {
-			indexPosts.unshift(nextProps.newPost);
+			indexPosts.push(nextProps.newPost);
 		}
 	}
 
