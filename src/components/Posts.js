@@ -99,19 +99,19 @@ class Posts extends Component {
 	handleDeletedPost = (id) => {
 		this.setState({
 			postId: id
-		})
+		});
 	}
 	toggleModal = (e) => {
 		e.preventDefault();
 		this.setState({
 			modalMainOpen: true
-		})
+		});
 	}
 	closeModal = (e) => {
 		e.preventDefault();
 		this.setState({
 			modalMainOpen: false
-		})
+		});
 	}
 	render() {
 		const { match: { params }, posts } = this.props;
