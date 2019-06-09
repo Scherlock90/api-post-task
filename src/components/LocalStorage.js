@@ -26,7 +26,7 @@ export const persistData = store => next => action => {
 		result = next(newAction);
 		return result;
 	  case NEW_POST:
-		localState.dataPost.all.unshift(action.payload);
+		localState.dataPost.all.push(action.payload);
 		localStorage.setItem('posts', JSON.stringify(localState));
 	  case DELETED_POST:
 		localState.dataPost.all = localState.dataPost.all.filter((recipe, index) => {

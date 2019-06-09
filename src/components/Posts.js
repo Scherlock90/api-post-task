@@ -52,7 +52,7 @@ class Posts extends Component {
 		let indexPosts = posts;
 		const llog = nextProps.newPost;
 		if (!llog) {
-			indexPosts.unshift(nextProps.newPost);
+			indexPosts.push(nextProps.newPost);
 		} else {
 			console.log('logut');
 		}
