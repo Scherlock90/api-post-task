@@ -52,12 +52,13 @@ class Posts extends Component {
 		const {dataPost} = this.state;
 		let indexPosts = posts;
 		const llog = nextProps.newPost;
-		if (!llog) {
+		if (dataPost == indexPosts) {
 			this.setState( prevState => ({
 				dataPost: prevState.dataPost.concat(nextProps.newPost)
 			}))
 			// dataPost.unshift(nextProps.newPost);
 			// this.setState({posts: indexPosts})
+			console.log(dataPost);
 		} else {
 			console.log('logut');
 		}
@@ -80,16 +81,15 @@ class Posts extends Component {
 					if (n !== -1) {
 						// this.informationAlert();
 						const log = dataPost.splice(n, 1);
+						this.setState({dataPost});
 						console.log(log);
-						const san = deletedPost;
-						console.log(san);
 					}
 				}
 			}
 
 		// console.log(dataPost.length);
 		// console.log(posts.dataPost.all.length);
-		console.log(posts);
+		console.log(prevProps.posts);
 	}
 
 	handleData = (e) => {
