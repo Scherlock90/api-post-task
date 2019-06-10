@@ -54,16 +54,25 @@ class Posts extends Component {
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const {posts} = this.props;
+		const {dataPost, postId} = this.state;
 		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
 		
-		if(prevProps.posts !== posts){
+		if (prevProps.posts !== posts) {
 			this.handleData();
-		} else if (indexPosts !== -1)
-		{
-			this.informationAlert();
-			const log = posts.splice(indexPosts, 1);
-			console.log(log);
-		}	
+		} else {
+			if (dataPost) {
+				//  posts.dataPost.all.slice(p => p.id !== postId)
+				let indexPosts = dataPost.findIndex((post) => post.id === postId);
+				let n = Number(indexPosts);
+				// console.log(n + 1);
+				if (n !== -1) {
+					// this.informationAlert();
+					const log = dataPost.splice(n, 1);
+					this.setState({dataPost});
+					console.log(log);
+				}
+			}
+		}
 	}
 
 	handleData = (e) => {
