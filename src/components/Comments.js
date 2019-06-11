@@ -194,8 +194,8 @@ class Comments extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    comment: state.posts.itemComent,
-    newComment: state.posts.itemNewComment
+    comment: state.api.itemComent,
+    newComment: state.api.itemNewComment
 });
 
 ReactModal.setAppElement('#root');

@@ -212,9 +212,9 @@ class Posts extends Component {
 	}
 }
 const mapStateToProps = (state) => ({
-	posts: state.posts.items,
-	newPost: state.posts.item,
-	deletedPost2: state.posts.deletedPost
+	posts: state.api.items,
+	newPost: state.api.item,
+	deletedPost2: state.api.deletedPost
 });
 
 ReactModal.setAppElement('#root');
