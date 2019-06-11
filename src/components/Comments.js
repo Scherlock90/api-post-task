@@ -16,7 +16,7 @@ class Comments extends Component {
             modalMainOpen: false,
             dataUsers: [],
             isActive: false,
-            dataPost: []
+            dataComments: []
         };
     }
 
@@ -26,7 +26,7 @@ class Comments extends Component {
         axios.get(`${URL}/posts/`)
             .then(res =>
                 this.setState({
-                    dataPost: res.data
+                    dataComments: res.data
                 })
             )
         axios.get(`${URL}/users/`)
@@ -72,23 +72,26 @@ class Comments extends Component {
     }
     render() {
 
-        const { match: { params } } = this.props;
+        const { match: { params }, comment } = this.props;
+        const {dataComments, dataUsers} = this.state;
         const idLog = params.postId;
         const parseToNumber = Number(idLog);
 
-        const commentsItem = this.props.comment
+        const commentsItem = comment
             .filter(ee => ee.postId === parseToNumber);
 
-        const comments = this.state.dataPost
+        const comments = dataComments
             .filter(aurhorName => {
                 return aurhorName.id === parseToNumber
             });
-        const nameAuthor = this.state.dataUsers
+        const nameAuthor = dataUsers
             .filter(aurhorName => {
                 return aurhorName.id === Number(comments
                     .map(ee => ee.userId))
             });
         let loading;
+
+        console.log(commentsItem);
         return (
             <div className="container-posts-main">
                 <div className="header-posts">
