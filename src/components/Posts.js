@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import TextTruncate from 'react-text-truncate';
 
 class Posts extends Component {
@@ -43,10 +43,10 @@ class Posts extends Component {
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
-		const {posts} = this.props;
-		const {dataPost, postId} = this.state;
+		const { posts } = this.props;
+		const { dataPost, postId } = this.state;
 		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
-		
+
 		if (prevProps.posts !== posts) {
 			this.handleData();
 		} else {
@@ -55,7 +55,7 @@ class Posts extends Component {
 				let n = Number(indexPosts);
 				if (n !== -1) {
 					const log = dataPost.splice(n, 1);
-					this.setState({dataPost});
+					this.setState({ dataPost });
 					console.log(log);
 				}
 			}
@@ -63,18 +63,18 @@ class Posts extends Component {
 	}
 
 	handleData = (e) => {
-		const {posts} = this.props;
-		const {dataPost} = this.state;
+		const { posts } = this.props;
+		const { dataPost } = this.state;
 		const letang = posts;
 		const postsData = dataPost;
 
-		if (postsData.length <= 0) {			
+		if (postsData.length <= 0) {
 			this.setState({
 				dataPost: letang
 			})
 		} else {
 			console.log('stop')
-		}		
+		}
 	}
 
 	handleDeletedPost = (id) => {
@@ -109,13 +109,13 @@ class Posts extends Component {
 				return aurhorName.id === parseToNumber
 			})
 			.map((author => author.name))
-		
-			if(posts.length !== dataPost.length){
-				console.log('arrray is loading')
-			} else {
-				console.log(logArray);
-			}
-		
+
+		if (posts.length !== dataPost.length) {
+			console.log('arrray is loading')
+		} else {
+			console.log(logArray);
+		}
+
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">

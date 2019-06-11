@@ -76,14 +76,18 @@ class Comments extends Component {
         const idLog = params.postId;
         const parseToNumber = Number(idLog);
 
-        const commentsItem = this.props.comment.filter(ee => ee.postId === parseToNumber);
+        const commentsItem = this.props.comment
+            .filter(ee => ee.postId === parseToNumber);
 
-        const comments = this.state.dataPost.filter(aurhorName => {
-            return aurhorName.id === parseToNumber
-        });
-        const nameAuthor = this.state.dataUsers.filter(aurhorName => {
-            return aurhorName.id === Number(comments.map(ee => ee.userId))
-        });
+        const comments = this.state.dataPost
+            .filter(aurhorName => {
+                return aurhorName.id === parseToNumber
+            });
+        const nameAuthor = this.state.dataUsers
+            .filter(aurhorName => {
+                return aurhorName.id === Number(comments
+                    .map(ee => ee.userId))
+            });
         let loading;
         return (
             <div className="container-posts-main">
@@ -129,7 +133,7 @@ class Comments extends Component {
                                 </div>
                             </div>
                         );
-                    })) : ( loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
+                    })) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                     }
                 </div>
                 <div>
