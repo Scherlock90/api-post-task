@@ -33,12 +33,20 @@ export const createPost = (postData) => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const deletedPost = (id) => {
-	dispatch({
-		type: DELETED_POST, 
-		payload: id 
-	});
- };
+export const deletedPost = (id) => (dispatch)=>  {
+	axios
+		.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
+			headers: {
+				'Content-type': 'application/json'
+			}
+		})
+		.then((post) =>
+			dispatch({
+				type: NEW_POST,
+				payload: post.data
+			})
+		)
+}
 
 
 export const fetchComments = () => (dispatch) => {
