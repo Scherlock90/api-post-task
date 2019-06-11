@@ -45,7 +45,6 @@ class Posts extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		const { posts } = this.props;
 		const { dataPost, postId } = this.state;
-		const indexPosts = posts.findIndex((post) => post.id === this.state.postId);
 
 		if (prevProps.posts !== posts) {
 			this.handleData();
@@ -96,7 +95,7 @@ class Posts extends Component {
 	}
 	render() {
 		const { match: { params }, posts } = this.props;
-		const { dataUsers, dataPost } = this.state;
+		const { dataUsers, dataPost, modalMainOpen } = this.state;
 
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
@@ -155,6 +154,7 @@ class Posts extends Component {
 								<div id="c2" className="uk-width-expand@m card-center-title">
 									<div className="uk-card uk-card-default uk-card-body">
 										<TextTruncate
+											truncateText="…"
 											line={1}
 											text={postsUsers.title}
 										/>
@@ -175,7 +175,7 @@ class Posts extends Component {
 				})) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
 				<ReactModal
-					isOpen={this.state.modalMainOpen}
+					isOpen={modalMainOpen}
 					contentLabel="onRequestClose Example"
 					onRequestClose={this.closeModal}
 					className="Modal"
