@@ -48,28 +48,41 @@ class Posts extends Component {
 
 	// send new props adding
 	componentWillReceiveProps(nextProps) {
-		const {posts} = this.props;
+		// const {posts} = this.props;
 		const {dataPost} = this.state;
-		let indexPosts = posts;
-		const llog = nextProps.newPost;
-		if (dataPost == indexPosts) {
-			this.setState( prevState => ({
-				dataPost: prevState.dataPost.concat(nextProps.newPost)
-			}))
-			// dataPost.unshift(nextProps.newPost);
-			// this.setState({posts: indexPosts})
-			console.log(dataPost);
+		// let indexPosts = posts;
+		// console.log(posts);
+		// let letang = posts.LocalStorageData;
+		// const llog = nextProps.newPost;
+		// // if (nextProps.newPost) {
+		// // 	// posts.concat(nextProps.newPost);
+		// // 	this.setState({
+		// // 		modalMainOpen: false, 
+		// // 		dataPost
+		// // 	})
+		// // }
+		const post22 = {
+			title: 'posts.title',
+			body: 'posts.body',
+			userId: 1
+		};
+		if(this.state.dataPost >= 0){
+			this.setState({
+				dataPost
+			})
 		} else {
-			console.log('logut');
+			this.setState( ({
+				dataPost: this.state.dataPost.concat(post22)
+			  }))
+			  console.log(nextProps.newPost);
 		}
-		console.log(llog);
+		
 	}
 
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const {posts, deletedPost} = this.props;
 		const {dataPost, postId} = this.state;
-
 			if (prevProps.posts !== posts) {
 				this.handleData();
 			} else {
@@ -84,9 +97,10 @@ class Posts extends Component {
 						this.setState({dataPost});
 						console.log(log);
 					}
-				}
-			}
+				} 
+			};
 
+			
 		// console.log(dataPost.length);
 		// console.log(posts.dataPost.all.length);
 		console.log(prevProps.posts);
