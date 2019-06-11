@@ -42,7 +42,7 @@ export const deletedPost = (id) => (dispatch)=>  {
 		})
 		.then((post) =>
 			dispatch({
-				type: NEW_POST,
+				type: DELETED_POST,
 				payload: post.data
 			})
 		)
