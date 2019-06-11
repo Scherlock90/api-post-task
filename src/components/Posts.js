@@ -48,9 +48,9 @@ class Posts extends Component {
 
 	// send new props adding
 	componentWillReceiveProps(nextProps) {
-		// const {posts} = this.props;
+		const {posts} = this.props;
 		const {dataPost} = this.state;
-		// let indexPosts = posts;
+		let indexPosts = posts;
 		// console.log(posts);
 		// let letang = posts.LocalStorageData;
 		// const llog = nextProps.newPost;
@@ -61,22 +61,26 @@ class Posts extends Component {
 		// // 		dataPost
 		// // 	})
 		// // }
-		const post22 = {
-			title: 'posts.title',
-			body: 'posts.body',
-			userId: 1
-		};
+
+			const post22 = {
+				title: "aaa",
+				body: "aaa.body",
+				userId: 1, 
+				id: 200
+			};
+		
+		console.log(indexPosts);
 		if(this.state.dataPost >= 0){
 			this.setState({
 				dataPost
 			})
 		} else {
-			this.setState( ({
-				dataPost: this.state.dataPost.concat(post22)
+			this.setState( prevState => ({
+				dataPost: [...prevState.dataPost, post22]
 			  }))
-			  console.log(nextProps.newPost);
+			  
 		}
-		
+		console.log(nextProps.newPost);
 	}
 
 	//send new props deleting
@@ -99,7 +103,7 @@ class Posts extends Component {
 					}
 				} 
 			};
-
+			
 			
 		// console.log(dataPost.length);
 		// console.log(posts.dataPost.all.length);
