@@ -38,16 +38,18 @@ class Comments extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        const {comment} = this.props;
         if (nextProps.newComment) {
-            this.props.comment.unshift(nextProps.newComment);
+            comment.unshift(nextProps.newComment);
             this.setState({
                 modalMainOpen: false
             })
         }
     }
     activeComments = (e) => {
+        const {isActive} = this.state;
         e.preventDefault();
-        if (this.state.isActive === false) {
+        if (isActive === false) {
             this.setState({
                 isActive: true
             })
@@ -73,7 +75,7 @@ class Comments extends Component {
     render() {
 
         const { match: { params }, comment } = this.props;
-        const {dataComments, dataUsers} = this.state;
+        const {dataComments, dataUsers, isActive, modalMainOpen} = this.state;
         const idLog = params.postId;
         const parseToNumber = Number(idLog);
 
@@ -144,8 +146,8 @@ class Comments extends Component {
                         <div>
                             <div className="uk-card uk-card-body main-cards-posts-left">
                                 <h3 className="uk-card-title cont-button">
-                                    <span className="icon-add-comments" uk-icon={this.state.isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} onClick={e => this.activeComments(e)}></span>
-                                    <div className="title-button-add-comment"> {this.state.isActive ? 'Hide comments' : 'Show Commments'}</div>
+                                    <span className="icon-add-comments" uk-icon={isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} onClick={e => this.activeComments(e)}></span>
+                                    <div className="title-button-add-comment"> {isActive ? 'Hide comments' : 'Show Commments'}</div>
                                 </h3>
                             </div>
                         </div>
@@ -158,7 +160,7 @@ class Comments extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className={this.state.isActive ? 'container-comments-show--active' : 'container-comments-show'}>
+                    <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
                         {loading = commentsItem.length ? (commentsItem.map((commentsPost, i) => {
                             return (
                                 <div className="container-post-cards" key={i} >
@@ -179,7 +181,7 @@ class Comments extends Component {
                     </div>
                 </div>
                 <ReactModal
-                    isOpen={this.state.modalMainOpen}
+                    isOpen={modalMainOpen}
                     contentLabel="onRequestClose Example"
                     onRequestClose={this.closeModal}
                     className="Modal"
