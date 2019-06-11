@@ -1,7 +1,5 @@
 import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETED_POST } from './types';
-import axios, {dispatch} from 'axios';
-
-const url = 'https://jsonplaceholder.typicode.com/users';
+import axios from 'axios';
 
 export const fetchPosts = () => (dispatch) => {
 	axios
