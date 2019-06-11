@@ -286,6 +286,19 @@ a {
   justify-content: space-between;
 }
 
+@media screen and (max-width: 400px) {
+  .container-posts-main .container-post-cards .comments-header {
+    display: grid;
+  }
+  .container-posts-main .container-post-cards .comments-header div#d1 {
+    order: 1;
+    width: 100%;
+  }
+  .container-posts-main .container-post-cards .comments-header div#d2 {
+    order: 2;
+  }
+}
+
 .container-posts-main .container-post-cards .comments-header .span-email {
   text-decoration: underline;
 }

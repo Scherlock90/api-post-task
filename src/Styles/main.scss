@@ -210,6 +210,11 @@ a {
             font-weight: 600;
             display: flex;
             justify-content: space-between;
+            @media screen and (max-width: $break-small) {
+                display: grid;
+                div#d1 {order: 1; width: 100%}
+                div#d2 {order: 2; }
+            }
             .span-email{
                 text-decoration: underline;
             }
