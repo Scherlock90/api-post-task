@@ -1,9 +1,11 @@
 import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETED_POST } from './types';
 import axios from 'axios';
 
+const URL = 'https://jsonplaceholder.typicode.com';
+
 export const fetchPosts = () => (dispatch) => {
 	axios
-		.get('https://jsonplaceholder.typicode.com/posts')
+		.get(`${URL}/posts/`)
 		.then((posts) =>
 			dispatch({
 				type: FETCH_POSTS,
@@ -17,7 +19,7 @@ export const fetchPosts = () => (dispatch) => {
 
 export const createPost = (postData) => (dispatch) => {
 	axios
-		.post('https://jsonplaceholder.typicode.com/posts', postData, {
+		.post(`${URL}/posts`, postData, {
 			headers: {
 				'Content-type': 'application/json'
 			}
@@ -33,7 +35,7 @@ export const createPost = (postData) => (dispatch) => {
 
 export const deletedPost = (id) => (dispatch)=>  {
 	axios
-		.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, id, {
+		.delete(`${URL}/${id}`, id, {
 			headers: {
 				'Content-type': 'application/json'
 			}
@@ -49,7 +51,7 @@ export const deletedPost = (id) => (dispatch)=>  {
 
 export const fetchComments = () => (dispatch) => {
 	axios
-		.get(' https://jsonplaceholder.typicode.com/comments')
+		.get(`${URL}/comments`)
 		.then((comments) =>
 			dispatch({
 				type:  FETCH_COMMENTS,
@@ -63,7 +65,7 @@ export const fetchComments = () => (dispatch) => {
 
 export const createComment = (postData) => (dispatch) => {
 	axios
-		.post('https://jsonplaceholder.typicode.com/comments', postData, {
+		.post(`${URL}/comments`, postData, {
 			headers: {
 				'Content-type': 'application/json'
 			}
