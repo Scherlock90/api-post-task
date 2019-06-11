@@ -40,6 +40,9 @@ class Comments extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.newComment) {
             this.props.comment.unshift(nextProps.newComment);
+            this.setState({
+                modalMainOpen: false
+            })
         }
     }
     activeComments = (e) => {
