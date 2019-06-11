@@ -48,6 +48,9 @@ class Posts extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.newPost) {
 			this.props.posts.unshift(nextProps.newPost);
+			this.setState({
+				modalMainOpen: false
+			})
 		}
 	}
 
