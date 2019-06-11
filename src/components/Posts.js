@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import TextTruncate from 'react-text-truncate';
 
@@ -20,18 +19,6 @@ class Posts extends Component {
 			modalMainOpen: false
 		};
 	}
-	informationAlert= () => {
-		confirmAlert({
-		  title: 'Delete post',
-		  message: 'If you are sure you want to delete the post press delete the second time?',
-		  buttons: [
-			{
-			  label: 'OK'
-			}
-		  ]
-		});
-	  };
-
 	//fetch data
 	componentDidMount() {
 		this.props.fetchPosts();
@@ -64,12 +51,9 @@ class Posts extends Component {
 			this.handleData();
 		} else {
 			if (dataPost) {
-				//  posts.dataPost.all.slice(p => p.id !== postId)
 				let indexPosts = dataPost.findIndex((post) => post.id === postId);
 				let n = Number(indexPosts);
-				// console.log(n + 1);
 				if (n !== -1) {
-					// this.informationAlert();
 					const log = dataPost.splice(n, 1);
 					this.setState({dataPost});
 					console.log(log);
