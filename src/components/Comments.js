@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments } from '../actions/postActions';
+import { fetchComments } from '../actions/actions';
 import PostCommentForm from './PostCommentForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, deletedPost } from '../actions/postActions';
+import { fetchPosts, deletedPost } from '../actions/actions';
 import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
