@@ -9,6 +9,54 @@ import Spinner from 'react-spinner-material';
 
 const URL = 'https://jsonplaceholder.typicode.com';
 
+function NavigationComments (props) {
+    return (
+        <div className="header-posts">
+            <div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid="false">
+                <div>
+                    <div className="uk-card uk-card-body main-cards-posts-left">
+                        <h3 className="uk-card-title">
+                            {props.comments.map(postBack => (
+                                <Link className="arrow-back" key={postBack.id} to={{
+                                    pathname: `/${postBack.userId}/posts`,
+                                }}>
+                                    <span uk-icon="icon: reply; ratio: 2"></span> Back
+                        </Link>
+                            ))}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div className="uk-card uk-card-body main-cards-posts-center">
+                        <h3 className="uk-card-title main-author-post">
+                            {props.nameAuthor}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function Posts (props) {
+    return (
+        <div className="container-post-cards one-post-container" >
+            <div className="uk-text-center" uk-grid='false'>
+                <div className="uk-width-expand@m card-center-title">
+                    <div className="uk-card uk-card-default uk-card-body">
+                        <div className="title-one-post">
+                            {props.title}
+                        </div>
+                        <div className="body-one-post">
+                            {props.body}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 class Comments extends Component {
     constructor(props) {
         super(props);
@@ -96,47 +144,11 @@ class Comments extends Component {
         console.log(copyCommentsArray);
         return (
             <div className="container-posts-main">
-                <div className="header-posts">
-                    <div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid="false">
-                        <div>
-                            <div className="uk-card uk-card-body main-cards-posts-left">
-                                <h3 className="uk-card-title">
-                                    {comments.filter(ee => ee.userId).map(postBack => (
-                                        <Link className="arrow-back" key={postBack.id} to={{
-                                            pathname: `/${postBack.userId}/posts`,
-                                        }}>
-                                            <span uk-icon="icon: reply; ratio: 2"></span> Back
-                                    </Link>
-                                    ))}
-                                </h3>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="uk-card uk-card-body main-cards-posts-center">
-                                <h3 className="uk-card-title main-author-post">
-                                    {nameAuthor.map((postsUsers => postsUsers.name))}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <NavigationComments comments={comments.filter(ee => ee.userId)} />
                 <div className="container-to-comments">
                     {Loaders = comments.length ? (comments.map((postsUsers, i) => {
                         return (
-                            <div className="container-post-cards one-post-container" key={i} >
-                                <div className="uk-text-center" uk-grid='false'>
-                                    <div className="uk-width-expand@m card-center-title">
-                                        <div className="uk-card uk-card-default uk-card-body">
-                                            <div className="title-one-post">
-                                                {postsUsers.title}
-                                            </div>
-                                            <div className="body-one-post">
-                                                {postsUsers.body}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           <Posts key={i} title={postsUsers.title} body={postsUsers.body} />
                         );
                     })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                     }
