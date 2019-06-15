@@ -69,7 +69,8 @@ export default function User() {
                         website={user.website}
                         companyName={user.company.name}
                         companyBs={user.company.bs}
-                        companyCatchPhrase={user.company.catchPhrase} />
+                        companyCatchPhrase={user.company.catchPhrase} 
+                    />
                 ))) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                 }
             </div>

@@ -184,10 +184,19 @@ class Posts extends Component {
 
 		return (
 			<div className="container-posts-main">
-				<NavigationPosts nameAuthor={nameAuthor} toggleModal={this.toggleModal} />				
+				<NavigationPosts
+					nameAuthor={nameAuthor}
+					toggleModal={this.toggleModal}
+				/>				
 				{Loaders = copyPostsArray.length ? (copyPostsArray.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return ( 
-						<PostsCards key={i} handleDeletedPost={() => this.handleDeletedPost(postsUsers.id)} title={postsUsers.title} pathnameId={postsUsers.id} name={postsUsers.name} />
+						<PostsCards
+							key={i}
+							handleDeletedPost={() => this.handleDeletedPost(postsUsers.id)}
+							title={postsUsers.title}
+							pathnameId={postsUsers.id}
+							name={postsUsers.name}
+						/>
 					);
 				})) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
@@ -202,7 +211,10 @@ class Posts extends Component {
 						<div className="containerMyModal" >
 							<div className="cardPost">
 								<div className="box">
-									<PostForm userId={parseToNumber} closeModal={this.closeModal} />
+									<PostForm
+										userId={parseToNumber}
+										closeModal={this.closeModal}
+									/>
 								</div>
 							</div>
 						</div>

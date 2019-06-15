@@ -199,18 +199,34 @@ class Comments extends Component {
         console.log(copyCommentsArray);
         return (
             <div className="container-posts-main">
-                <NavigationComments comments={comments.filter(ee => ee.userId)} nameAuthor={nameAuthor.map((postsUsers => postsUsers.name))} />
+                <NavigationComments
+                    comments={comments.filter(ee => ee.userId)}
+                    nameAuthor={nameAuthor.map((postsUsers => postsUsers.name))}
+                />
                 {Loaders = comments.length ? (comments.map((postsUsers, i) => {
                     return (
-                        <Post key={i} title={postsUsers.title} body={postsUsers.body} />
+                        <Post
+                            key={i}
+                            title={postsUsers.title}
+                            body={postsUsers.body}
+                        />
                     );
                 })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                 }
-                <ToogleComments isActive={isActive} activeComments={e => this.activeComments(e)} toggleModal={this.toggleModal} />
+                <ToogleComments
+                    isActive={isActive}
+                    activeComments={e => this.activeComments(e)}
+                    toggleModal={this.toggleModal}
+                />
                 <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
                     {Loaders = copyCommentsArray.length ? (copyCommentsArray.map((comments, i) => {
                         return (
-                            <CommentsCards key={i} name={comments.name} body={comments.body} email={comments.email} />
+                            <CommentsCards
+                                key={i}
+                                name={comments.name}
+                                body={comments.body}
+                                email={comments.email}
+                            />
                         );
                     })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                     }
@@ -226,7 +242,10 @@ class Comments extends Component {
                         <div className="containerMyModal" >
                             <div className="cardPost">
                                 <div className="box">
-                                    <PostCommentForm postId={parseToNumber} closeModal={this.closeModal} />
+                                    <PostCommentForm
+                                        postId={parseToNumber}
+                                        closeModal={this.closeModal}
+                                    />
                                 </div>
                             </div>
                         </div>
