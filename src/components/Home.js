@@ -11,9 +11,7 @@ export default function Home() {
   return (
     <div className="mainContainer">
       <div style={styleUsers}>API <br/> Users-Post-Comments</div>
-      <div>
         <User />
-      </div>
     </div>
   )
 }
