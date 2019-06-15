@@ -18,11 +18,11 @@ export default function User() {
             });
     }, [])
 
-    let loading;
+    let Loaders;
     return (
         <div className="containerUser">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="false">
-                { loading = usersArray.length ? ( usersArray.map(user => (
+                { Loaders = usersArray.length ? ( usersArray.map(user => (
                     <div className="uk-card uk-card-default uk-card-body" key={user.id}>
                         <div className="uk-card-header">
                             <div className="uk-grid-small uk-flex-middle" >
@@ -53,7 +53,7 @@ export default function User() {
                             </div>
                         </div>
                     </div>
-                ))): ( loading =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
+                ))): ( Loaders =  <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} /> )
             }
             </div>
         </div>

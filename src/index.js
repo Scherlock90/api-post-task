@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Comments from './components/Comments';
 import './Styles/main.css';
 import store from './store';
-import Posts from './components/Posts'
+import Posts from './components/Posts';
 
 ReactDOM.render(
   <Provider store={store}>

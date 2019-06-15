@@ -13,8 +13,8 @@ class Posts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dataUsers: [],
-			dataPost: [],
+			usersArray: [],
+			postsArray: [],
 			postId: '',
 			modalMainOpen: false
 		};
@@ -26,7 +26,7 @@ class Posts extends Component {
 			.get(' https://jsonplaceholder.typicode.com/users')
 			.then((posts) =>
 				this.setState({
-					dataUsers: posts.data
+					usersArray: posts.data
 				})
 			)
 	}
@@ -44,17 +44,17 @@ class Posts extends Component {
 	//send new props deleting
 	componentDidUpdate(prevProps, prevState) {
 		const { posts } = this.props;
-		const { dataPost, postId } = this.state;
+		const { postsArray, postId } = this.state;
 
 		if (prevProps.posts !== posts) {
 			this.handleData();
 		} else {
-			if (dataPost) {
-				let indexPosts = dataPost.findIndex((post) => post.id === postId);
+			if (postsArray) {
+				let indexPosts = postsArray.findIndex((post) => post.id === postId);
 				let n = Number(indexPosts);
 				if (n !== -1) {
-					const log = dataPost.splice(n, 1);
-					this.setState({ dataPost });
+					const log = postsArray.splice(n, 1);
+					this.setState({ postsArray });
 					console.log(log);
 				}
 			}
@@ -63,13 +63,13 @@ class Posts extends Component {
 
 	handleData = (e) => {
 		const { posts } = this.props;
-		const { dataPost } = this.state;
+		const { postsArray } = this.state;
 		const letang = posts;
-		const postsData = dataPost;
+		const copyPostsArray = postsArray;
 
-		if (postsData.length <= 0) {
+		if (copyPostsArray.length <= 0) {
 			this.setState({
-				dataPost: letang
+				postsArray: letang
 			})
 		} else {
 			console.log('stop')
@@ -95,22 +95,22 @@ class Posts extends Component {
 	}
 	render() {
 		const { match: { params }, posts } = this.props;
-		const { dataUsers, dataPost, modalMainOpen } = this.state;
+		const { usersArray, postsArray, modalMainOpen } = this.state;
 
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
-		let loading;
+		let Loaders;
 		const logArray = posts;
-		const postItems = dataPost;
+		const copyPostsArray = postsArray;
 
-		const nameAuthor = dataUsers
+		const nameAuthor = usersArray
 			.filter(aurhorName => {
 				return aurhorName.id === parseToNumber
 			})
 			.map((author => author.name))
 
-		if (posts.length !== dataPost.length) {
-			console.log('arrray is loading')
+		if (posts.length !== postsArray.length) {
+			console.log('arrray is Loaders')
 		} else {
 			console.log(logArray);
 		}
@@ -142,7 +142,7 @@ class Posts extends Component {
 						</div>
 					</div>
 				</div>
-				{loading = postItems.length ? (postItems.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
+				{Loaders = copyPostsArray.length ? (copyPostsArray.filter(ee => ee.userId === parseToNumber).map((postsUsers, i) => {
 					return (
 						<div className="container-post-cards" key={i} >
 							<div className="uk-text-center" uk-grid='false'>
@@ -172,7 +172,7 @@ class Posts extends Component {
 							</div>
 						</div>
 					);
-				})) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+				})) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
 				}
 				<ReactModal
 					isOpen={modalMainOpen}

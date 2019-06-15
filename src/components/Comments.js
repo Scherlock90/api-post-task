@@ -14,9 +14,9 @@ class Comments extends Component {
         super(props);
         this.state = {
             modalMainOpen: false,
-            dataUsers: [],
+            usersArray: [],
             isActive: false,
-            dataComments: []
+            commentsArray: []
         };
     }
 
@@ -26,13 +26,13 @@ class Comments extends Component {
         axios.get(`${URL}/posts/`)
             .then(res =>
                 this.setState({
-                    dataComments: res.data
+                    commentsArray: res.data
                 })
             )
         axios.get(`${URL}/users/`)
             .then(res =>
                 this.setState({
-                    dataUsers: res.data
+                    usersArray: res.data
                 })
             )
     }
@@ -75,25 +75,25 @@ class Comments extends Component {
     render() {
 
         const { match: { params }, comment } = this.props;
-        const {dataComments, dataUsers, isActive, modalMainOpen} = this.state;
+        const {commentsArray, usersArray, isActive, modalMainOpen} = this.state;
         const idLog = params.postId;
         const parseToNumber = Number(idLog);
 
-        const commentsItem = comment
+        const copyCommentsArray = comment
             .filter(ee => ee.postId === parseToNumber);
 
-        const comments = dataComments
+        const comments = commentsArray
             .filter(aurhorName => {
                 return aurhorName.id === parseToNumber
             });
-        const nameAuthor = dataUsers
+        const nameAuthor = usersArray
             .filter(aurhorName => {
                 return aurhorName.id === Number(comments
                     .map(ee => ee.userId))
             });
-        let loading;
+        let Loaders;
 
-        console.log(commentsItem);
+        console.log(copyCommentsArray);
         return (
             <div className="container-posts-main">
                 <div className="header-posts">
@@ -121,7 +121,7 @@ class Comments extends Component {
                     </div>
                 </div>
                 <div className="container-to-comments">
-                    {loading = comments.length ? (comments.map((postsUsers, i) => {
+                    {Loaders = comments.length ? (comments.map((postsUsers, i) => {
                         return (
                             <div className="container-post-cards one-post-container" key={i} >
                                 <div className="uk-text-center" uk-grid='false'>
@@ -138,7 +138,7 @@ class Comments extends Component {
                                 </div>
                             </div>
                         );
-                    })) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+                    })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                     }
                 </div>
                 <div>
@@ -161,7 +161,7 @@ class Comments extends Component {
                         </div>
                     </div>
                     <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
-                        {loading = commentsItem.length ? (commentsItem.map((commentsPost, i) => {
+                        {Loaders = copyCommentsArray.length ? (copyCommentsArray.map((commentsPost, i) => {
                             return (
                                 <div className="container-post-cards" key={i} >
                                     <div className="uk-text-center" uk-grid='false'>
@@ -176,7 +176,7 @@ class Comments extends Component {
                                     </div>
                                 </div>
                             );
-                        })) : (loading = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+                        })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                         }
                     </div>
                 </div>
