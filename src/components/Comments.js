@@ -40,6 +40,7 @@ function NavigationComments (props) {
 
 function Posts (props) {
     return (
+        <div className="container-to-comments">
         <div className="container-post-cards one-post-container" >
             <div className="uk-text-center" uk-grid='false'>
                 <div className="uk-width-expand@m card-center-title">
@@ -48,6 +49,47 @@ function Posts (props) {
                             {props.title}
                         </div>
                         <div className="body-one-post">
+                            {props.body}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    )
+}
+
+function ToogleComments (props) {
+    return (
+        <div className="container-for-buttons-commments">
+            <div>
+                <div className="uk-card uk-card-body main-cards-posts-left">
+                    <h3 className="uk-card-title cont-button">
+                        <span className="icon-add-comments" uk-icon={props.isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} onClick={props.activeComments}></span>
+                        <div className="title-button-add-comment"> {props.isActive ? 'Hide comments' : 'Show Commments'}</div>
+                    </h3>
+                </div>
+            </div>
+            <div>
+                <div className="uk-card uk-card-body main-cards-posts-right">
+                    <h3 className="uk-card-title cont-button">
+                        <span className="icon-add-comments" uk-icon="icon:  plus-circle; ratio: 2" onClick={props.toggleModal}></span>
+                        <div className="title-button-add-comment">Add Comment</div>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function CommentsCards (props) {
+    return (
+        <div className="container-post-cards">
+            <div className="uk-text-center" uk-grid='false'>
+                <div className="uk-width-expand@m card-center-title">
+                    <div className="uk-card uk-card-default uk-card-body">
+                        <h3 className="uk-card-title comments-header"><div id="d1"> {props.name}</div> <div id="d2" className="span-email"><a href="email" >{props.email}</a></div></h3>
+                        <div>
                             {props.body}
                         </div>
                     </div>
@@ -144,53 +186,21 @@ class Comments extends Component {
         console.log(copyCommentsArray);
         return (
             <div className="container-posts-main">
-                <NavigationComments comments={comments.filter(ee => ee.userId)} />
-                <div className="container-to-comments">
-                    {Loaders = comments.length ? (comments.map((postsUsers, i) => {
+                <NavigationComments comments={comments.filter(ee => ee.userId)} nameAuthor={nameAuthor.map((postsUsers => postsUsers.name))} />
+                {Loaders = comments.length ? (comments.map((postsUsers, i) => {
+                    return (
+                        <Posts key={i} title={postsUsers.title} body={postsUsers.body} />
+                    );
+                })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
+                }
+                <ToogleComments isActive={isActive} activeComments={e => this.activeComments(e)} toggleModal={this.toggleModal} />
+                <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
+                    {Loaders = copyCommentsArray.length ? (copyCommentsArray.map((comments, i) => {
                         return (
-                           <Posts key={i} title={postsUsers.title} body={postsUsers.body} />
+                            <CommentsCards key={i} name={comments.name} body={comments.body} email={comments.email} />
                         );
                     })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                     }
-                </div>
-                <div>
-                    <div className="container-for-buttons-commments">
-                        <div>
-                            <div className="uk-card uk-card-body main-cards-posts-left">
-                                <h3 className="uk-card-title cont-button">
-                                    <span className="icon-add-comments" uk-icon={isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} onClick={e => this.activeComments(e)}></span>
-                                    <div className="title-button-add-comment"> {isActive ? 'Hide comments' : 'Show Commments'}</div>
-                                </h3>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="uk-card uk-card-body main-cards-posts-right">
-                                <h3 className="uk-card-title cont-button">
-                                    <span className="icon-add-comments" uk-icon="icon:  plus-circle; ratio: 2" onClick={this.toggleModal}></span>
-                                    <div className="title-button-add-comment">Add Comment</div>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
-                        {Loaders = copyCommentsArray.length ? (copyCommentsArray.map((commentsPost, i) => {
-                            return (
-                                <div className="container-post-cards" key={i} >
-                                    <div className="uk-text-center" uk-grid='false'>
-                                        <div className="uk-width-expand@m card-center-title">
-                                            <div className="uk-card uk-card-default uk-card-body">
-                                                <h3 className="uk-card-title comments-header"><div id="d1"> {commentsPost.name}</div> <div  id="d2" className="span-email"><a href="email" >{commentsPost.email}</a></div></h3>
-                                                <div>
-                                                    {commentsPost.body}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
-                        }
-                    </div>
                 </div>
                 <ReactModal
                     isOpen={modalMainOpen}
