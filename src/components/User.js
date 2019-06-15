@@ -21,17 +21,19 @@ function UsersCards(props) {
                         <div> <a href="#">{props.website}</a> </div>
                     </div>
                     <div className="cards-main-left">
-                        <div>  {props.companyName} </div>
+                        <div> {props.companyName} </div>
                         <div> {props.companyCatchPhrase} </div>
                         <div> {props.companyBs} </div>
                     </div>
                 </div>
                 <div className="uk-card-footer">
                     <Link to={{
-                        pathname: `/${props.id}/posts`,
-                        usersArray: { username: props.name }
-                    }} key={props.id} username={props.name}
-                        className="uk-button uk-button-primary">Details</Link>
+                            pathname: `/${props.id}/posts`,
+                            usersArray: { username: props.name }
+                        }} key={props.id} username={props.name}
+                        className="uk-button uk-button-primary">
+                            Details
+                    </Link>
                 </div>
             </div>
         </div>

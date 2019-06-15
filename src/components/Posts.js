@@ -18,13 +18,15 @@ function NavigationPosts (props) {
 						<h3 className="uk-card-title">
 							<Link className="arrow-back" to="/">
 								<span uk-icon="icon: reply; ratio: 2"></span> Back
-                                	</Link>
+							</Link>
 						</h3>
 					</div>
 				</div>
 				<div id="h2">
 					<div className="uk-card uk-card-body main-cards-posts-center">
-						<h3 className="uk-card-title main-author-post">{props.nameAuthor}</h3>
+						<h3 className="uk-card-title main-author-post">
+							{props.nameAuthor}
+						</h3>
 					</div>
 				</div>
 				<div id="h3">
@@ -59,10 +61,12 @@ function PostsCards (props) {
 				</div>
 				<div id="c3" className="uk-width-1-3@m">
 					<div className="uk-card uk-card-default uk-card-body button-go-to-post">
-						<Link to={{
-							pathname: `/${props.pathnameId}/post-comments`,
-						}} username={props.name}
-							className="uk-button"> <span uk-icon="icon: chevron-right; ratio: 2"></span>
+						<Link 
+							to={{
+								pathname: `/${props.pathnameId}/post-comments`,
+							}} username={props.name}
+							className="uk-button"> 
+							<span uk-icon="icon: chevron-right; ratio: 2"></span>
 						</Link>
 					</div>
 				</div>
