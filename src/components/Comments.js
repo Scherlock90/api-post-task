@@ -38,7 +38,7 @@ function NavigationComments(props) {
     )
 }
 
-function Posts(props) {
+function Post(props) {
     return (
         <div className="container-to-comments">
             <div className="container-post-cards one-post-container" >
@@ -202,7 +202,7 @@ class Comments extends Component {
                 <NavigationComments comments={comments.filter(ee => ee.userId)} nameAuthor={nameAuthor.map((postsUsers => postsUsers.name))} />
                 {Loaders = comments.length ? (comments.map((postsUsers, i) => {
                     return (
-                        <Posts key={i} title={postsUsers.title} body={postsUsers.body} />
+                        <Post key={i} title={postsUsers.title} body={postsUsers.body} />
                     );
                 })) : (Loaders = <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />)
                 }
