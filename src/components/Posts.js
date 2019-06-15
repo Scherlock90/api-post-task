@@ -22,17 +22,6 @@ class Posts extends Component {
 			
 		};
 	}
-	informationAlert = () => {
-		confirmAlert({
-		  title: 'Delete post',
-		  message: 'If you are sure you want to delete the post press delete the second time',
-		  buttons: [
-			{
-			  label: 'Yes'
-			}
-		  ]
-		});
-	  };
 
 	//fetch data
 	componentDidMount() {
@@ -49,7 +38,7 @@ class Posts extends Component {
 	// send new props adding
 	componentWillReceiveProps(nextProps) {
 		const {posts} = this.props;
-		const {dataPost} = this.state;
+		const {dataPost, postId} = this.state;
 		let indexPosts = posts;
 		// console.log(posts);
 		// let letang = posts.LocalStorageData;
@@ -65,22 +54,29 @@ class Posts extends Component {
 			const post22 = {
 				title: "aaa",
 				body: "aaa.body",
-				userId: 1, 
-				id: 200
+				userId: 1
 			};
 		
 		console.log(indexPosts);
-		if(this.state.dataPost >= 0){
-			this.setState({
-				dataPost
-			})
+		if(dataPost >= 0){
+			console.log('If you add post then, rendering me');
 		} else {
+			// let aaa = nextProps.newPost.LocalStorageData.filter((ee, i) => {
+			// 	return (
+			// 		<div key={i}>
+			// 			<div> {ee.title}</div>
+			// 			<div> {ee.body}</div>
+			// 			<div> {ee.userId}</div>
+			// 		</div>
+			// 	)
+			// })
+			// console.log(aaa);
 			this.setState( prevState => ({
 				dataPost: [...prevState.dataPost, post22]
 			  }))
-			  
+			  console.log(nextProps.newPost.LocalStorageData.map(ee => ee.id));
 		}
-		console.log(nextProps.newPost);
+		
 	}
 
 	//send new props deleting
@@ -96,7 +92,6 @@ class Posts extends Component {
 					let n = Number(indexPosts);
 					// console.log(n + 1);
 					if (n !== -1) {
-						// this.informationAlert();
 						const log = dataPost.splice(n, 1);
 						this.setState({dataPost});
 						console.log(log);

@@ -8,7 +8,8 @@ class PostForm extends Component {
 		this.state = {
 			title: '',
 			body: '',
-			userId: null
+			userId: null,
+			id: null
 		};
 	}
 
@@ -23,7 +24,7 @@ class PostForm extends Component {
 		const post = {
 			title: this.state.title,
 			body: this.state.body,
-			userId: this.props.userId
+			userId: this.props.userId,
 		};
 		this.props.createPost(post);
 	};
@@ -38,7 +39,7 @@ class PostForm extends Component {
 						<table className="uk-table uk-table-justify uk-table-divider">
 							<tbody>
 								<tr>
-									<td className="body-container-form">Title</td>
+									<td className="body-container-form" >Title</td>
 									<td className="body-container-form2">
 										<input className="text-place-post-form" name="title" type="text" value={this.state.title} placeholder="Title" onChange={this.onChange} required />
 									</td>
