@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Comments from './components/Comments';
-import './styles/main.css';
+import './Styles/main.css';
 import store from './store';
 import Posts from './components/Posts';
 
