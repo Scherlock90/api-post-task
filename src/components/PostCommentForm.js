@@ -32,40 +32,44 @@ class PostCommentForm extends Component {
 
 	render() {
 		return (
-			<div className="container-post-form-main">
-				<div className="title-post-form"> Add comment</div>
-				<div className="container-post-form2">
-					<h1 className="title-modal-post">Add Comment</h1>
-					<form onSubmit={this.onSubmit}>
-						<table className="uk-table uk-table-justify uk-table-divider">
-							<tbody>
-								<tr>
-									<td className="body-container-form">Title</td>
-									<td className="body-container-form2">
-										<input className="text-place-post-form" name="name" type="text" value={this.state.name} placeholder="Name" onChange={this.onChange} required />
-									</td>
-								</tr>
-								<tr>
-									<td className="body-container-form">E-mail:</td>
-									<td className="body-container-form2">
-										<input className="text-place-post-form" name="email" type="email" value={this.state.email} placeholder="E-mail" onChange={this.onChange} required />
-									</td>
-								</tr>
-								<tr>
-									<td className="body-container-form">Body</td>
-									<td className="body-container-form2">
-										<textarea className="text-place-post-form text-area-main" value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div className="container-button-post">
-							<button className="uk-button uk-button-danger main-button-style" onClick={this.props.closeModal}>Cancel</button>
-							<button className="uk-button uk-button-primary main-button-style" type="submit">Save</button>							
+			<div className="containerModal">
+				<div className="containerMyModal" >
+					<div className="container-post-form-main">
+						<div className="title-post-form"> Add comment</div>
+						<div className="container-post-form2">
+							<h1 className="title-modal-post">Add Comment</h1>
+							<form onSubmit={this.onSubmit}>
+								<table className="uk-table uk-table-justify uk-table-divider">
+									<tbody>
+										<tr>
+											<td className="body-container-form">Title</td>
+											<td className="body-container-form2">
+												<input className="text-place-post-form" name="name" type="text" value={this.state.name} placeholder="Name" onChange={this.onChange} required />
+											</td>
+										</tr>
+										<tr>
+											<td className="body-container-form">E-mail:</td>
+											<td className="body-container-form2">
+												<input className="text-place-post-form" name="email" type="email" value={this.state.email} placeholder="E-mail" onChange={this.onChange} required />
+											</td>
+										</tr>
+										<tr>
+											<td className="body-container-form">Body</td>
+											<td className="body-container-form2">
+												<textarea className="text-place-post-form text-area-main" value={this.state.body} name="body" placeholder="Body" onChange={this.onChange} required />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div className="container-button-post">
+									<button className="uk-button uk-button-danger main-button-style" onClick={this.props.closeModal}>Cancel</button>
+									<button className="uk-button uk-button-primary main-button-style" type="submit">Save</button>
+								</div>
+							</form>
 						</div>
-					</form>
+						<div className="title-post-form-down"> </div>
+					</div>
 				</div>
-				<div className="title-post-form-down"> </div>
 			</div>
 		);
 	}

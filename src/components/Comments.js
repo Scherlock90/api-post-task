@@ -238,18 +238,10 @@ class Comments extends Component {
                     className="Modal"
                     overlayClassName="Overlay mainOverlay"
                 >
-                    <div className="containerModal">
-                        <div className="containerMyModal" >
-                            <div className="cardPost">
-                                <div className="box">
-                                    <PostCommentForm
-                                        postId={parseToNumber}
-                                        closeModal={this.closeModal}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <PostCommentForm
+                        postId={parseToNumber}
+                        closeModal={this.closeModal}
+                    />
                 </ReactModal>
             </div>
         );
