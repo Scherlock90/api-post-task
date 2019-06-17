@@ -12,8 +12,6 @@ export const persistData = store => next => action => {
 		localState = JSON.parse(localState);
 	}
 	else {
-		//   let all = action.payload;
-		//   let postsData = { all: all};
 		localState = Object.assign({}, { LocalStorageData: action.payload });
 	}
 

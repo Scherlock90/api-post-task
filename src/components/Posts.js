@@ -40,16 +40,6 @@ class Posts extends Component {
 		const {posts} = this.props;
 		const {dataPost, postId} = this.state;
 		let indexPosts = posts;
-		// console.log(posts);
-		// let letang = posts.LocalStorageData;
-		// const llog = nextProps.newPost;
-		// // if (nextProps.newPost) {
-		// // 	// posts.concat(nextProps.newPost);
-		// // 	this.setState({
-		// // 		modalMainOpen: false, 
-		// // 		dataPost
-		// // 	})
-		// // }
 
 			const post22 = {
 				title: "aaa",
@@ -61,16 +51,6 @@ class Posts extends Component {
 		if(dataPost >= 0){
 			console.log('If you add post then, rendering me');
 		} else {
-			// let aaa = nextProps.newPost.LocalStorageData.filter((ee, i) => {
-			// 	return (
-			// 		<div key={i}>
-			// 			<div> {ee.title}</div>
-			// 			<div> {ee.body}</div>
-			// 			<div> {ee.userId}</div>
-			// 		</div>
-			// 	)
-			// })
-			// console.log(aaa);
 			this.setState( prevState => ({
 				dataPost: [...prevState.dataPost, post22]
 			  }))
@@ -87,10 +67,8 @@ class Posts extends Component {
 				this.handleData();
 			} else {
 				if (dataPost) {
-					//  posts.dataPost.all.slice(p => p.id !== postId)
 					let indexPosts = dataPost.findIndex((post) => post.id === postId);
 					let n = Number(indexPosts);
-					// console.log(n + 1);
 					if (n !== -1) {
 						const log = dataPost.splice(n, 1);
 						this.setState({dataPost});
@@ -99,9 +77,6 @@ class Posts extends Component {
 				} 
 			};
 			
-			
-		// console.log(dataPost.length);
-		// console.log(posts.dataPost.all.length);
 		console.log(prevProps.posts);
 	}
 
@@ -143,7 +118,6 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 		let loading;
-		// const logArray = posts;
 		const postItems = dataPost;
 
 		const nameAuthor = dataUsers
@@ -151,13 +125,6 @@ class Posts extends Component {
 				return aurhorName.id === parseToNumber
 			})
 			.map((author => author.name))
-		
-			// if(posts.length === dataPost.length){
-			// 	console.log('arrray is loading')
-			// } else {
-			// 	console.log(logArray);
-			// }
-			// console.log(posts);
 		return (
 			<div className="container-posts-main">
 				<div className="header-posts">
