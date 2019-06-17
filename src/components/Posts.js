@@ -207,18 +207,10 @@ class Posts extends Component {
 					className="Modal"
 					overlayClassName="Overlay mainOverlay"
 				>
-					<div className="containerModal">
-						<div className="containerMyModal" >
-							<div className="cardPost">
-								<div className="box">
-									<PostForm
-										userId={parseToNumber}
-										closeModal={this.closeModal}
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
+					<PostForm
+						userId={parseToNumber}
+						closeModal={this.closeModal}
+					/>
 				</ReactModal>
 			</div>
 		);
