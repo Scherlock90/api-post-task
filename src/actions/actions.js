@@ -12,9 +12,7 @@ export const fetchPosts = () => (dispatch) => {
 				payload: posts.data
 			})
 		)
-		.catch((err) => {
-			console.log(err);
-		});
+		.catch((err) => console.log(err));
 };
 
 export const createPost = (postData) => (dispatch) => {
@@ -46,6 +44,7 @@ export const deletedPost = (id) => (dispatch)=>  {
 				payload: post.data
 			})
 		)
+		.catch((err) => console.log(err));
 }
 
 
@@ -58,9 +57,7 @@ export const fetchComments = () => (dispatch) => {
 				payload: comments.data
 			})
 		)
-		.catch((err) => {
-			console.log(err);
-		});
+		.catch((err) => console.log(err));
 };
 
 export const createComment = (postData) => (dispatch) => {
