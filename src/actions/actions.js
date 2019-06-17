@@ -31,7 +31,7 @@ export const createPost = (postData) => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const deletedPost = (id) => (dispatch)=>  {
+export const deletedPost = (id) => (dispatch) =>  {
 	axios
 		.delete(`${URL}/${id}`, id, {
 			headers: {
