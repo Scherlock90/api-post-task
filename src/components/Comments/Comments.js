@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments } from '../actions/actions';
+import { fetchComments } from '../../actions/actions';
 import PostCommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
@@ -12,7 +12,10 @@ const URL = 'https://jsonplaceholder.typicode.com';
 function NavigationComments(props) {
     return (
         <div className="header-posts">
-            <div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid="false">
+            <div 
+                className="uk-child-width-1-3@m uk-grid-small uk-grid-match" 
+                uk-grid="false"
+            >
                 <div>
                     <div className="uk-card uk-card-body main-cards-posts-left">
                         <h3 className="uk-card-title">
@@ -20,7 +23,8 @@ function NavigationComments(props) {
                                 <Link className="arrow-back" key={postBack.id} to={{
                                     pathname: `/${postBack.userId}/posts`,
                                 }}>
-                                    <span uk-icon="icon: reply; ratio: 2"></span> Back
+                                    <span uk-icon="icon: reply; ratio: 2"></span> 
+                                    Back
                                 </Link>
                             ))}
                         </h3>
@@ -65,7 +69,11 @@ function ToogleComments(props) {
             <div>
                 <div className="uk-card uk-card-body main-cards-posts-left">
                     <h3 className="uk-card-title cont-button">
-                        <span className="icon-add-comments" uk-icon={props.isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} onClick={props.activeComments}></span>
+                        <span 
+                            className="icon-add-comments" 
+                            uk-icon={props.isActive ? 'icon:  arrow-up; ratio: 2' : 'icon:  arrow-down; ratio: 2'} 
+                            onClick={props.activeComments}
+                        ></span>
                         <div className="title-button-add-comment"> 
                             {props.isActive ? 'Hide comments' : 'Show Commments'} 
                         </div>
@@ -75,7 +83,11 @@ function ToogleComments(props) {
             <div>
                 <div className="uk-card uk-card-body main-cards-posts-right">
                     <h3 className="uk-card-title cont-button">
-                        <span className="icon-add-comments" uk-icon="icon:  plus-circle; ratio: 2" onClick={props.toggleModal}></span>
+                        <span 
+                            className="icon-add-comments" 
+                            uk-icon="icon:  plus-circle; ratio: 2" 
+                            onClick={props.toggleModal}
+                        ></span>
                         <div className="title-button-add-comment">
                             Add Comment
                         </div>

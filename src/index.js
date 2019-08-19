@@ -9,10 +9,10 @@ import {
   commentsRoutes 
 } from './routes';
 import Home from './components/Home';
-import Comments from './components/Comments';
+import Comments from './components/Comments/Comments';
 import './Styles/main.scss';
 import store from './store';
-import Posts from './components/Posts';
+import Posts from './components/Posts/Posts';
 
 ReactDOM.render(
   <Provider store={store}>
