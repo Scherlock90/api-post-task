@@ -45,6 +45,11 @@ a {
     display: grid;
     justify-content: center;
 }
+.home-container{
+    font-size: 220%;
+    text-align: center;
+    margin: 1em;
+}
 .containerUser{
     width: auto;
     @include flex-center-text;

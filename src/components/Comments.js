@@ -195,8 +195,7 @@ class Comments extends Component {
                     .map(ee => ee.userId))
             });
         let Loaders;
-
-        console.log(copyCommentsArray);
+        
         return (
             <div className="container-posts-main">
                 <NavigationComments

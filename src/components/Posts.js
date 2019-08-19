@@ -122,7 +122,6 @@ class Posts extends Component {
 				if (n !== -1) {
 					const log = postsArray.splice(n, 1);
 					this.setState({ postsArray });
-					console.log(log);
 				}
 			}
 		}
@@ -138,8 +137,6 @@ class Posts extends Component {
 			this.setState({
 				postsArray: letang
 			})
-		} else {
-			console.log('stop')
 		}
 	}
 
@@ -175,12 +172,6 @@ class Posts extends Component {
 				return aurhorName.id === parseToNumber
 			})
 			.map((author => author.name))
-
-		if (posts.length !== postsArray.length) {
-			console.log('arrray is Loaders')
-		} else {
-			console.log(logArray);
-		}
 
 		return (
 			<div className="container-posts-main">
