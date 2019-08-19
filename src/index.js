@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { 
+  BrowserRouter, 
+  Route,
+  Switch 
+} from 'react-router-dom';
 import {
   mainRoutes, 
   postsRoutes, 

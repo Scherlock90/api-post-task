@@ -1,4 +1,10 @@
-import { FETCH_POSTS, NEW_POST, DELETE_POST, FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
+import { 
+	FETCH_POSTS, 
+	NEW_POST, 
+	DELETE_POST, 
+	FETCH_COMMENTS, 
+	NEW_COMMENT 
+} from '../actions/types';
 
 const initialState = {
 	items: [],
