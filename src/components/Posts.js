@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, deletedPost } from '../actions/actions';
+import { fetchPosts } from '../actions/actions';
 import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
@@ -75,7 +75,6 @@ function PostsCards (props) {
 	)
 }
 
-
 class Posts extends Component {
 	constructor(props) {
 		super(props);
@@ -88,9 +87,10 @@ class Posts extends Component {
 	}
 	//fetch data
 	componentDidMount() {
+		const url = 'https://jsonplaceholder.typicode.com/users';
 		this.props.fetchPosts();
 		axios
-			.get(' https://jsonplaceholder.typicode.com/users')
+			.get(url)
 			.then((posts) =>
 				this.setState({
 					usersArray: posts.data
@@ -122,7 +122,6 @@ class Posts extends Component {
 				if (n !== -1) {
 					const log = postsArray.splice(n, 1);
 					this.setState({ postsArray });
-					console.log(log);
 				}
 			}
 		}
@@ -167,7 +166,6 @@ class Posts extends Component {
 		const idLog = params.userId;
 		const parseToNumber = Number(idLog);
 		let Loaders;
-		const logArray = posts;
 		const copyPostsArray = postsArray;
 
 		const nameAuthor = usersArray
@@ -175,12 +173,6 @@ class Posts extends Component {
 				return aurhorName.id === parseToNumber
 			})
 			.map((author => author.name))
-
-		if (posts.length !== postsArray.length) {
-			console.log('arrray is Loaders')
-		} else {
-			console.log(logArray);
-		}
 
 		return (
 			<div className="container-posts-main">
@@ -223,4 +215,4 @@ const mapStateToProps = (state) => ({
 });
 
 ReactModal.setAppElement('#root');
-export default connect(mapStateToProps, { fetchPosts, deletedPost })(Posts);
+export default connect(mapStateToProps, { fetchPosts })(Posts);

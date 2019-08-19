@@ -7,8 +7,6 @@ import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
 
-const URL = 'https://jsonplaceholder.typicode.com';
-
 function NavigationComments(props) {
     return (
         <div className="header-posts">
@@ -123,7 +121,9 @@ class Comments extends Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount() {     
+
+        const URL = 'https://jsonplaceholder.typicode.com';
         this.props.fetchComments();
 
         axios.get(`${URL}/posts/`)
@@ -152,15 +152,7 @@ class Comments extends Component {
     activeComments = (e) => {
         const { isActive } = this.state;
         e.preventDefault();
-        if (isActive === false) {
-            this.setState({
-                isActive: true
-            })
-        } else {
-            this.setState({
-                isActive: false
-            })
-        }
+        this.setState(({ isActive }) => ({ isActive: !isActive }))
     }
 
     toggleModal = (e) => {
@@ -195,8 +187,6 @@ class Comments extends Component {
                     .map(ee => ee.userId))
             });
         let Loaders;
-
-        console.log(copyCommentsArray);
         return (
             <div className="container-posts-main">
                 <NavigationComments

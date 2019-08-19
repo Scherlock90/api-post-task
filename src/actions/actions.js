@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETED_POST } from './types';
+import { FETCH_POSTS, NEW_POST, FETCH_COMMENTS, NEW_COMMENT, DELETE_POST } from './types';
 import axios from 'axios';
 
 const URL = 'https://jsonplaceholder.typicode.com';
@@ -15,7 +15,7 @@ export const fetchPosts = () => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const createPost = (postData) => (dispatch) => {
+export const createPost = postData => (dispatch) => {
 	axios
 		.post(`${URL}/posts`, postData, {
 			headers: {
@@ -31,7 +31,7 @@ export const createPost = (postData) => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const deletedPost = (id) => (dispatch) =>  {
+export const deletePost = id => (dispatch) =>  {
 	axios
 		.delete(`${URL}/${id}`, id, {
 			headers: {
@@ -40,7 +40,7 @@ export const deletedPost = (id) => (dispatch) =>  {
 		})
 		.then((post) =>
 			dispatch({
-				type: DELETED_POST,
+				type: DELETE_POST,
 				payload: post.data
 			})
 		)
@@ -60,7 +60,7 @@ export const fetchComments = () => (dispatch) => {
 		.catch((err) => console.log(err));
 };
 
-export const createComment = (postData) => (dispatch) => {
+export const createComment = postData => (dispatch) => {
 	axios
 		.post(`${URL}/comments`, postData, {
 			headers: {

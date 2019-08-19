@@ -8,9 +8,13 @@ body {
 }
 
 #root {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   justify-items: center;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 a {
@@ -19,16 +23,26 @@ a {
 }
 
 .mainContainer {
+  display: -ms-grid;
   display: grid;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .containerUser {
   width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   margin: 10px;
 }
 
@@ -38,8 +52,12 @@ a {
 
 .containerUser .main-grid2 {
   margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .containerUser .main-grid2 .main-title {
@@ -48,7 +66,9 @@ a {
 }
 
 .containerUser .uk-child-width-expand\@s > :not([class*=uk-width]) {
-  flex: none;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
   margin: 10px;
 }
 
@@ -75,6 +95,7 @@ a {
 
 .container-posts-main {
   width: 1200px;
+  display: -ms-grid;
   display: grid;
   justify-items: center;
 }
@@ -100,17 +121,27 @@ a {
     max-width: 650px;
   }
   .container-posts-main #h1 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
     width: 50%;
   }
   .container-posts-main #h2 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
   }
   .container-posts-main #h3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
     width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
@@ -120,17 +151,27 @@ a {
     display: block;
   }
   .container-posts-main #h1 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
     width: 50%;
   }
   .container-posts-main #h2 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
   }
   .container-posts-main #h3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
     width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
@@ -197,7 +238,8 @@ a {
 
 .container-posts-main .container-post-cards {
   width: 1200px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   margin: 20px;
 }
 
@@ -221,6 +263,8 @@ a {
   }
   .container-posts-main .container-post-cards #c1 {
     width: 20%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-top: 0;
   }
@@ -242,22 +286,29 @@ a {
     margin: 0;
   }
   .container-posts-main .container-post-cards #c1 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
     width: 50%;
   }
   .container-posts-main .container-post-cards #c2 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
     width: 100%;
   }
   .container-posts-main .container-post-cards #c3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
     width: 50%;
   }
 }
 
 .container-posts-main .container-post-cards .uk-card-default {
   background-color: transparent;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .container-posts-main .container-post-cards .button-go-to-post {
@@ -282,20 +333,29 @@ a {
 .container-posts-main .container-post-cards .comments-header {
   font-size: 120%;
   font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 @media screen and (max-width: 400px) {
   .container-posts-main .container-post-cards .comments-header {
+    display: -ms-grid;
     display: grid;
   }
   .container-posts-main .container-post-cards .comments-header div#d1 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
     width: 100%;
   }
   .container-posts-main .container-post-cards .comments-header div#d2 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
   }
 }
 
@@ -304,10 +364,16 @@ a {
 }
 
 .Modal {
+  display: -ms-grid;
   display: grid;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -322,10 +388,16 @@ a {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  display: -ms-grid;
   display: grid;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .Modal .containerModal .containerMyModal {
@@ -349,6 +421,8 @@ a {
 }
 
 .Modal .containerModal .containerMyModal .cardPost .box .cotainer-label .container-input-label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -362,17 +436,25 @@ a {
 
 .Modal .containerModal .containerMyModal .littleContainerName {
   width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .Modal .containerModal .containerMyModal .littleContainerName .nameModalImage {
   text-transform: uppercase;
   font-size: 30px;
   width: 200px;
-  writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
   -webkit-writing-mode: vertical-lr;
   text-orientation: upright;
 }
@@ -395,14 +477,23 @@ a {
 }
 
 .container-for-buttons-commments {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container-for-buttons-commments .cont-button {
+  display: -ms-grid;
   display: grid;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container-for-buttons-commments .cont-button .icon-add-comments {
@@ -485,15 +576,26 @@ a {
 
 .container-post-form-main .container-button-post {
   width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .container-post-form-main .container-button-post .main-button-style {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   width: 100px;
   margin: 0.5em;
 }
@@ -521,3 +623,4 @@ a {
 .react-confirm-alert-overlay {
   background: rgba(22, 2, 2, 0.4) !important;
 }
+/*# sourceMappingURL=main.css.map */

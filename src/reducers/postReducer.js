@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, DELETED_POST, FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
+import { FETCH_POSTS, NEW_POST, DELETE_POST, FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
 
 const initialState = {
 	items: [],
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
 				...state,
 				item: action.payload
 			};
-		case DELETED_POST:
+		case DELETE_POST:
 			return {
 				...state,
 				items: action.payload
