@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/actions';
+import { fetchPosts, deletedPost } from '../../actions/actions';
 import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
@@ -137,8 +137,6 @@ class Posts extends Component {
 			this.setState({
 				postsArray: letang
 			})
-		} else {
-			console.log('stop')
 		}
 	}
 

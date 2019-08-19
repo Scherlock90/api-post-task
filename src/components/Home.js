@@ -1,16 +1,12 @@
 import React from 'react';
-import User from './User';
-
-const styleUsers = {
-  fontSize: '220%',
-  textAlign: 'center',
-  margin: '1em'
-}
+import User from './User/User';
 
 export default function Home() {
   return (
     <div className="mainContainer">
-      <div style={styleUsers}>API <br/> Users-Post-Comments</div>
+      <div className="home-container">
+        API <br/> Users-Post-Comments
+      </div>
         <User />
     </div>
   )
