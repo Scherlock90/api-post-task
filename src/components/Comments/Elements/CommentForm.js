@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPost } from '../../actions/actions';
+import { createComment } from '../../../actions/actions';
 
-class PostForm extends Component {
+class PostCommentForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: '',
+			name: '',
 			body: '',
-			userId: null
+			email: '',
+			postId: null
 		};
 	}
 
@@ -20,12 +21,13 @@ class PostForm extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		const post = {
-			title: this.state.title,
+		const comment = {
+			name: this.state.name,
 			body: this.state.body,
-			userId: this.props.userId
+			email: this.state.email,
+			postId: this.props.postId
 		};
-		this.props.createPost(post);
+		this.props.createComment(comment);
 	};
 
 	render() {
@@ -34,11 +36,11 @@ class PostForm extends Component {
 				<div className="containerMyModal" >
 					<div className="container-post-form-main">
 						<div className="title-post-form"> 
-							Add Post
+							Add comment
 						</div>
 						<div className="container-post-form2">
 							<h1 className="title-modal-post">
-								Add Post
+								Add Comment
 							</h1>
 							<form onSubmit={this.onSubmit}>
 								<table className="uk-table uk-table-justify uk-table-divider">
@@ -50,13 +52,29 @@ class PostForm extends Component {
 											<td className="body-container-form2">
 												<input 
 													className="text-place-post-form" 
-													name="title" 
+													name="name" 
 													type="text" 
-													placeholder="Title" 
-													value={this.state.title} 
-													onChange={this.onChange} 
+													value={this.state.name} 
+													placeholder="Name" 
+													onChange={this.onChange}
 													required 
 												/>
+											</td>
+										</tr>
+										<tr>
+											<td className="body-container-form">
+												E-mail:
+											</td>
+											<td className="body-container-form2">
+												<input 
+													className="text-place-post-form" 
+													name="email" 
+													type="email" 
+													value={this.state.email} 
+													placeholder="E-mail" 
+													onChange={this.onChange}
+													required 
+												 />
 											</td>
 										</tr>
 										<tr>
@@ -66,10 +84,10 @@ class PostForm extends Component {
 											<td className="body-container-form2">
 												<textarea 
 													className="text-place-post-form text-area-main" 
+													value={this.state.body} 
 													name="body" 
 													placeholder="Body" 
-													value={this.state.body} 
-													onChange={this.onChange} 
+													onChange={this.onChange}
 													required 
 												/>
 											</td>
@@ -99,4 +117,5 @@ class PostForm extends Component {
 		);
 	}
 }
-export default connect(null, { createPost })(PostForm);
+
+export default connect(null, { createComment })(PostCommentForm);

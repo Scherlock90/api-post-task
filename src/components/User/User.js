@@ -1,7 +1,7 @@
 import React from 'react';
-import UsersCards from './UsersCards';
-import useUsersArray  from './useUsersArray';
 import Spinner from 'react-spinner-material';
+import UsersCards from './Elements/UsersCards';
+import useUsersArray  from './Elements/useUsersArray';
 
 export default function User() {
     const usersArray = useUsersArray();

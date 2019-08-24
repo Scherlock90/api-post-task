@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../../actions/actions';
-import PostCommentForm from './CommentForm';
+import PostCommentForm from './Elements/CommentForm';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import NavigationComments from './NavigationComments';
-import Post from './Post';
-import ToogleComments from './ToogleComments';
-import CommentsCards from './CommentsCards';
+import NavigationComments from './Elements/NavigationComments';
+import Post from './Elements/Post';
+import ToogleComments from './Elements/ToogleComments';
+import CommentsCards from './Elements/CommentsCards';
 
 class Comments extends Component {
     constructor(props) {

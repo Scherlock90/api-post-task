@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions/actions';
-import PostForm from './PostForm';
 import ReactModal from 'react-modal';
-import axios from 'axios';
 import Spinner from 'react-spinner-material';
-import PostsCards from './PostsCards';
-import NavigationPosts from './NavigationPosts';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { fetchPosts } from '../../actions/actions';
+import PostForm from './Elements/PostForm';
+import PostsCards from './Elements/PostsCards';
+import NavigationPosts from './Elements/NavigationPosts';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Posts extends Component {
