@@ -1,17 +1,18 @@
-import { 
-	FETCH_POSTS, 
-	NEW_POST, 
-	FETCH_COMMENTS, 
-	NEW_COMMENT, 
-	DELETE_POST 
-} from './types';
 import axios from 'axios';
+import {
+	FETCH_POSTS,
+	FETCH_USERS,
+	FETCH_COMMENTS,
+	NEW_POST,
+	NEW_COMMENT,
+	DELETE_POST
+} from './types';
+import { URL, setAuthHeader } from './utils';
 
-const URL = 'https://jsonplaceholder.typicode.com';
 
 export const fetchPosts = () => dispatch => {
 	axios
-		.get(`${URL}/posts/`)
+		.get(`${URL}/posts/`, setAuthHeader)
 		.then((posts) =>
 			dispatch({
 				type: FETCH_POSTS,
@@ -23,11 +24,7 @@ export const fetchPosts = () => dispatch => {
 
 export const createPost = postData => dispatch => {
 	axios
-		.post(`${URL}/posts`, postData, {
-			headers: {
-				'Content-type': 'application/json'
-			}
-		})
+		.post(`${URL}/posts`, postData, setAuthHeader)
 		.then((post) =>
 			dispatch({
 				type: NEW_POST,
@@ -39,11 +36,7 @@ export const createPost = postData => dispatch => {
 
 export const deletePost = id => dispatch =>  {
 	axios
-		.delete(`${URL}/${id}`, id, {
-			headers: {
-				'Content-type': 'application/json'
-			}
-		})
+		.delete(`${URL}/${id}`, id, setAuthHeader)
 		.then((post) =>
 			dispatch({
 				type: DELETE_POST,
@@ -68,11 +61,7 @@ export const fetchComments = () => dispatch => {
 
 export const createComment = postData => dispatch => {
 	axios
-		.post(`${URL}/comments`, postData, {
-			headers: {
-				'Content-type': 'application/json'
-			}
-		})
+		.post(`${URL}/comments`, postData, setAuthHeader)
 		.then((comment) =>
 			dispatch({
 				type: NEW_COMMENT,
@@ -81,3 +70,20 @@ export const createComment = postData => dispatch => {
 		)
 		.catch((err) => console.log(err));
 };
+
+
+export function fetchUsers () {
+	return function action (dispatch) {
+
+		const request = axios({
+			method: 'GET',
+			url: `${URL}/users`,
+		});
+
+		return request.then(users => {
+			dispatch({
+			type: FETCH_USERS,
+			payload: users.data
+		})});
+	}
+}

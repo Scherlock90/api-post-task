@@ -4,9 +4,9 @@ import Spinner from 'react-spinner-material';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchPosts } from '../../actions/actions';
-import PostForm from './Elements/PostForm';
-import PostsCards from './Elements/PostsCards';
-import NavigationPosts from './Elements/NavigationPosts';
+import PostForm from './post-form/PostForm';
+import PostsCards from './post-cards/PostsCards';
+import NavigationPosts from './navigation-posts/NavigationPosts';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Posts extends Component {
@@ -20,7 +20,7 @@ class Posts extends Component {
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		const url = 'https://jsonplaceholder.typicode.com/users';
 		this.props.fetchPosts();
 		axios
@@ -32,7 +32,7 @@ class Posts extends Component {
 			)
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps (nextProps) {
 		if (nextProps.newPost) {
 			this.props.posts.unshift(nextProps.newPost);
 			this.setState({
@@ -41,7 +41,7 @@ class Posts extends Component {
 		}
 	}
 
-	componentDidUpdate(prevProps) {
+	componentDidUpdate (prevProps) {
 		const { posts } = this.props;
 		const { postsArray, postId } = this.state;
 
@@ -89,7 +89,7 @@ class Posts extends Component {
 			modalMainOpen: false
 		})
 	}
-	render() {
+	render () {
 		const { match: { params } } = this.props;
 		const { usersArray, postsArray, modalMainOpen } = this.state;
 		let Loaders;
@@ -109,30 +109,30 @@ class Posts extends Component {
 				<NavigationPosts
 					nameAuthor={nameAuthor}
 					toggleModal={this.toggleModal}
-				/>				
+				/>
 				{
-						Loaders = copyPostsArray.length 
-					? 
+					Loaders = copyPostsArray.length
+						?
 						(copyPostsArray
 							.filter(ee => ee.userId === parseToNumber)
 							.map((postsUsers, i) => {
-							return ( 
-								<PostsCards
-									key={i}
-									handleDeletedPost={() => this.handleDeletedPost(postsUsers.id)}
-									title={postsUsers.title}
-									pathnameId={postsUsers.id}
-									name={postsUsers.name}
-								/>
-							);
-						})) 
-					: 
-						(Loaders = <Spinner 
-										size={120} 
-										spinnerColor={"#333"} 
-										spinnerWidth={2} 
-										visible={true} 
+								return (
+									<PostsCards
+										key={i}
+										handleDeletedPost={() => this.handleDeletedPost(postsUsers.id)}
+										title={postsUsers.title}
+										pathnameId={postsUsers.id}
+										name={postsUsers.name}
 									/>
+								);
+							}))
+						:
+						(Loaders = <Spinner
+							size={120}
+							spinnerColor={"#333"}
+							spinnerWidth={2}
+							visible={true}
+						/>
 						)
 				}
 				<ReactModal
@@ -152,9 +152,9 @@ class Posts extends Component {
 	}
 }
 const mapStateToProps = (state) => ({
-	posts: state.api.items,
-	newPost: state.api.item,
-	deletedPost2: state.api.deletedPost
+	posts: state.posts.posts,
+	newPost: state.posts.post,
+	deletedPost2: state.posts.deletedPost
 });
 
 ReactModal.setAppElement('#root');

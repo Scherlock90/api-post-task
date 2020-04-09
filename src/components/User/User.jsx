@@ -1,22 +1,21 @@
 import React from 'react';
 import Spinner from 'react-spinner-material';
-import UsersCards from './Elements/UsersCards';
-import useUsersArray  from './Elements/useUsersArray';
+import UsersCards from './user-cards/UsersCards';
+import useUsersArray  from './user-logic/useUsersArray';
 
 export default function User() {
-    const usersArray = useUsersArray();
-    let Loaders;
+    const { user } = useUsersArray();
 
     return (
-        <div className="containerUser">
-            <div 
-                className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" 
+        <div className="container-user">
+            <div
+                className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2"
                 uk-grid="false"
             >
                 {
-                        Loaders = usersArray.length 
-                    ? 
-                        (usersArray.map(user => (
+                    user
+                    ?
+                        (user.users.map(user => (
                             <UsersCards
                                 key={user.id}
                                 id={user.id}
@@ -29,13 +28,13 @@ export default function User() {
                                 companyCatchPhrase={user.company.catchPhrase}
                             />
                         )))
-                    : 
+                    :
                         (
-                            Loaders = <Spinner 
-                                size={120} 
-                                spinnerColor={"#333"} 
-                                spinnerWidth={2} 
-                                visible={true} 
+                            <Spinner
+                                size={120}
+                                spinnerColor={"#333"}
+                                spinnerWidth={2}
+                                visible={true}
                             />
                         )
                 }

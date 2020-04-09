@@ -28,14 +28,15 @@ class PostCommentForm extends Component {
 			postId: this.props.postId
 		};
 		this.props.createComment(comment);
+		this.props.closeModal()
 	};
 
 	render() {
 		return (
-			<div className="containerModal">
-				<div className="containerMyModal" >
+			<div className="container-modal">
+				<div className="container-my-modal" >
 					<div className="container-post-form-main">
-						<div className="title-post-form"> 
+						<div className="title-post-form">
 							Add comment
 						</div>
 						<div className="container-post-form2">
@@ -50,14 +51,14 @@ class PostCommentForm extends Component {
 												Title
 											</td>
 											<td className="body-container-form2">
-												<input 
-													className="text-place-post-form" 
-													name="name" 
-													type="text" 
-													value={this.state.name} 
-													placeholder="Name" 
+												<input
+													className="text-place-post-form"
+													name="name"
+													type="text"
+													value={this.state.name}
+													placeholder="Name"
 													onChange={this.onChange}
-													required 
+													required
 												/>
 											</td>
 										</tr>
@@ -66,14 +67,14 @@ class PostCommentForm extends Component {
 												E-mail:
 											</td>
 											<td className="body-container-form2">
-												<input 
-													className="text-place-post-form" 
-													name="email" 
-													type="email" 
-													value={this.state.email} 
-													placeholder="E-mail" 
+												<input
+													className="text-place-post-form"
+													name="email"
+													type="email"
+													value={this.state.email}
+													placeholder="E-mail"
 													onChange={this.onChange}
-													required 
+													required
 												 />
 											</td>
 										</tr>
@@ -82,27 +83,27 @@ class PostCommentForm extends Component {
 												Body
 											</td>
 											<td className="body-container-form2">
-												<textarea 
-													className="text-place-post-form text-area-main" 
-													value={this.state.body} 
-													name="body" 
-													placeholder="Body" 
+												<textarea
+													className="text-place-post-form text-area-main"
+													value={this.state.body}
+													name="body"
+													placeholder="Body"
 													onChange={this.onChange}
-													required 
+													required
 												/>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 								<div className="container-button-post">
-									<button 
-										className="uk-button uk-button-danger main-button-style" 
+									<button
+										className="uk-button uk-button-danger main-button-style"
 										onClick={this.props.closeModal}
 									>
 										Cancel
 									</button>
-									<button 
-										className="uk-button uk-button-primary main-button-style" 
+									<button
+										className="uk-button uk-button-primary main-button-style"
 										type="submit"
 									>
 										Save

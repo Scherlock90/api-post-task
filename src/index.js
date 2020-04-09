@@ -2,23 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { 
-  BrowserRouter, 
+import {
+  BrowserRouter,
   Route,
-  Switch 
+  Switch
 } from 'react-router-dom';
 import {
-  mainRoutes, 
-  postsRoutes, 
-  commentsRoutes 
-} from './routes';
+  mainRoutes,
+  postsRoutes,
+  commentsRoutes
+} from './static/routes';
 import Home from './components/Home';
 import Comments from './components/Comments/Comments';
-import './Styles/main.scss';
-import store from './store';
 import Posts from './components/Posts/Posts';
+import store from './store';
+import './assets/styles/main.scss';
 
-ReactDOM.render(
+ReactDOM.render (
   <Provider store={store}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>

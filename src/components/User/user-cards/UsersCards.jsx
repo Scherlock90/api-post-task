@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function UsersCards(props) {
+export default function UsersCards ({ name, email, phone, website, companyName, companyCatchPhrase, companyBs, id}) {
     return (
         <div className="uk-card uk-card-default uk-card-body">
             <div className="uk-card-header">
@@ -9,29 +9,33 @@ export default function UsersCards(props) {
                     <div className="uk-width-auto">
                         <div className="uk-width-expand">
                             <h3 className="uk-card-title uk-margin-remove-bottom main-title">
-                                {props.name}
+                                { name }
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div className="uk-card-body">
                     <div className="cards-main-left">
-                        <div> <a href="#"> {props.email} </a> </div>
-                        <div> <a href="#">{props.phone}</a> </div>
-                        <div> <a href="#">{props.website}</a> </div>
+                        <div> <a href="#"> { email } </a> </div>
+                        <div> <a href="#">{ phone }</a> </div>
+                        <div> <a href="#">{ website }</a> </div>
                     </div>
                     <div className="cards-main-left">
-                        <div> {props.companyName} </div>
-                        <div> {props.companyCatchPhrase} </div>
-                        <div> {props.companyBs} </div>
+                        <div> { companyName } </div>
+                        <div> { companyCatchPhrase } </div>
+                        <div> { companyBs } </div>
                     </div>
                 </div>
                 <div className="uk-card-footer">
-                    <Link to={{
-                        pathname: `/${props.id}/posts`,
-                        usersArray: { username: props.name }
-                    }} key={props.id} username={props.name}
-                        className="uk-button uk-button-primary">
+                    <Link
+                        to={{
+                            pathname: `/${ id }/posts`,
+                            usersArray: { username: name }
+                        }}
+                        key={ id }
+                        username={ name }
+                        className="uk-button uk-button-primary"
+                    >
                         Details
                     </Link>
                 </div>

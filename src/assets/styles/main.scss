@@ -8,9 +8,9 @@ $break-very-big: 2000px;
 
 
 //mixins
-@mixin flex-center-text{
+@mixin flex-center-text {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     align-content: center;
 }
@@ -24,86 +24,103 @@ $break-very-big: 2000px;
 
 
 // main code
-html{
+html {
     background: #f1f1f1 !important;
 }
-body{
+
+body {
     background: #f1f1f1 !important;
     margin: 20px;
 }
+
 #root {
     display: flex;
     justify-items: center;
     justify-content: center;
 }
+
 a {
 	text-decoration: none;
 	color: blue;
 }
 
-.mainContainer{
+.main-container {
     display: grid;
     justify-content: center;
 }
-.home-container{
+
+.home-container {
     font-size: 220%;
     text-align: center;
     margin: 1em;
 }
-.containerUser{
+
+.container-user {
     width: auto;
     @include flex-center-text;
     margin: 10px;
-    .uk-card-default{
+
+    .uk-card-default {
         background: transparent;
     }
-    .main-grid2{
+
+    .main-grid2 {
         margin: 10px;
         display: flex;
         justify-content: center;
+
         .main-title{
             text-align: left !important;
             margin: 5px;
         }
     }
-    .uk-child-width-expand\@s>:not([class*=uk-width]){
+
+    .uk-child-width-expand\@s>:not([class*=uk-width]) {
         flex:none;
         margin: 10px;
     }
-    [class*=uk-child-width]>*{
+
+    [class*=uk-child-width]>* {
         width: 20%;
     }
-    .uk-card-body{
+
+    .uk-card-body {
        padding: 12px 5px;
     }
-    .uk-card-header{
+
+    .uk-card-header {
         padding: 15px 15px;
     }
 }
-.cards-main-left{
+
+.cards-main-left {
     text-align: left;
     margin-top: 10px;
 }
-.uk-card-footer{
-    .uk-button-primary{
+
+.uk-card-footer {
+    .uk-button-primary {
         cursor: pointer;
     }
 }
 
-.container-posts-main{
+.container-posts-main {
     width: 1200px;
     display: grid;
     justify-items: center;
+
     @media screen and (max-width: $break-big) {
         .uk-width-1-2\@m{
             margin: 5px 50px 5px 50px;
             width: 100%;
         }
     }
+
     @media screen and (max-width: $break-laptop-with-touch) {
         width: auto;
-        display: block;   
+        display: block;
     }
+
     @media screen and (max-width: $break-tablet) {
         width: auto;
         display: block;
@@ -112,6 +129,7 @@ a {
         #h2 {order: 1;}
         #h3 {order: 3; width: 50%; display: flex; align-items: center;}
     }
+
     @media screen and (max-width: $break-small) {
         width: 350px;
         display: block;
@@ -119,70 +137,86 @@ a {
         #h2 {order: 1;}
         #h3 {order: 3; width: 50%; display: flex; align-items: center;}
     }
-    .header-posts{
+
+    .header-posts {
         width: 1200px;
         height: 100px;
         margin: 30px;
+
         @media screen and (max-width: $break-big) {
             width: 1000px;
         }
+
         @media screen and (max-width: $break-laptop-with-touch) {
             width: 100%;
             height: auto;
             display: block;
             margin: 0;
         }
+
         @media screen and (max-width: $break-tablet) {
             width: auto;
             height: auto;
             display: block;
             margin: 0;
         }
+
         @media screen and (max-width: $break-small) {
             width: auto;
             height: auto;
             display: block;
         }
-        .div-header{
+
+        .div-header {
             margin: 20px;
             width: 33%;
             display: inline;
         }
-        .main-cards-posts-center{
+
+        .main-cards-posts-center {
             text-align: center;
         }
-        .main-cards-posts-left{
+
+        .main-cards-posts-left {
             text-align: left;
         }
-        .main-cards-posts-right{
+
+        .main-cards-posts-right {
             text-align: right;
         }
-        .main-author-post{
+
+        .main-author-post {
             font-size: 200%;
             font-weight: 600;
         }
-    }  
-    .container-post-cards{
+    }
+
+    .container-post-cards {
         width: 1200px;
         box-shadow: 0 5px 15px rgba(0,0,0,.08);
         margin: 20px;
+
         @media screen and (max-width: $break-big) {
             width: 1000px;
             margin:0;
         }
+
         @media screen and (max-width: $break-laptop-with-touch) {
             width: 800px;
             margin:0;
         }
+
         @media screen and (max-width: $break-tablet) {
             width: 600px;
             #c1 { width: 20%; display: flex; margin-top:0}
             #c2 {width: 50%}
             #c3 { width: 30%; margin-top: 0;}
-            .uk-card-body{
+
+            .uk-card-body {
                 padding: 20px 30px;
             }
         }
+
         @media screen and (max-width: $break-small) {
             width: 350px;
             margin: 0;
@@ -190,41 +224,48 @@ a {
             #c2 {order: 1; width: 100%;}
             #c3 {order: 3; width: 50%;}
         }
-        
-        .uk-card-default{
+
+        .uk-card-default {
             background-color: transparent;
             box-shadow: none;
         }
-        .button-go-to-post{
+
+        .button-go-to-post {
             text-align: right;
         }
+
         .card-center-title {
             padding-left: 10px;
             text-align: left;
         }
-        .title-one-post{
+
+        .title-one-post {
             font-size: 180%;
             font-weight: 600;
             margin: 20px;
         }
-        .body-one-post{
+
+        .body-one-post {
             font-size: 120%;
         }
-        .comments-header{
+
+        .comments-header {
             font-size: 120%;
             font-weight: 600;
             display: flex;
             justify-content: space-between;
+
             @media screen and (max-width: $break-small) {
                 display: grid;
                 div#d1 {order: 1; width: 100%}
                 div#d2 {order: 2; }
             }
-            .span-email{
+
+            .span-email {
                 text-decoration: underline;
             }
         }
-    }  
+    }
 }
 
 .Modal {
@@ -236,44 +277,54 @@ a {
     bottom: 0;
     background-color: rgba(22, 2, 2 , .4);
     text-align: center;
-    .containerModal{
+
+    .container-modal {
       height: 100%;
       width: 100%;
       margin-left: auto;
       margin-right: auto;
       @include center-items;
-      .containerMyModal{
+
+      .container-my-modal {
         background-color: #f1f1f1;
-        .cardPost{
+
+        .card-post {
           .box{
-              .bigger-add-post-title{
+              .bigger-add-post-title {
                     font-size: 200%;
                     margin: 0.7em;
-              }            
-            .little-add-post-title{
+              }
+
+            .little-add-post-title {
                 font-size: 80%;
                 text-align: left;
                 border: 2px rgb(49, 47, 47) solid;
             }
-            .cotainer-label{
+
+            .container-label {
                 text-align: left;
                 padding: 0.5em;
-                .container-input-label{
+
+                .container-input-label {
                     display: inline-flex;
-                    .title-span-add-post{
+
+                    .title-span-add-post {
                         width: 100px;
                     }
-                    .body-span-add-post{
+
+                    .body-span-add-post {
                         width: 100px;
                     }
                 }
-            }                        
-          }        
+            }
+          }
         }
-        .littleContainerName{
+
+        .little-container-name {
           width: auto;
-          @include flex-center-text;             
-          .nameModalImage{            
+          @include flex-center-text;
+
+          .name-modal-image {
             text-transform: uppercase;
             font-size: 30px;
             width: 200px;
@@ -281,118 +332,142 @@ a {
             -webkit-writing-mode: vertical-lr;
             text-orientation: upright;
           }
-        }       
+        }
       }
     }
   }
  .icon-add-post {
      cursor: pointer;
      color: blue;
+
      &:hover {
          color: #1e87f0;
      }
  }
- .icon-go-to-trash{
+
+ .icon-go-to-trash {
      cursor: pointer;
-     :hover{
+
+     :hover {
         color: #1e87f0;
      }
  }
- .container-for-buttons-commments{
+
+ .container-for-buttons-commments {
      display: flex;
      justify-content: space-between;
-     .cont-button{
+
+     .cont-button {
          display: grid;
          justify-content: center;
          align-items: center;
-         .icon-add-comments{
+
+         .icon-add-comments {
             cursor: pointer;
             color: blue;
             text-align: center;
+
             &:hover {
                 color: #1e87f0;
-            }             
+            }
          }
      }
-     .title-button-add-comment{
+
+     .title-button-add-comment {
          font-size: 60%;
      }
-    
+
  }
- .container-comments-show{
+
+ .container-comments-show {
     display: none;
-    &--active{
+    &--active {
         display: block;
     }
 }
- 
-.container-post-form-main{
+
+.container-post-form-main {
     height: auto;
     width: 400px;
+
     @media screen and (max-width: $break-medium) {
         width: auto;
     }
-    .container-post-form2{
+
+    .container-post-form2 {
         padding: 1em;
         border: #363434 solid 2px;
-        .body-container-form{
+
+        .body-container-form {
             width: 30%;
             text-align: left;
             padding-left: 1em;
-            .text-place-post-form{
+
+            .text-place-post-form {
                 width: 100%;
             }
         }
-        .body-container-form2{
+
+        .body-container-form2 {
             width: 70%;
+
             .text-place-post-form{
                 width: 100%;
             }
+
             .text-area-main{
                 height: 10em;
             }
         }
     }
-    .title-post-form{
+
+    .title-post-form {
         text-align: left;
         font-size: 80%;
         border: #363434 solid 2px;
         height: 25px;
     }
-    .title-post-form-down{
+
+    .title-post-form-down {
         text-align: left;
         font-size: 80%;
         border: #363434 solid 2px;
         height: 25px;
     }
-    .title-modal-post{
+
+    .title-modal-post {
         margin: 1em;
     }
-    .container-button-post{
+
+    .container-button-post {
         width: auto;
         display: flex;
         justify-content: flex-end;
-        .main-button-style{   
-            @include flex-center-text;      
+
+        .main-button-style {
+            @include flex-center-text;
             width: 100px;
             margin: 0.5em;
         }
     }
 }
 
-.containerUser [class*=uk-child-width] > * {
+.container-user [class*=uk-child-width] > * {
     @media screen and (max-width: $break-big) {
         width: 100%;
         max-width: 320px;
     }
+
     @media screen and (max-width: $break-tablet) {
         width: 100%;
         max-width: 320px;
     }
+
     @media screen and (max-width: $break-medium) {
         width: 100%;
-    }  
+    }
 }
-.react-confirm-alert-overlay{
+
+.react-confirm-alert-overlay {
     background: rgba(22,2,2,.4) !important;
 }
