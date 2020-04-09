@@ -8,19 +8,18 @@ import { fetchComments, fetchUsers, fetchPosts } from '../../actions/actions';
 import { compareData } from './utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';
-import PostCommentForm from './comment-form/CommentForm';
+import CommentForm from './comment-form/CommentForm';
 import Post from './post/Post';
 import ToggleComments from './toggle-comments/ToggleComments';
 import CommentsCards from './comment-cards/CommentsCards';
 
 const Comments = () => {
+    const dispatch = useDispatch();
     const params = useParams();
     const [modalMainOpen, setModalMainOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
-    const dispatch = useDispatch();
     const comments = useSelector(state => state.comment.comment);
-
     const users = useSelector(state => state.users.users);
     const post = useSelector(state => state.posts.posts);
 
@@ -57,10 +56,17 @@ const Comments = () => {
 
     return (
         <div className="container-posts-main">
-            <NavigationComments
-                comments={filteredAuthor.filter(({ userId }) => userId)}
-                filteredAuthor={filteredAuthor.map((({ name }) => name))}
-            />
+            {
+                filteredAuthor.length
+                ?
+                    (
+                        <NavigationComments
+                            post={filteredAuthor}
+                            nameAuthor={filteredAuthor[0].name}
+                        />
+                    )
+                : null
+            }
                 {
                     filteredPost.length
                         ?
@@ -102,7 +108,7 @@ const Comments = () => {
                 className="Modal"
                 overlayClassName="Overlay mainOverlay"
             >
-                <PostCommentForm
+                <CommentForm
                     postId={+params.postId}
                     closeModal={() => toggleModal()}
                 />

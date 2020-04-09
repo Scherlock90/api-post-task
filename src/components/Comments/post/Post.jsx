@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Post({...props}) {
+export default function Post({ title, body }) {
     return (
         <div className="container-to-comments">
             <div className="container-post-cards one-post-container" >
@@ -8,10 +8,10 @@ export default function Post({...props}) {
                     <div className="uk-width-expand@m card-center-title">
                         <div className="uk-card uk-card-default uk-card-body">
                             <div className="title-one-post">
-                                {props.title}
+                                { title }
                             </div>
                             <div className="body-one-post">
-                                {props.body}
+                                { body }
                             </div>
                         </div>
                     </div>

@@ -15,17 +15,17 @@ export default function ToggleComments({ isActive, activeComments, toggleModal }
                     </div>
                 </h3>
             </div>
-        </div>
-        <div>
-            <div className="uk-card uk-card-body main-cards-posts-right">
-                <h3 className="uk-card-title cont-button">
-                    <span
-                        className="icon-add-comments"
-                        uk-icon="icon:  plus-circle; ratio: 2"
-                        onClick={toggleModal}
-                    ></span>
-                    <div className="title-button-add-comment">Add Comment</div>
-                </h3>
+            <div>
+                <div className="uk-card uk-card-body main-cards-posts-right">
+                    <h3 className="uk-card-title cont-button">
+                        <span
+                            className="icon-add-comments"
+                            uk-icon="icon:  plus-circle; ratio: 2"
+                            onClick={toggleModal}
+                        ></span>
+                        <div className="title-button-add-comment">Add Comment</div>
+                    </h3>
+                </div>
             </div>
         </div>
     )

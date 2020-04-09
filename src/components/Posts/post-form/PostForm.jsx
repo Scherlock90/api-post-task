@@ -30,10 +30,10 @@ class PostForm extends Component {
 
 	render() {
 		return (
-			<div className="containerModal">
-				<div className="containerMyModal" >
+			<div className="container-modal">
+				<div className="container-my-modal" >
 					<div className="container-post-form-main">
-						<div className="title-post-form"> 
+						<div className="title-post-form">
 							Add Post
 						</div>
 						<div className="container-post-form2">
@@ -48,14 +48,14 @@ class PostForm extends Component {
 												Title
 											</td>
 											<td className="body-container-form2">
-												<input 
-													className="text-place-post-form" 
-													name="title" 
-													type="text" 
-													placeholder="Title" 
-													value={this.state.title} 
-													onChange={this.onChange} 
-													required 
+												<input
+													className="text-place-post-form"
+													name="title"
+													type="text"
+													placeholder="Title"
+													value={this.state.title}
+													onChange={this.onChange}
+													required
 												/>
 											</td>
 										</tr>
@@ -64,27 +64,27 @@ class PostForm extends Component {
 												Body
 											</td>
 											<td className="body-container-form2">
-												<textarea 
-													className="text-place-post-form text-area-main" 
-													name="body" 
-													placeholder="Body" 
-													value={this.state.body} 
-													onChange={this.onChange} 
-													required 
+												<textarea
+													className="text-place-post-form text-area-main"
+													name="body"
+													placeholder="Body"
+													value={this.state.body}
+													onChange={this.onChange}
+													required
 												/>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 								<div className="container-button-post">
-									<button 
-										className="uk-button uk-button-danger main-button-style" 
+									<button
+										className="uk-button uk-button-danger main-button-style"
 										onClick={this.props.closeModal}
 									>
 										Cancel
 									</button>
-									<button 
-										className="uk-button uk-button-primary main-button-style" 
+									<button
+										className="uk-button uk-button-primary main-button-style"
 										type="submit"
 									>
 										Save
