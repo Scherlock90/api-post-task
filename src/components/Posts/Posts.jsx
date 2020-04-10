@@ -1,161 +1,93 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { fetchPosts } from '../../actions/actions';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 import PostForm from './post-form/PostForm';
 import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
-class Posts extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			usersArray: [],
-			postsArray: [],
-			postId: '',
-			modalMainOpen: false
-		};
-	}
+import { fetchPosts, fetchUsers, deletePost } from '../../actions/actions';
+import { compareData } from '../common/utils';
 
-	componentDidMount () {
-		const url = 'https://jsonplaceholder.typicode.com/users';
-		this.props.fetchPosts();
-		axios
-			.get(url)
-			.then((posts) =>
-				this.setState({
-					usersArray: posts.data
-				})
-			)
-	}
+const Posts = () => {
+	const dispatch = useDispatch();
+	const params = useParams();
+	const [modalMainOpen, setModalMainOpen] = useState(false);
+	const [postId, setPostId] = useState(null);
 
-	componentWillReceiveProps (nextProps) {
-		if (nextProps.newPost) {
-			this.props.posts.unshift(nextProps.newPost);
-			this.setState({
-				modalMainOpen: false
-			})
+	const post = useSelector(state => state.posts.posts);
+	const users = useSelector(state => state.users.users);
+
+	const fetchData = async () => {
+		try {
+			await dispatch(fetchUsers())
+			await dispatch(fetchPosts())
+		} catch (error) {
+			console.error(error)
 		}
-	}
+	};
 
-	componentDidUpdate (prevProps) {
-		const { posts } = this.props;
-		const { postsArray, postId } = this.state;
+	const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
-		if (prevProps.posts !== posts) {
-			this.handleData();
-		} else {
-			if (postsArray) {
-				let indexPosts = postsArray.findIndex((post) => post.id === postId);
-				let n = Number(indexPosts);
-				if (n !== -1) {
-					const log = postsArray.splice(n, 1);
-					this.setState({ postsArray });
-				}
-			}
-		}
-	}
+	const handleDeletedPost = id => {
+		console.log(id)
+		setPostId(+id)
+		dispatch(deletePost(+id))
+	};
 
-	handleData = () => {
-		const { posts } = this.props;
-		const { postsArray } = this.state;
-		const letang = posts;
-		const copyPostsArray = postsArray;
+	useEffect(() => {
+		fetchData();
+		return () => fetchData();
+	}, [])
 
-		if (copyPostsArray.length <= 0) {
-			this.setState({
-				postsArray: letang
-			})
-		}
-	}
+	const filteredAuthor = compareData(users, 'id', +params.userId);
+	const Loaders = (
+		<Spinner
+			size={120}
+			spinnerColor={"#333"}
+			spinnerWidth={2}
+			visible={true}
+		/>
+	)
 
-	handleDeletedPost = (id) => {
-		this.setState({
-			postId: id
-		})
-	}
-	toggleModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			modalMainOpen: true
-		})
-	}
-	closeModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			modalMainOpen: false
-		})
-	}
-	render () {
-		const { match: { params } } = this.props;
-		const { usersArray, postsArray, modalMainOpen } = this.state;
-		let Loaders;
-
-		const idLog = params.userId;
-		const parseToNumber = Number(idLog);
-		const copyPostsArray = postsArray;
-
-		const nameAuthor = usersArray
-			.filter(aurhorName => {
-				return aurhorName.id === parseToNumber
-			})
-			.map((author => author.name))
-
-		return (
-			<div className="container-posts-main">
-				<NavigationPosts
-					nameAuthor={nameAuthor}
-					toggleModal={this.toggleModal}
-				/>
-				{
-					Loaders = copyPostsArray.length
-						?
-						(copyPostsArray
-							.filter(ee => ee.userId === parseToNumber)
-							.map((postsUsers, i) => {
-								return (
+	return (
+		<div className="container-posts-main">
+		<NavigationPosts
+				nameAuthor={filteredAuthor.map(author => author.name)}
+				toggleModal={toggleModal}
+			/>
+			{
+				post.length
+					?
+						(
+							post
+								.filter(post => post.userId === +params.userId)
+								.map((postsUsers, i) => (
 									<PostsCards
 										key={i}
-										handleDeletedPost={() => this.handleDeletedPost(postsUsers.id)}
+										handleDeletedPost={() => handleDeletedPost(postsUsers.id)}
 										title={postsUsers.title}
 										pathnameId={postsUsers.id}
 										name={postsUsers.name}
 									/>
-								);
-							}))
-						:
-						(Loaders = <Spinner
-							size={120}
-							spinnerColor={"#333"}
-							spinnerWidth={2}
-							visible={true}
-						/>
+								))
 						)
-				}
-				<ReactModal
-					isOpen={modalMainOpen}
-					contentLabel="onRequestClose Example"
-					onRequestClose={this.closeModal}
-					className="Modal"
-					overlayClassName="Overlay mainOverlay"
-				>
-					<PostForm
-						userId={parseToNumber}
-						closeModal={this.closeModal}
-					/>
-				</ReactModal>
-			</div>
-		);
-	}
+					: Loaders
+			}
+			<ReactModal
+				isOpen={modalMainOpen}
+				contentLabel="onRequestClose Example"
+				onRequestClose={toggleModal}
+				className="Modal"
+				overlayClassName="Overlay mainOverlay"
+			>
+				<PostForm userId={+params.userId} closeModal={toggleModal}/>
+			</ReactModal>
+		</div>
+	)
 }
-const mapStateToProps = (state) => ({
-	posts: state.posts.posts,
-	newPost: state.posts.post,
-	deletedPost2: state.posts.deletedPost
-});
 
-ReactModal.setAppElement('#root');
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+export default Posts;

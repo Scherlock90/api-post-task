@@ -35,8 +35,9 @@ export const createPost = postData => dispatch => {
 };
 
 export const deletePost = id => dispatch =>  {
+	console.log(id)
 	axios
-		.delete(`${URL}/${id}`, id, setAuthHeader)
+		.delete(`${URL}/posts/${+id}`, setAuthHeader)
 		.then((post) =>
 			dispatch({
 				type: DELETE_POST,

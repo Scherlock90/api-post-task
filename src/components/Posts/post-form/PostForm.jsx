@@ -1,102 +1,86 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { Wrapper } from '../../common/index';
 import { createPost } from '../../../actions/actions';
 
-class PostForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			title: '',
-			body: '',
-			userId: null
-		};
-	}
+const PostForm = ({ closeModal, userId }) => {
+	const dispatch = useDispatch();
+	const [title, setTitle] = useState('');
+	const [body, setBody] = useState('');
 
-	onChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
+	const onChange = (e) => {
+		const { name } = e.target;
+
+		if (name === 'title') return setTitle(e.target.value);
+		else if (name === 'body') return setBody(e.target.value);
 	};
 
-	onSubmit = (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		const post = {
-			title: this.state.title,
-			body: this.state.body,
-			userId: this.props.userId
-		};
-		this.props.createPost(post);
+			title,
+			body,
+			userId,
+		}
+		dispatch(createPost(post));
+		closeModal()
 	};
 
-	render() {
-		return (
-			<div className="container-modal">
-				<div className="container-my-modal" >
-					<div className="container-post-form-main">
-						<div className="title-post-form">
-							Add Post
-						</div>
-						<div className="container-post-form2">
-							<h1 className="title-modal-post">
-								Add Post
-							</h1>
-							<form onSubmit={this.onSubmit}>
-								<table className="uk-table uk-table-justify uk-table-divider">
-									<tbody>
-										<tr>
-											<td className="body-container-form">
-												Title
-											</td>
-											<td className="body-container-form2">
-												<input
-													className="text-place-post-form"
-													name="title"
-													type="text"
-													placeholder="Title"
-													value={this.state.title}
-													onChange={this.onChange}
-													required
-												/>
-											</td>
-										</tr>
-										<tr>
-											<td className="body-container-form">
-												Body
-											</td>
-											<td className="body-container-form2">
-												<textarea
-													className="text-place-post-form text-area-main"
-													name="body"
-													placeholder="Body"
-													value={this.state.body}
-													onChange={this.onChange}
-													required
-												/>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<div className="container-button-post">
-									<button
-										className="uk-button uk-button-danger main-button-style"
-										onClick={this.props.closeModal}
-									>
-										Cancel
-									</button>
-									<button
-										className="uk-button uk-button-primary main-button-style"
-										type="submit"
-									>
-										Save
-									</button>
-								</div>
-							</form>
-						</div>
-						<div className="title-post-form-down"> </div>
+	return (
+		<div className="container-modal">
+			<div className="container-my-modal" >
+				<div className="container-post-form-main">
+					<div className="title-post-form">Add comment</div>
+					<div className="container-post-form2">
+						<h1 className="title-modal-post">Add Comment</h1>
+						<form onSubmit={onSubmit}>
+							<table className="uk-table uk-table-justify uk-table-divider">
+								<tbody>
+									<Wrapper
+										name={'Title'}
+										children={
+											<input
+												className="text-place-post-form"
+												name="title"
+												type="text"
+												placeholder="Title"
+												value={title}
+												onChange={onChange}
+												required
+											/>
+										}
+									/>
+									<Wrapper
+										name={'Body'}
+										children={
+											<textarea
+												className="text-place-post-form text-area-main"
+												name="body"
+												placeholder="Body"
+												value={body}
+												onChange={onChange}
+												required
+											/>
+										}
+									/>
+								</tbody>
+							</table>
+							<div className="container-button-post">
+								<button onClick={closeModal} className="uk-button uk-button-danger main-button-style">
+									Cancel
+								</button>
+								<button className="uk-button uk-button-primary main-button-style" type="submit">
+									Save
+								</button>
+							</div>
+						</form>
 					</div>
+					<div className="title-post-form-down"></div>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	)
 }
-export default connect(null, { createPost })(PostForm);
+
+export default PostForm;

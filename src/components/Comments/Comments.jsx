@@ -5,7 +5,7 @@ import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
 
 import { fetchComments, fetchUsers, fetchPosts } from '../../actions/actions';
-import { compareData } from './utils';
+import { compareData } from '../common/utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';
 import CommentForm from './comment-form/CommentForm';
@@ -42,17 +42,17 @@ const Comments = () => {
         return () => fetchData();
     }, [])
 
-        const filteredComments = compareData(comments, 'postId', +params.postId);
-        const filteredPost = compareData(post, 'id', +params.postId);
-        const filteredAuthor = compareData(users, 'id', filteredPost.map(it => it.userId)[0]);
-        const Loaders = (
-            <Spinner
-                size={120}
-                spinnerColor={"#333"}
-                spinnerWidth={2}
-                visible={true}
-            />
-        )
+    const filteredComments = compareData(comments, 'postId', +params.postId);
+    const filteredPost = compareData(post, 'id', +params.postId);
+    const filteredAuthor = compareData(users, 'id', filteredPost.map(it => it.userId)[0]);
+    const Loaders = (
+        <Spinner
+            size={120}
+            spinnerColor={"#333"}
+            spinnerWidth={2}
+            visible={true}
+        />
+    )
 
     return (
         <div className="container-posts-main">

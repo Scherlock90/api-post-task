@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { createComment } from '../../../actions/actions';
+import { Wrapper } from '../../common/index';
 
 const CommentForm = ({ closeModal, postId }) => {
     const dispatch = useDispatch();
@@ -20,9 +21,9 @@ const CommentForm = ({ closeModal, postId }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const comment = {
-			name: name,
-			body: body,
-			email: email,
+			name,
+			body,
+			email,
 			postId,
 		};
 		dispatch(createComment(comment));
@@ -55,9 +56,10 @@ const CommentForm = ({ closeModal, postId }) => {
 							<table className="uk-table uk-table-justify uk-table-divider">
 								<tbody>
 									{trArray.map(({name, type, value, placeholder}) => (
-										<tr key={name}>
-											<td className="body-container-form">{ name }</td>
-											<td className="body-container-form2">
+										<Wrapper
+											key={name}
+											name={name}
+											children={
 												<input
 													className="text-place-post-form"
 													name={name}
@@ -67,12 +69,12 @@ const CommentForm = ({ closeModal, postId }) => {
 													onChange={onChange}
 													required
 												/>
-											</td>
-										</tr>
+											}
+										/>
 									))}
-									<tr>
-										<td className="body-container-form">Body</td>
-										<td className="body-container-form2">
+									<Wrapper
+										name={'Body'}
+										children={
 											<textarea
 												className="text-place-post-form text-area-main"
 												value={body}
@@ -81,8 +83,8 @@ const CommentForm = ({ closeModal, postId }) => {
 												onChange={onChange}
 												required
 											/>
-										</td>
-									</tr>
+										}
+									/>
 								</tbody>
 							</table>
 							<div className="container-button-post">
