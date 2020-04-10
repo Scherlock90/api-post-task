@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
 
-import { fetchComments, fetchUsers, fetchPosts } from '../../actions/actions';
+import { fetchUsers, fetchPosts, filteredComment } from '../../actions/index';
 import { compareData } from '../common/utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';
@@ -25,9 +25,9 @@ const Comments = () => {
 
     const fetchData = async () => {
         try {
-            await dispatch(fetchComments())
             await dispatch(fetchUsers())
             await dispatch(fetchPosts())
+            await dispatch(filteredComment(+params.postId))
         } catch (error) {
             console.error(error)
         }
@@ -42,7 +42,6 @@ const Comments = () => {
         return () => fetchData();
     }, [])
 
-    const filteredComments = compareData(comments, 'postId', +params.postId);
     const filteredPost = compareData(post, 'id', +params.postId);
     const filteredAuthor = compareData(users, 'id', filteredPost.map(it => it.userId)[0]);
     const Loaders = (
@@ -87,17 +86,19 @@ const Comments = () => {
             />
             <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
                 {
-                    filteredComments.length
+                    comments
                         ?
-                            (filteredComments.map(({ name, body, email }, i) => (
-                                    <CommentsCards
-                                        key={i}
-                                        name={name}
-                                        body={body}
-                                        email={email}
-                                    />
+                            (
+                                comments.map(({ name, body, email }, i) => (
+                                        <CommentsCards
+                                            key={i}
+                                            name={name}
+                                            body={body}
+                                            email={email}
+                                        />
+                                    )
                                 )
-                            ))
+                            )
                         : Loaders
                 }
             </div>

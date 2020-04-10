@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUsers } from '../../../actions/actions';
+import { fetchUsers } from '../../../actions/index';
 
 export default function useUsersArray() {
     const dispatch = useDispatch();

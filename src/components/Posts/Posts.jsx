@@ -9,14 +9,13 @@ import PostForm from './post-form/PostForm';
 import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
 
-import { fetchPosts, fetchUsers, deletePost } from '../../actions/actions';
+import { fetchUsers, deletePost, filteredPosts } from '../../actions/index';
 import { compareData } from '../common/utils';
 
 const Posts = () => {
 	const dispatch = useDispatch();
 	const params = useParams();
 	const [modalMainOpen, setModalMainOpen] = useState(false);
-	const [postId, setPostId] = useState(null);
 
 	const post = useSelector(state => state.posts.posts);
 	const users = useSelector(state => state.users.users);
@@ -24,7 +23,7 @@ const Posts = () => {
 	const fetchData = async () => {
 		try {
 			await dispatch(fetchUsers())
-			await dispatch(fetchPosts())
+			await dispatch(filteredPosts(+params.userId))
 		} catch (error) {
 			console.error(error)
 		}
@@ -32,11 +31,7 @@ const Posts = () => {
 
 	const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
-	const handleDeletedPost = id => {
-		console.log(id)
-		setPostId(+id)
-		dispatch(deletePost(+id))
-	};
+	const handleDeletedPost = id => dispatch(deletePost(+id));
 
 	useEffect(() => {
 		fetchData();
@@ -60,7 +55,7 @@ const Posts = () => {
 				toggleModal={toggleModal}
 			/>
 			{
-				post.length
+				post
 					?
 						(
 							post

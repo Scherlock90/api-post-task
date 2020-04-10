@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { createComment } from '../../../actions/actions';
+import { createComment } from '../../../actions/index';
 import { Wrapper } from '../../common/index';
 
 const CommentForm = ({ closeModal, postId }) => {
