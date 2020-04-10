@@ -2,7 +2,7 @@ import {
 	FETCH_POSTS,
 	NEW_POST,
 	DELETE_POST,
-} from '../actions/types';
+} from '../../actions/types';
 
 const initialState = {
 	posts: [],

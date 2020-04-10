@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, NEW_COMMENT } from '../actions/types';
+import { FETCH_COMMENTS, NEW_COMMENT } from '../../actions/types';
 
 const initialState = {
     comment: [],
