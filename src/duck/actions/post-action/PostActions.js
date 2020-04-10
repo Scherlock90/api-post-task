@@ -1,38 +1,29 @@
 import axios from 'axios';
-import {
-	FETCH_POSTS,
-	NEW_POST,
-} from '../types';
-import { URL, setAuthHeader } from '../utils';
+import { FETCH_POSTS, NEW_POST } from '../types';
+import { URL, Options } from '../utils';
 
-
-export const fetchPosts = () => dispatch => {
-	axios
-		.get(`${URL}/posts/`, setAuthHeader)
-		.then((posts) =>
-			dispatch({
-				type: FETCH_POSTS,
-				payload: posts.data
-			})
-		)
+export const fetchPosts = () => async dispatch => {
+	const response = await axios(Options('GET', `${URL}/posts/`))
 		.catch((err) => console.log(err));
+
+		dispatch({
+			type: FETCH_POSTS,
+			payload: response.data
+		})
 };
 
-export const createPost = postData => dispatch => {
-	axios
-		.post(`${URL}/posts`, postData, setAuthHeader)
-		.then((post) =>
-			dispatch({
-				type: NEW_POST,
-				payload: post.data
-			})
-		)
+export const createPost = postData => async dispatch => {
+	const response = await axios(Options('POST', `${URL}/posts`, postData))
 		.catch((err) => console.log(err));
+
+		dispatch({
+			type: NEW_POST,
+			payload: response.data
+		})
 };
 
 export const deletePost = id => dispatch =>  {
-	axios
-		.delete(`${URL}/posts/${id}`, setAuthHeader)
+	axios(Options('DELETE', `${URL}/posts/${id}`))
 		.catch((err) => console.log(err));
 
 		dispatch({
@@ -42,15 +33,13 @@ export const deletePost = id => dispatch =>  {
 }
 
 
-export const filteredPosts = userId => dispatch => {
-	axios
-		.get(`${URL}/users/${userId}/posts`, setAuthHeader)
-		.then((comment) =>
-			dispatch({
-				type: FETCH_POSTS,
-				payload: comment.data
-			})
-		)
+export const filteredPosts = userId => async dispatch => {
+	const response = await axios(Options('GET', `${URL}/users/${userId}/posts`))
 		.catch((err) => console.log(err));
+
+		dispatch({
+			type: FETCH_POSTS,
+			payload: response.data
+		})
 };
 

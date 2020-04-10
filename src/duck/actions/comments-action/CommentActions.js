@@ -1,42 +1,33 @@
 import axios from 'axios';
-import {
-	FETCH_COMMENTS,
-	NEW_COMMENT,
-} from '../types';
-import { URL, setAuthHeader } from '../utils';
+import { FETCH_COMMENTS, NEW_COMMENT } from '../types';
+import { URL, Options } from '../utils';
 
-export const fetchComments = () => dispatch => {
-	axios
-		.get(`${URL}/comments`)
-		.then((comments) =>
-			dispatch({
-				type:  FETCH_COMMENTS,
-				payload: comments.data
-			})
-		)
+export const fetchComments = () => async dispatch => {
+	const response = await axios(Options('GET', `${URL}/comments`))
 		.catch((err) => console.log(err));
+
+	dispatch({
+		type: FETCH_COMMENTS,
+		payload: response.data
+	})
 };
 
-export const createComment = postData => dispatch => {
-	axios
-		.post(`${URL}/comments`, postData, setAuthHeader)
-		.then((comment) =>
-			dispatch({
-				type: NEW_COMMENT,
-				payload: comment.data
-			})
-		)
+export const createComment = commentData => async dispatch => {
+	const response = await axios(Options('POST', `${URL}/comments`, commentData))
 		.catch((err) => console.log(err));
+
+	dispatch({
+		type: NEW_COMMENT,
+		payload: response.data
+	})
 };
 
-export const filteredComment = postId => dispatch => {
-	axios
-		.get(`${URL}/posts/${postId}/comments`, setAuthHeader)
-		.then((comment) =>
-			dispatch({
-				type: FETCH_COMMENTS,
-				payload: comment.data
-			})
-		)
+export const filteredComment = postId => async dispatch => {
+	const response = await axios(Options('GET', `${URL}/posts/${postId}/comments`))
 		.catch((err) => console.log(err));
+
+	dispatch({
+		type: FETCH_COMMENTS,
+		payload: response.data
+	})
 };

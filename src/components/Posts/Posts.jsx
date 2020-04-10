@@ -55,7 +55,7 @@ const Posts = () => {
 				toggleModal={toggleModal}
 			/>
 			{
-				post
+				post.length
 					?
 						(
 							post
