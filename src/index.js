@@ -7,15 +7,18 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+
 import {
   mainRoutes,
   postsRoutes,
   commentsRoutes
 } from './static/routes';
+
 import Home from './components/Home';
 import Comments from './components/Comments/Comments';
 import Posts from './components/Posts/Posts';
-import store from './store';
+import store from './duck/store';
+
 import './assets/styles/main.scss';
 
 ReactDOM.render (

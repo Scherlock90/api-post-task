@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
 
-import { fetchUsers, fetchPosts, filteredComment } from '../../actions/index';
+import { fetchUsers, fetchPosts, filteredComment } from '../../duck/actions/index';
 import { compareData } from '../common/utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';

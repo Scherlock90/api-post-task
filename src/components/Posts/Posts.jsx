@@ -9,7 +9,7 @@ import PostForm from './post-form/PostForm';
 import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
 
-import { fetchUsers, deletePost, filteredPosts } from '../../actions/index';
+import { fetchUsers, deletePost, filteredPosts } from '../../duck/actions/index';
 import { compareData } from '../common/utils';
 
 const Posts = () => {
