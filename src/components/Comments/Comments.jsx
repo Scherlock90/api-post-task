@@ -23,11 +23,11 @@ const Comments = () => {
     const users = useSelector(state => state.users.users);
     const post = useSelector(state => state.posts.posts);
 
-    const fetchData = async () => {
+    const fetchData = () => {
         try {
-            await dispatch(fetchUsers())
-            await dispatch(fetchPosts())
-            await dispatch(filteredComment(+params.postId))
+            dispatch(fetchUsers())
+            dispatch(fetchPosts())
+            dispatch(filteredComment(+params.postId))
         } catch (error) {
             console.error(error)
         }

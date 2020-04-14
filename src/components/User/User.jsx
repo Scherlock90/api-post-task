@@ -10,7 +10,7 @@ export default function User() {
         <div className="container-user">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="false">
                 {
-                    user
+                    user.users.length > 1
                     ?
                         (user.users.map(user => (
                             <UsersCards
@@ -26,14 +26,12 @@ export default function User() {
                             />
                         )))
                     :
-                        (
-                            <Spinner
-                                size={120}
-                                spinnerColor={"#333"}
-                                spinnerWidth={2}
-                                visible={true}
-                            />
-                        )
+                        <Spinner
+                            size={120}
+                            spinnerColor={"#333"}
+                            spinnerWidth={2}
+                            visible={true}
+                        />
                 }
             </div>
         </div>

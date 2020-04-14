@@ -6,9 +6,9 @@ export default function useUsersArray() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.users);
 
-    const fetchData =  async() => {
+    const fetchData = () => {
         try {
-            await dispatch(fetchUsers())
+            dispatch(fetchUsers())
         } catch (error) {
             console.error(error)
         }

@@ -20,10 +20,10 @@ const Posts = () => {
 	const post = useSelector(state => state.posts.posts);
 	const users = useSelector(state => state.users.users);
 
-	const fetchData = async () => {
+	const fetchData = () => {
 		try {
-			await dispatch(fetchUsers())
-			await dispatch(filteredPosts(+params.userId))
+			dispatch(fetchUsers())
+			dispatch(filteredPosts(+params.userId))
 		} catch (error) {
 			console.error(error)
 		}
