@@ -6,7 +6,7 @@ export const fetchComments = () => async dispatch => {
 	const response = await axios(Options('GET', `${URL}/comments`))
 		.catch((err) => console.log(err));
 
-	dispatch({
+	await dispatch({
 		type: FETCH_COMMENTS,
 		payload: response.data
 	})
@@ -16,7 +16,7 @@ export const createComment = commentData => async dispatch => {
 	const response = await axios(Options('POST', `${URL}/comments`, commentData))
 		.catch((err) => console.log(err));
 
-	dispatch({
+	await dispatch({
 		type: NEW_COMMENT,
 		payload: response.data
 	})
@@ -26,7 +26,7 @@ export const filteredComment = postId => async dispatch => {
 	const response = await axios(Options('GET', `${URL}/posts/${postId}/comments`))
 		.catch((err) => console.log(err));
 
-	dispatch({
+	await dispatch({
 		type: FETCH_COMMENTS,
 		payload: response.data
 	})

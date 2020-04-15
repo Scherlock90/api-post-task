@@ -10,7 +10,7 @@ export default function User() {
         <div className="container-user">
             <div className="uk-grid-large uk-child-width-expand@s uk-text-center main-grid2" uk-grid="false">
                 {
-                    user.users.length > 1
+                    user.users.length
                     ?
                         (user.users.map(user => (
                             <UsersCards

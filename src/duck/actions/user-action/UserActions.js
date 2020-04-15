@@ -6,7 +6,7 @@ export function fetchUsers () {
 	return async function action (dispatch) {
 		const request = await axios(Options('GET', `${URL}/users`));
 
-		dispatch({
+		await dispatch({
 			type: FETCH_USERS,
 			payload: request.data
 		})
