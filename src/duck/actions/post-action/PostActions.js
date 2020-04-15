@@ -37,7 +37,7 @@ export const filteredPosts = userId => async dispatch => {
 	const response = await axios(Options('GET', `${URL}/users/${userId}/posts`))
 		.catch((err) => console.log(err));
 
-		await dispatch({
+		dispatch({
 			type: FETCH_POSTS,
 			payload: response.data
 		})
