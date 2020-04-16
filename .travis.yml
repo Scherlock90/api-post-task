@@ -12,11 +12,11 @@ before_script:
   - CI=false npm run build
 
 deploy:
-  - provider: pages
+  - provider: pages:git
     skip_cleanup: true
     deploy_key: $5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
-    local_dir: build
     keep_history: true
     edge: true
+    target_branch: gh-pages
     on:
       branch: master
