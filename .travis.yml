@@ -19,5 +19,5 @@ deploy:
     github_token: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
     local_dir: build
     on:
-      repo: Scherlock90/api-post-task
       branch: master
+      tags: true
