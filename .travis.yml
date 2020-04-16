@@ -14,8 +14,9 @@ before_script:
 deploy:
   - provider: pages
     skip_cleanup: true
-    github_token: b2772329eaeb48267d381da972841033c7c9c074
+    deploy_key: $5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
     local_dir: build
     keep_history: true
+    edge: true
     on:
       branch: master
