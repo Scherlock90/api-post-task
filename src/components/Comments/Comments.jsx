@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
 
-import { filteredComment } from '../../duck/actions/index';
+import { fetchComments } from '../../duck/actions/index';
 import { compareData } from '../common/utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';
@@ -23,13 +23,7 @@ const Comments = () => {
     const users = useSelector(state => state.users.users);
     const post = useSelector(state => state.posts.posts);
 
-    const fetchData = () => {
-        try {
-            dispatch(filteredComment(+params.postId))
-        } catch (error) {
-            console.error(error)
-        }
-    };
+    const fetchData = () => dispatch(fetchComments());
 
     const activeComments = () => setIsActive(!isActive);
 
@@ -87,7 +81,9 @@ const Comments = () => {
                     comments
                         ?
                             (
-                                comments.map(({ name, body, email }, i) => (
+                                comments
+                                .filter(post => post.postId === +params.postId)
+                                .map(({ name, body, email }, i) => (
                                         <CommentsCards
                                             key={i}
                                             name={name}

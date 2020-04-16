@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
@@ -20,13 +21,7 @@ const Posts = () => {
 	const post = useSelector(state => state.posts.posts);
 	const users = useSelector(state => state.users.users);
 
-	const fetchData = () => {
-		try {
-			dispatch(fetchPosts())
-		} catch (error) {
-			console.error(error)
-		}
-	};
+	const fetchData = () => dispatch(fetchPosts());
 
 	const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
@@ -54,7 +49,7 @@ const Posts = () => {
 				toggleModal={toggleModal}
 			/>
 			{
-				post.length
+				post
 					?
 						(
 							post

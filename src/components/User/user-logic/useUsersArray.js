@@ -6,13 +6,7 @@ export default function useUsersArray() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.users);
 
-    const fetchData = () => {
-        try {
-            dispatch(fetchUsers())
-        } catch (error) {
-            console.error(error)
-        }
-    };
+    const fetchData = () => dispatch(fetchUsers());
 
     useEffect(() => {
         fetchData();
