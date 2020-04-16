@@ -7,7 +7,6 @@ before_script:
   - npm ci
   - CI=false npm run build
 script:
-  - npm run lint
   - npm run test
 deploy:
   - provider: npm
