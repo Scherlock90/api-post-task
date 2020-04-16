@@ -4,12 +4,13 @@ cache:
   directories:
     - node_modules
 before_script:
-    - cross-env NODE_OPTIONS=--max_old_space_size=4096 CI=true run-p cpd lint test build
+    - npm ci
+    - npm run build
 script:
   - npm run install
   - npm run build
 deploy:
-  provider: pages
+  provider: npm
   skip_cleanup: true
   github_token: 0ac59c0a69d56d7e81c644928c7cf329d4258c72
   local_dir: build
