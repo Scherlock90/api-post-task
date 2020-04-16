@@ -1,14 +1,18 @@
 language: node_js
+
 node_js:
   - "stable"
+
 cache:
   directories:
     - node_modules
+
 before_script:
   - npm ci
   - CI=false npm run build
+
 deploy:
-  - provider: pages
+  - provider: releases
     skip_cleanup: true
     api_key: $api-post-task
     github_token: $api-post-task
