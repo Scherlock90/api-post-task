@@ -10,7 +10,9 @@ before_script:
 deploy:
   - provider: pages
     skip_cleanup: true
-    github_token: 830ef2572b99df8dd05abd212a7995d8018235b1
+    api_key: $api-post-task
+    github_token: $api-post-task
     local_dir: build
     on:
+      repo: Scherlock90/api-post-task
       branch: master
