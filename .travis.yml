@@ -2,7 +2,7 @@ node_js:
   - "stable"
 cache:
   directories:
-    - package.json
+    - node_modules
 script:
   - npm run build
 deploy:
