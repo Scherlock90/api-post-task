@@ -11,8 +11,7 @@ cache:
 
 before_script:
   - npm ci
-  - CI=false npm run build --base-href /api-post-task/
-  - mv build/api-post-task/index.html build/api-post-task/404.html
+  - CI=false npm run build
 
 deploy:
   - provider: pages:git
