@@ -12,13 +12,13 @@ cache:
 before_script:
   - npm ci
   - CI=false npm run build --base-href /api-post-task/
-  - mv dist/my-awesome-project/index.html dist/my-awesome-project/404.html
+  - mv dist/api-post-task/index.html dist/api-post-task/404.html
 
 deploy:
   - provider: pages:git
     skip_cleanup: true
     deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
-    local_dir: dist/my-awesome-project
+    local_dir: dist/api-post-task
     keep_history: true
     edge: true
     target_branch: gh-pages
