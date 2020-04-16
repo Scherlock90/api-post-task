@@ -2,13 +2,13 @@ node_js:
   - "stable"
 cache:
   directories:
-    - node_modules
+    - package.json
 script:
   - npm run build
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  github_token: 0ac59c0a69d56d7e81c644928c7cf329d4258c72
   local_dir: build
   on:
     branch: master
