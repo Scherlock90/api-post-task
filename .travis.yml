@@ -6,8 +6,6 @@ cache:
 before_script:
   - npm ci
   - CI=false npm run build
-script:
-  - npm run test
 deploy:
   - provider: npm
     skip_cleanup: true
