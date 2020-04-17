@@ -8,25 +8,25 @@ node_js:
 # cache:
 #   directories:
 #     - node_modules
-cache: yarn
+cache: npm
 
 install:
-  - yarn install
-# before_script:
-#   - npm ci
+  - npm install
+before_script:
+  - npm ci
 # script:
 #   - CI=false npm run build
 script:
-  - yarn run build
+  - CI=false npm run build
 # before_deploy:
 #   - cd $TRAVIS_BUILD_DIR
 
 deploy:
   provider: pages
   skip_cleanup: true
-  github-token: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
+  github-token: $GITHUB_TOKEN
   on:
-    branch: gh-pages
+    branch: master
   # deploy:
 #   # - provider: script
 #   - provider: releases
