@@ -19,8 +19,9 @@ before_deploy:
 
 deploy:
   # - provider: script
+  - provider: releases
   # - script: npm run deploy
-  - provider: pages:git
+  # - provider: pages:git
     skip_cleanup: true
     deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
     # local_dir: build/api-post-task
@@ -28,5 +29,6 @@ deploy:
     edge: true
     target_branch: gh-pages
     on:
-      branch: master
+      # branch: master
       # repo: Scherlock90/api-post-task
+      tags: true
