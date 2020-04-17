@@ -11,9 +11,13 @@ before_script:
 script:
   - CI=false npm run build
 
+before_deploy:
+  - bash copy.sh
+
 deploy:
   provider: pages
   skip_cleanup: true
   github-token: $GITHUB_TOKEN
+  local_dir: build
   on:
     branch: master
