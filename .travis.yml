@@ -28,7 +28,7 @@ deploy:
     keep_history: true
     edge: true
     target_branch: gh-pages
-    on:
+    # on:
       # branch: master
       # repo: Scherlock90/api-post-task
-      tags: true
+      # tags: true
