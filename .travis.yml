@@ -2,43 +2,18 @@ language: node_js
 
 node_js:
   - "stable"
-# dist: trusty
-# sudo: false
-
-# cache:
-#   directories:
-#     - node_modules
 cache: npm
 
 install:
   - npm install
 before_script:
   - npm ci
-# script:
-#   - CI=false npm run build
 script:
   - CI=false npm run build
-# before_deploy:
-#   - cd $TRAVIS_BUILD_DIR
 
 deploy:
   provider: pages
   skip_cleanup: true
   github-token: $GITHUB_TOKEN
   on:
-    branch: master
-  # deploy:
-#   # - provider: script
-#   - provider: releases
-#   # - script: npm run deploy
-#   # - provider: pages:git
-#     skip_cleanup: true
-#     deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
-#     # local_dir: build/api-post-task
-#     keep_history: true
-#     edge: true
-#     target_branch: gh-pages
-#     # on:
-#       # branch: master
-#       # repo: Scherlock90/api-post-task
-#       # tags: true
+    branch: gh-pages
