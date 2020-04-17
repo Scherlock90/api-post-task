@@ -29,4 +29,4 @@ deploy:
     target_branch: gh-pages
     on:
       branch: master
-      repo: Scherlock90/api-post-task
+      # repo: Scherlock90/api-post-task
