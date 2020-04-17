@@ -2,33 +2,43 @@ language: node_js
 
 node_js:
   - "stable"
-dist: trusty
-sudo: false
+# dist: trusty
+# sudo: false
 
-cache:
-  directories:
-    - node_modules
+# cache:
+#   directories:
+#     - node_modules
+cache: yarn
 
-before_script:
-  - npm ci
+install:
+  - yarn install
+# before_script:
+#   - npm ci
+# script:
+#   - CI=false npm run build
 script:
-  - CI=false npm run build
-
-before_deploy:
-  - cd $TRAVIS_BUILD_DIR
+  - yarn run build
+# before_deploy:
+#   - cd $TRAVIS_BUILD_DIR
 
 deploy:
-  # - provider: script
-  - provider: releases
-  # - script: npm run deploy
-  # - provider: pages:git
-    skip_cleanup: true
-    deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
-    # local_dir: build/api-post-task
-    keep_history: true
-    edge: true
-    target_branch: gh-pages
-    # on:
-      # branch: master
-      # repo: Scherlock90/api-post-task
-      # tags: true
+  provider: pages
+  skip_cleanup: true
+  github-token: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
+  on:
+    branch: gh-pages
+  # deploy:
+#   # - provider: script
+#   - provider: releases
+#   # - script: npm run deploy
+#   # - provider: pages:git
+#     skip_cleanup: true
+#     deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
+#     # local_dir: build/api-post-task
+#     keep_history: true
+#     edge: true
+#     target_branch: gh-pages
+#     # on:
+#       # branch: master
+#       # repo: Scherlock90/api-post-task
+#       # tags: true

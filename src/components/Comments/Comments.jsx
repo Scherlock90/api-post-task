@@ -47,7 +47,7 @@ const Comments = () => {
 
     return (
         <div className="container-posts-main">
-            <div>test 12312312</div>
+            <div>test 12312312asdasdasdasdasd</div>
             {
                 filteredAuthor.length
                 ?
