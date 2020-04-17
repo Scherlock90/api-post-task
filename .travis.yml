@@ -14,6 +14,9 @@ before_script:
 script:
   - CI=false npm run build
 
+before_deploy:
+  - cd $TRAVIS_BUILD_DIR
+
 deploy:
   - provider: pages:git
     skip_cleanup: true
