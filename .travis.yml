@@ -18,14 +18,14 @@ before_deploy:
   - cd $TRAVIS_BUILD_DIR
 
 deploy:
-  - provider: script
-  - script: npm run deploy
-  # - provider: pages:git
+  # - provider: script
+  # - script: npm run deploy
+  - provider: pages:git
     skip_cleanup: true
     deploy_key: 5778f6a4edea3e07ec2d7bb91af58d1fcc230d41
-  #   local_dir: build/api-post-task
-  #   keep_history: true
-  #   edge: true
+    # local_dir: build/api-post-task
+    keep_history: true
+    edge: true
     target_branch: gh-pages
     on:
       branch: master
