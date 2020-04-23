@@ -4,7 +4,8 @@ This is a project that includes elements such as downloading and processing an e
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## MUST HAVE 
+## MUST HAVE
+
 1. node.js,
 2. npm or yarn install.
 

@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <div className="main-container">
       <div className="home-container">
-        API <br/> Users-Post-Comments
+        API <br /> Users-Post-Comments
       </div>
-        <User />
+      <User />
     </div>
-  )
+  );
 }

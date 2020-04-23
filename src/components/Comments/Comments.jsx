@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
@@ -14,102 +14,88 @@ import ToggleComments from './toggle-comments/ToggleComments';
 import CommentsCards from './comment-cards/CommentsCards';
 
 const Comments = () => {
-    const dispatch = useDispatch();
-    const params = useParams();
-    const [modalMainOpen, setModalMainOpen] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch();
 
-    const comments = useSelector(state => state.comment.comment);
-    const users = useSelector(state => state.users.users);
-    const post = useSelector(state => state.posts.posts);
+  const params = useParams();
 
-    const fetchData = () => dispatch(fetchComments());
+  const [modalMainOpen, setModalMainOpen] = useState(false);
 
-    const activeComments = () => setIsActive(!isActive);
+  const [isActive, setIsActive] = useState(false);
 
-    const toggleModal = () => setModalMainOpen(!modalMainOpen);
+  const comments = useSelector((state) => state.comment.comment);
 
-    useEffect(() => {
-        fetchData();
-        return () => fetchData();
-    }, [])
+  const users = useSelector((state) => state.users.users);
 
-    const filteredPost = compareData(post, 'id', +params.postId);
-    const filteredAuthor = compareData(users, 'id', filteredPost.map(it => it.userId)[0]);
-    const Loaders = (
-        <Spinner
-            size={120}
-            spinnerColor={"#333"}
-            spinnerWidth={2}
-            visible={true}
+  const post = useSelector((state) => state.posts.posts);
+
+  const fetchData = () => dispatch(fetchComments());
+
+  const activeComments = () => setIsActive(!isActive);
+
+  const toggleModal = () => setModalMainOpen(!modalMainOpen);
+
+  useEffect(() => {
+    fetchData();
+
+    return () => fetchData();
+  }, []);
+
+  const filteredPost = compareData(post, 'id', +params.postId);
+
+  const filteredAuthor = compareData(
+    users,
+    'id',
+    filteredPost.map((it) => it.userId)[0]
+  );
+
+  const Loaders = (
+    <Spinner size={120} spinnerColor="#333" spinnerWidth={2} visible={true} />
+  );
+
+  return (
+    <div className="container-posts-main">
+      {filteredAuthor.length ? (
+        <NavigationComments
+          post={filteredAuthor}
+          nameAuthor={filteredAuthor[0].name}
         />
-    )
-
-    return (
-        <div className="container-posts-main">
-            {
-                filteredAuthor.length
-                ?
-                    (
-                        <NavigationComments
-                            post={filteredAuthor}
-                            nameAuthor={filteredAuthor[0].name}
-                        />
-                    )
-                : null
-            }
-                {
-                    filteredPost.length
-                        ?
-                            (filteredPost.map(({ title, body }, i) => (
-                                    <Post
-                                        key={i}
-                                        title={title}
-                                        body={body}
-                                    />
-                                )
-                            ))
-                        : Loaders
-                }
-            <ToggleComments
-                isActive={isActive}
-                activeComments={() => activeComments()}
-                toggleModal={() => toggleModal()}
-            />
-            <div className={isActive ? 'container-comments-show--active' : 'container-comments-show'}>
-                {
-                    comments
-                        ?
-                            (
-                                comments
-                                .filter(post => post.postId === +params.postId)
-                                .map(({ name, body, email }, i) => (
-                                        <CommentsCards
-                                            key={i}
-                                            name={name}
-                                            body={body}
-                                            email={email}
-                                        />
-                                    )
-                                )
-                            )
-                        : Loaders
-                }
-            </div>
-            <ReactModal
-                isOpen={modalMainOpen}
-                contentLabel="onRequestClose Example"
-                onRequestClose={toggleModal}
-                className="Modal"
-                overlayClassName="Overlay mainOverlay"
-            >
-                <CommentForm
-                    postId={+params.postId}
-                    closeModal={() => toggleModal()}
-                />
-            </ReactModal>
-        </div>
-    );
-}
+      ) : null}
+      {filteredPost.length
+        ? filteredPost.map(({ title, body }, i) => (
+            <Post key={i} title={title} body={body} />
+          ))
+        : Loaders}
+      <ToggleComments
+        isActive={isActive}
+        activeComments={() => activeComments()}
+        toggleModal={() => toggleModal()}
+      />
+      <div
+        className={
+          isActive
+            ? 'container-comments-show--active'
+            : 'container-comments-show'
+        }
+      >
+        {comments.length > 1
+          ? comments
+              .filter((post) => post.postId === +params.postId)
+              .map(({ name, body, email }, i) => (
+                <CommentsCards key={i} name={name} body={body} email={email} />
+              ))
+          : Loaders}
+      </div>
+      <ReactModal
+        isOpen={modalMainOpen}
+        contentLabel="onRequestClose Example"
+        onRequestClose={toggleModal}
+        className="Modal"
+        overlayClassName="Overlay mainOverlay"
+      >
+        <CommentForm postId={+params.postId} closeModal={() => toggleModal()} />
+      </ReactModal>
+    </div>
+  );
+};
 
 export default Comments;

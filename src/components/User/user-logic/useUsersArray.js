@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../../duck/actions/index';
 
 export default function useUsersArray() {
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.users);
+  const dispatch = useDispatch();
 
-    const fetchData = () => dispatch(fetchUsers());
+  const user = useSelector((state) => state.users);
 
-    useEffect(() => {
-        fetchData();
-        return () => fetchData();
-    }, [])
+  const fetchData = () => dispatch(fetchUsers());
 
-    return { user }
+  useEffect(() => {
+    fetchData();
+
+    return () => fetchData();
+  }, []);
+
+  return { user };
 }

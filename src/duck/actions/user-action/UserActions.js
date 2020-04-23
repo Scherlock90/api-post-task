@@ -2,13 +2,13 @@ import axios from 'axios';
 import { FETCH_USERS } from '../types';
 import { URL, options } from '../utils';
 
-export function fetchUsers () {
-	return async function action (dispatch) {
-		const request = await axios(options('GET', `${URL}/users`));
+export function fetchUsers() {
+  return async function action(dispatch) {
+    const request = await axios(options('GET', `${URL}/users`));
 
-		dispatch({
-			type: FETCH_USERS,
-			payload: request.data
-		})
-	}
+    dispatch({
+      type: FETCH_USERS,
+      payload: request.data,
+    });
+  };
 }

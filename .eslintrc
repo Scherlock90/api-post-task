@@ -1,0 +1,115 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "plugins": ["import", "react", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-unused-expressions": 1,
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "parser": "flow"
+      }
+    ],
+    "camelcase": 2,
+    "@explicit-function-return-type": "off",
+    "import/no-unresolved": 0,
+    "import/no-default-export": 1,
+    "import/newline-after-import": 2,
+    "import/first": "error",
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "arraysInObjects": true,
+        "objectsInObjects": true
+      }
+    ],
+    "no-undef": 0,
+    "no-multi-spaces": 2,
+    "no-trailing-spaces": 2,
+    "no-console": 2,
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "padding-line-between-statements": ["error",
+      {
+        "blankLine": "always",
+        "prev": "multiline-expression",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      { "blankLine": "always", "prev": [
+          "const",
+          "let",
+          "var"
+        ], "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      }
+    ],
+    "space-before-blocks": ["error", "always"],
+    "curly": [
+      "error",
+      "multi-or-nest"
+    ],
+    "multiline-ternary": [
+      "error",
+      "always-multiline"
+    ],
+    "prefer-template": 2,
+    "react/prop-types": 0,
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed",
+      {
+        "requireReturnForObjectLiteral": true
+      }
+    ],
+    "react/display-name": 2,
+    "react/no-children-prop": 0
+  },
+  "settings": {
+    "pragma": "React",
+    "react": {
+      "version": "detect"
+    }
+  }
+}
