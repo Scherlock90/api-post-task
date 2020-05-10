@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { DELETE_POST, FETCH_POSTS, NEW_POST } from '../../actions/types';
 
 const initialState = {
@@ -19,7 +20,7 @@ export default function (state = initialState, action) {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter((item) => item.id !== action.payload),
+        posts: [...state.posts.filter((item) => item.id !== action.payload)],
       };
     default:
       return state;
