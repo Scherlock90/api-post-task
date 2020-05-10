@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ajax } from 'rxjs/ajax';
 
 import { URL, optionsAjax } from '../utils';
