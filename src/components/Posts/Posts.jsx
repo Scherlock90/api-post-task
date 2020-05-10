@@ -11,6 +11,7 @@ import NavigationPosts from './navigation-posts/NavigationPosts';
 
 import { deletePost, fetchPosts } from '../../duck/actions/index';
 import { compareData } from '../common/utils';
+import { errorInformation } from '../../utils/utils';
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,11 @@ const Posts = () => {
   );
 
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (err) {
+      errorInformation(err);
+    }
 
     return () => fetchData();
   }, []);

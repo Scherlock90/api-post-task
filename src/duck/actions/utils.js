@@ -8,6 +8,10 @@ export const options = (method, url, data) => {
   };
 };
 
-export const errorInformation = (message) => {
-  throw new Error(message);
-};
+export const optionsAjax = (url, method, body) => (
+  {
+    url,
+    method,
+    body
+  }
+)

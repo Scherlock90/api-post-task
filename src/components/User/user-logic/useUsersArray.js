@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../../duck/actions/index';
+import { errorInformation } from '../../../utils/utils';
 
-export default function useUsersArray() {
+export default function useUsersArray () {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.users);
@@ -10,7 +11,11 @@ export default function useUsersArray() {
   const fetchData = () => dispatch(fetchUsers());
 
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (err) {
+      errorInformation(err);
+    }
 
     return () => fetchData();
   }, []);

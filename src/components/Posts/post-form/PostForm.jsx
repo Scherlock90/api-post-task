@@ -23,7 +23,7 @@ const PostForm = ({ closeModal, userId }) => {
     const post = {
       title,
       body,
-      userId,
+      userId: +userId,
     };
     dispatch(createPost(post));
     closeModal();

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCH_COMMENTS, NEW_COMMENT } from '../types';
-import { URL, errorInformation, options } from '../utils';
+import { URL, options } from '../utils';
+import { errorInformation } from '../../../utils/utils';
 
 export const fetchComments = () => async (dispatch) => {
   const response = await axios(options('GET', `${URL}/comments`)).catch((err) =>

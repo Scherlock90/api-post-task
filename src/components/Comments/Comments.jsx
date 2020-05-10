@@ -6,6 +6,7 @@ import Spinner from 'react-spinner-material';
 
 import { fetchComments } from '../../duck/actions/index';
 import { compareData } from '../common/utils';
+import { errorInformation } from '../../utils/utils';
 
 import NavigationComments from './navigation-comments/NavigationComments';
 import CommentForm from './comment-form/CommentForm';
@@ -35,7 +36,11 @@ const Comments = () => {
   const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (err) {
+      errorInformation(err);
+    }
 
     return () => fetchData();
   }, []);

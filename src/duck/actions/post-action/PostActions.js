@@ -1,27 +1,38 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { FETCH_POSTS, NEW_POST } from '../types';
-import { URL, errorInformation, options } from '../utils';
+import { URL, options, optionsAjax } from '../utils';
+import { errorInformation } from '../../../utils/utils';
+import { ajax } from 'rxjs/ajax';
 
-export const fetchPosts = () => async (dispatch) => {
-  const response = await axios(options('GET', `${URL}/posts`)).catch((err) =>
-    errorInformation(err)
+export const fetchPosts = () => (dispatch) => {
+  ajax(`${URL}/posts`).subscribe(
+    ({ response }) => {
+      dispatch({
+        type: FETCH_POSTS,
+        payload: response,
+      });
+    },
+    (err) => errorInformation(err)
   );
-
-  dispatch({
-    type: FETCH_POSTS,
-    payload: response.data,
-  });
 };
 
-export const createPost = (postData) => async (dispatch) => {
-  const response = await axios(
-    options('POST', `${URL}/posts`, postData)
-  ).catch((err) => errorInformation(err));
+export const createPost = (postData) => (dispatch) => {
+  ajax(optionsAjax(`${URL}/posts`, 'POST', postData)).subscribe(
+    ({ response: { userId, body, id, title } }) => {
+      dispatch({
+        type: NEW_POST,
+        payload: {
+          title: title,
+          userId: +userId,
+          body: body,
+          id: +id,
+        },
+      });
+    },
 
-  dispatch({
-    type: NEW_POST,
-    payload: response.data,
-  });
+    (err) => errorInformation(err)
+  );
 };
 
 export const deletePost = (id) => async (dispatch) => {
