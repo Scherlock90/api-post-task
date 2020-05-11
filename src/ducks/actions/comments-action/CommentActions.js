@@ -24,8 +24,8 @@ export const createComment = (commentData) => (dispatch) => {
         payload: {
           body,
           email,
-          id: +id,
           name,
+          id: +id,
           postId: +postId,
         },
       });

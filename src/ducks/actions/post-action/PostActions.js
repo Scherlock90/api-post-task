@@ -22,9 +22,9 @@ export const createPost = (postData) => (dispatch) => {
       dispatch({
         type: NEW_POST,
         payload: {
-          title: title,
+          title,
+          body,
           userId: +userId,
-          body: body,
           id: +id,
         },
       });

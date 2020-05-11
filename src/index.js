@@ -8,7 +8,7 @@ import { commentsRoutes, mainRoutes, postsRoutes } from './static/routes';
 import Home from './components/Home';
 import Comments from './components/Comments/Comments';
 import Posts from './components/Posts/Posts';
-import store from './duck/store';
+import store from './ducks/store';
 
 import './assets/styles/main.scss';
 

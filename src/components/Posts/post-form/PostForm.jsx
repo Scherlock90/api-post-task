@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Wrapper } from '../../common/index';
-import { createPost } from '../../../duck/actions/index';
+import { createPost } from '../../../ducks/actions/index';
 
 const PostForm = ({ closeModal, userId }) => {
   const dispatch = useDispatch();

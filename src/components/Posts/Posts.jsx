@@ -9,7 +9,7 @@ import PostForm from './post-form/PostForm';
 import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
 
-import { deletePost, fetchPosts } from '../../duck/actions/index';
+import { deletePost, fetchPosts } from '../../ducks/actions/index';
 import { compareData } from '../common/utils';
 import { errorInformation } from '../../utils/utils';
 

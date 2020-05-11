@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../../duck/actions/index';
+import { fetchUsers } from '../../../ducks/actions/index';
 import { errorInformation } from '../../../utils/utils';
 
 export default function useUsersArray () {

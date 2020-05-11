@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Spinner from 'react-spinner-material';
 
-import { fetchComments } from '../../duck/actions/index';
+import { fetchComments } from '../../ducks/actions/index';
 import { compareData } from '../common/utils';
 import { errorInformation } from '../../utils/utils';
 
