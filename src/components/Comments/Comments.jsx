@@ -23,11 +23,11 @@ const Comments = () => {
 
   const [isActive, setIsActive] = useState(false);
 
-  const comments = useSelector((state) => state.comment.comment);
+  const comments = useSelector(({ comment: { comment } }) => comment);
 
-  const users = useSelector((state) => state.users.users);
+  const users = useSelector(({ users: { users } }) => users);
 
-  const post = useSelector((state) => state.posts.posts);
+  const post = useSelector(({ posts: { posts } }) => posts);
 
   const fetchData = () => dispatch(fetchComments());
 
@@ -50,7 +50,7 @@ const Comments = () => {
   const filteredAuthor = compareData(
     users,
     'id',
-    filteredPost.map((it) => it.userId)[0]
+    filteredPost.map(({ userId }) => userId)[0]
   );
 
   const Loaders = (
@@ -84,7 +84,7 @@ const Comments = () => {
       >
         {comments.length > 1
           ? comments
-              .filter((post) => post.postId === +params.postId)
+              .filter(({ postId }) => postId === +params.postId)
               .map(({ name, body, email }, i) => (
                 <CommentsCards key={i} name={name} body={body} email={email} />
               ))

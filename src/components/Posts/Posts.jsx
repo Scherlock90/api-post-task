@@ -20,9 +20,9 @@ const Posts = () => {
 
   const [modalMainOpen, setModalMainOpen] = useState(false);
 
-  const post = useSelector((state) => state.posts.posts);
+  const post = useSelector(({ posts: { posts } }) => posts);
 
-  const users = useSelector((state) => state.users.users);
+  const users = useSelector(({ users: { users } }) => users);
 
   const fetchData = () => dispatch(fetchPosts());
 
@@ -49,19 +49,19 @@ const Posts = () => {
   return (
     <div className="container-posts-main">
       <NavigationPosts
-        nameAuthor={filteredAuthor.map((author) => author.name)}
+        nameAuthor={filteredAuthor.map(({ name }) => name)}
         toggleModal={toggleModal}
       />
       {post.length
         ? post
-            .filter((post) => post.userId === +params.userId)
-            .map((postsUsers, i) => (
+            .filter(({ userId }) => userId === +params.userId)
+            .map(({ id, title, name }, i) => (
               <PostsCards
                 key={i}
-                handleDeletedPost={() => handleDeletedPost(postsUsers.id)}
-                title={postsUsers.title}
-                pathnameId={postsUsers.id}
-                name={postsUsers.name}
+                handleDeletedPost={() => handleDeletedPost(id)}
+                title={title}
+                pathnameId={id}
+                name={name}
               />
             ))
         : Loaders}

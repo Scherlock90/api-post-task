@@ -6,7 +6,7 @@ import { errorInformation } from '../../../utils/utils';
 export default function useUsersArray () {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.users);
+  const user = useSelector(({ users }) => users);
 
   const fetchData = () => dispatch(fetchUsers());
 
