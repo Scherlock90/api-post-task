@@ -8,10 +8,12 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import PostForm from './post-form/PostForm';
 import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
+import { Notification } from '../common/index';
 
 import { deletePost, fetchPosts } from '../../ducks/actions/index';
 import { compareData } from '../common/utils';
 import { errorInformation } from '../../utils/utils';
+import { useNotification } from '../../custom-hooks/index';
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,12 @@ const Posts = () => {
   const post = useSelector(({ posts: { posts } }) => posts);
 
   const users = useSelector(({ users: { users } }) => users);
+
+  const notification = useSelector(
+    ({ notification: { notification } }) => notification
+  );
+
+  const { notificationClassName } = useNotification(notification);
 
   const fetchData = () => dispatch(fetchPosts());
 
@@ -52,6 +60,9 @@ const Posts = () => {
         nameAuthor={filteredAuthor.map(({ name }) => name)}
         toggleModal={toggleModal}
       />
+      {notification && (
+        <Notification {...{ notification, notificationClassName }} />
+      )}
       {post.length
         ? post
             .filter(({ userId }) => userId === +params.userId)

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { DELETE_POST, FETCH_POSTS, NEW_POST } from '../../actions/types';
 
 const initialState = {

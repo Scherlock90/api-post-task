@@ -22,6 +22,21 @@ $break-very-big: 2000px;
     align-content: center;
 }
 
+@mixin notification($translate) {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10rem;
+    right: 0;
+    min-width: 8rem;
+    min-height: 4rem;
+    font-size: 1.5rem;
+    z-index: 1000;
+    opacity: 1;
+    transform: translateX($translate);
+    transition: transform 200ms linear 200ms;
+}
 
 // main code
 html {
@@ -470,4 +485,27 @@ a {
 
 .react-confirm-alert-overlay {
     background: rgba(22,2,2,.4) !important;
+}
+
+.notification-container {
+
+    &__info {
+        @include notification(-150px);
+        background: #40c4ff;
+    }
+
+    &__success {
+        @include notification(-150px);
+        background: #76ff03;
+    }
+
+    &__normal {
+        @include notification(150px);
+        background: transparent;
+        opacity: 0;
+    }
+
+    .notification {
+        color: black;
+    }
 }

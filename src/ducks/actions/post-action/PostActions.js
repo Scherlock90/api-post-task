@@ -1,8 +1,17 @@
+/* eslint-disable no-console */
 import { ajax } from 'rxjs/ajax';
 
 import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
-import { DELETE_POST, FETCH_POSTS, NEW_POST } from '../types';
+import {
+  DELETE_POST,
+  FETCH_POSTS,
+  INITIAL,
+  NEW_POST,
+  PENDING,
+  SUCCESS,
+} from '../types';
+import { notification } from '../common-action/index';
 
 export const fetchPosts = () => (dispatch) => {
   ajax(`${URL}/posts`).subscribe(
@@ -17,6 +26,8 @@ export const fetchPosts = () => (dispatch) => {
 };
 
 export const createPost = (postData) => (dispatch) => {
+  notification(dispatch, PENDING);
+
   ajax(optionsAjax(`${URL}/posts`, 'POST', postData)).subscribe(
     ({ response: { userId, body, id, title } }) => {
       dispatch({
@@ -28,6 +39,9 @@ export const createPost = (postData) => (dispatch) => {
           id: +id,
         },
       });
+
+      notification(dispatch, SUCCESS);
+      setTimeout(() => notification(dispatch, INITIAL), 2000);
     },
     (err) => errorInformation(err)
   );
