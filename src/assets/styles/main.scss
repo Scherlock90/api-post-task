@@ -465,9 +465,25 @@ a {
     }
 
     &__info {
+        .notification {
+            position: relative;
+            top: 0.5rem;
+            color: #212121;
+        }
+
+        -webkit-box-reflect: below -5px linear-gradient(transparent, rgba(0,0,0,0.2));
+
         @include notification(-10px);
         background: #40c4ff;
-        animation: waving-text 1s infinite both ease;
+
+        @for $i from 1 through 11 {
+            span:nth-child(#{$i}n) {
+                position: relative;
+                display: inline-block;
+                animation: waving-text 1s ease-in-out infinite;
+                animation-delay: 0.1s * $i;
+            }
+        }
     }
 
     &__success {
@@ -480,10 +496,6 @@ a {
         @include notification(-10px);
         background: #ff5252;
     }
-
-    .notification {
-        color: black;
-    }
 }
 
 .container-posts-main {
@@ -495,10 +507,13 @@ a {
 }
 
 @keyframes waving-text {
-    0%, 100% {
-        font-size: 1.4rem;
+    0%{
+        @include transform-notification-text(0px);
     }
-    50% {
-        font-size: 1.5rem;
+    20% {
+        @include transform-notification-text(-5px);
+    }
+    40%, 100% {
+        @include transform-notification-text(0px);
     }
 }

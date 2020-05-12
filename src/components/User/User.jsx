@@ -12,7 +12,7 @@ export default function User() {
         className='uk-grid-large uk-child-width-expand@s uk-text-center main-grid2'
         uk-grid='false'
       >
-        {user.users ? (
+        {user.users.length ? (
           user.users.map(({ id, name, email, phone, website, company }) => (
             <UsersCards
               key={id}

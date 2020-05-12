@@ -4,8 +4,8 @@ import { ajax } from 'rxjs/ajax';
 import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
 import {
-  DELETE_POST,
   DELETE,
+  DELETE_POST,
   ERROR,
   FETCH_POSTS,
   INITIAL,

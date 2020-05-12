@@ -58,7 +58,18 @@ const Posts = () => {
         nameAuthor={filteredAuthor.map(({ name }) => name)}
         toggleModal={toggleModal}
       />
-      {notification && <Notification {...{ notification, notificationClassName }} />}
+      {notification && (
+        <Notification
+          {...{ notificationClassName }}
+          notification={
+            <>
+              {[...notification].map((letter, id) => (
+                <span key={id}>{letter}</span>
+              ))}
+            </>
+          }
+        />
+      )}
       {post.length
         ? post
             .filter(({ userId }) => userId === +params.userId)

@@ -28,3 +28,7 @@
     transform: translateX($translate);
     transition: transform 200ms ease-out 200ms;
 }
+
+@mixin transform-notification-text ($translateY) {
+    transform: translateY($translateY);
+}
