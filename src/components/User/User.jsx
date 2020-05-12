@@ -8,8 +8,11 @@ export default function User() {
 
   return (
     <div className='container-user'>
-      <div className='uk-grid-large uk-child-width-expand@s uk-text-center main-grid2' uk-grid='false'>
-        {user.users.length ? (
+      <div
+        className='uk-grid-large uk-child-width-expand@s uk-text-center main-grid2'
+        uk-grid='false'
+      >
+        {user.users ? (
           user.users.map(({ id, name, email, phone, website, company }) => (
             <UsersCards
               key={id}

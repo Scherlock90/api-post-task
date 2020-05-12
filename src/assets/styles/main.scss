@@ -467,6 +467,7 @@ a {
     &__info {
         @include notification(-10px);
         background: #40c4ff;
+        animation: waving-text 1s infinite both ease;
     }
 
     &__success {
@@ -490,5 +491,14 @@ a {
         .uk-grid {
             margin-left: 0;
         }
+    }
+}
+
+@keyframes waving-text {
+    0%, 100% {
+        font-size: 1.4rem;
+    }
+    50% {
+        font-size: 1.5rem;
     }
 }
