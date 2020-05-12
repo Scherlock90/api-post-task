@@ -22,8 +22,15 @@
     "prettier/prettier": [
       "error",
       {
+        "semi": true,
+        "trailingComma": "all",
         "singleQuote": true,
-        "parser": "flow"
+        "jsxSingleQuote": true,
+        "printWidth": 90,
+        "tabWidth": 2,
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "jsxBracketSpacing": true
       }
     ],
     "camelcase": 2,
@@ -32,10 +39,6 @@
     "import/no-default-export": 1,
     "import/newline-after-import": 2,
     "import/first": "error",
-    "array-bracket-spacing": [
-      "error",
-      "never"
-    ],
     "object-curly-spacing": [
       "error",
       "always",

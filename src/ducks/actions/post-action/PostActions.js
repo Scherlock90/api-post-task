@@ -5,6 +5,8 @@ import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
 import {
   DELETE_POST,
+  DELETE,
+  ERROR,
   FETCH_POSTS,
   INITIAL,
   NEW_POST,
@@ -13,7 +15,7 @@ import {
 } from '../types';
 import { notification } from '../common-action/index';
 
-export const fetchPosts = () => (dispatch) => {
+export const fetchPosts = () => dispatch => {
   ajax(`${URL}/posts`).subscribe(
     ({ response }) => {
       dispatch({
@@ -21,11 +23,11 @@ export const fetchPosts = () => (dispatch) => {
         payload: response,
       });
     },
-    (err) => errorInformation(err)
+    err => errorInformation(err),
   );
 };
 
-export const createPost = (postData) => (dispatch) => {
+export const createPost = postData => dispatch => {
   notification(dispatch, PENDING);
 
   ajax(optionsAjax(`${URL}/posts`, 'POST', postData)).subscribe(
@@ -43,18 +45,31 @@ export const createPost = (postData) => (dispatch) => {
       notification(dispatch, SUCCESS);
       setTimeout(() => notification(dispatch, INITIAL), 2000);
     },
-    (err) => errorInformation(err)
+    err => {
+      notification(dispatch, ERROR);
+      setTimeout(() => notification(dispatch, INITIAL), 5000);
+      errorInformation(err);
+    },
   );
 };
 
-export const deletePost = (id) => (dispatch) => {
+export const deletePost = id => dispatch => {
+  notification(dispatch, DELETE);
+
   ajax(optionsAjax(`${URL}/posts/${id}`, 'DELETE')).subscribe(
-    (response) => {
+    response => {
       dispatch({
         type: DELETE_POST,
         payload: id || response,
       });
+
+      notification(dispatch, SUCCESS);
+      setTimeout(() => notification(dispatch, INITIAL), 2000);
     },
-    (err) => errorInformation(err)
+    err => {
+      notification(dispatch, ERROR);
+      setTimeout(() => notification(dispatch, INITIAL), 5000);
+      errorInformation(err);
+    },
   );
 };

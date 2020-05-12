@@ -1,4 +1,4 @@
-import { INITIAL, PENDING, SUCCESS } from '../../actions/types';
+import { ERROR, DELETE, INITIAL, PENDING, SUCCESS } from '../../actions/types';
 
 const initialState = {
   notification: '',
@@ -6,20 +6,30 @@ const initialState = {
 
 export default function (state = initialState, { type }) {
   switch (type) {
+    case INITIAL:
+      return {
+        ...state,
+        notification: '',
+      };
     case PENDING:
       return {
         ...state,
         notification: 'Loading...',
+      };
+    case DELETE:
+      return {
+        ...state,
+        notification: 'Removing...',
       };
     case SUCCESS:
       return {
         ...state,
         notification: 'Success',
       };
-    case INITIAL:
+    case ERROR:
       return {
         ...state,
-        notification: '',
+        notification: 'Error! Try again',
       };
     default:
       return state;

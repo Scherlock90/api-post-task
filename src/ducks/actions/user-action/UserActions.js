@@ -4,7 +4,7 @@ import { FETCH_USERS } from '../types';
 import { URL } from '../utils';
 import { errorInformation } from '../../../utils/utils';
 
-export const fetchUsers = () => (dispatch) => {
+export const fetchUsers = () => dispatch => {
   ajax(`${URL}/users`).subscribe(
     ({ response }) => {
       dispatch({
@@ -12,6 +12,6 @@ export const fetchUsers = () => (dispatch) => {
         payload: response,
       });
     },
-    (err) => errorInformation(err)
+    err => errorInformation(err),
   );
-}
+};

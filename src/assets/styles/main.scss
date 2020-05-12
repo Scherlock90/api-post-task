@@ -1,44 +1,6 @@
-// variables
-$break-small: 400px;
-$break-medium: 600px;
-$break-tablet: 959px;
-$break-laptop-with-touch: 1250px;
-$break-big: 1500px;
-$break-very-big: 2000px;
+@import './__variables.scss';
+@import './__mixins.scss';
 
-
-//mixins
-@mixin flex-center-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-@mixin center-items {
-    display: grid;
-    justify-content: center;
-    align-items:center;
-    align-content: center;
-}
-
-@mixin notification($translate) {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 10rem;
-    right: 0;
-    min-width: 8rem;
-    min-height: 4rem;
-    font-size: 1.5rem;
-    z-index: 1000;
-    opacity: 1;
-    transform: translateX($translate);
-    transition: transform 200ms linear 200ms;
-}
-
-// main code
 html {
     background: #f1f1f1 !important;
 }
@@ -230,6 +192,14 @@ a {
             .uk-card-body {
                 padding: 20px 30px;
             }
+        }
+
+         @media screen and (max-width: $break-medium) {
+            width: 350px;
+            margin: 0;
+            #c1 {order: 2; width: 50%;}
+            #c2 {order: 1; width: 100%;}
+            #c3 {order: 3; width: 50%;}
         }
 
         @media screen and (max-width: $break-small) {
@@ -488,24 +458,37 @@ a {
 }
 
 .notification-container {
-
-    &__info {
-        @include notification(-150px);
-        background: #40c4ff;
-    }
-
-    &__success {
-        @include notification(-150px);
-        background: #76ff03;
-    }
-
     &__normal {
         @include notification(150px);
         background: transparent;
         opacity: 0;
     }
 
+    &__info {
+        @include notification(-10px);
+        background: #40c4ff;
+    }
+
+    &__success {
+        @include notification(-10px);
+        background: #76ff03;
+    }
+
+
+    &__error {
+        @include notification(-10px);
+        background: #ff5252;
+    }
+
     .notification {
         color: black;
+    }
+}
+
+.container-posts-main {
+    .container-post-cards {
+        .uk-grid {
+            margin-left: 0;
+        }
     }
 }

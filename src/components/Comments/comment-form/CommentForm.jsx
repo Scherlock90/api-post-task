@@ -13,7 +13,7 @@ const CommentForm = ({ closeModal, postId }) => {
 
   const [email, setEmail] = useState('');
 
-  const onChange = (e) => {
+  const onChange = e => {
     const { name } = e.target;
 
     if (name === 'name') return setName(e.target.value);
@@ -21,7 +21,7 @@ const CommentForm = ({ closeModal, postId }) => {
     else if (name === 'body') return setBody(e.target.value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     const comment = {
       name,
@@ -49,14 +49,14 @@ const CommentForm = ({ closeModal, postId }) => {
   ];
 
   return (
-    <div className="container-modal">
-      <div className="container-my-modal">
-        <div className="container-post-form-main">
-          <div className="title-post-form">Add comment</div>
-          <div className="container-post-form2">
-            <h1 className="title-modal-post">Add Comment</h1>
+    <div className='container-modal'>
+      <div className='container-my-modal'>
+        <div className='container-post-form-main'>
+          <div className='title-post-form'>Add comment</div>
+          <div className='container-post-form2'>
+            <h1 className='title-modal-post'>Add Comment</h1>
             <form onSubmit={onSubmit}>
-              <table className="uk-table uk-table-justify uk-table-divider">
+              <table className='uk-table uk-table-justify uk-table-divider'>
                 <tbody>
                   {trArray.map(({ name, type, value, placeholder }) => (
                     <Wrapper
@@ -64,7 +64,7 @@ const CommentForm = ({ closeModal, postId }) => {
                       name={name}
                       children={
                         <input
-                          className="text-place-post-form"
+                          className='text-place-post-form'
                           name={name}
                           type={type}
                           value={value}
@@ -76,13 +76,13 @@ const CommentForm = ({ closeModal, postId }) => {
                     />
                   ))}
                   <Wrapper
-                    name="Body"
+                    name='Body'
                     children={
                       <textarea
-                        className="text-place-post-form text-area-main"
+                        className='text-place-post-form text-area-main'
                         value={body}
-                        name="body"
-                        placeholder="Body"
+                        name='body'
+                        placeholder='Body'
                         onChange={onChange}
                         required
                       />
@@ -90,23 +90,23 @@ const CommentForm = ({ closeModal, postId }) => {
                   />
                 </tbody>
               </table>
-              <div className="container-button-post">
+              <div className='container-button-post'>
                 <button
                   onClick={closeModal}
-                  className="uk-button uk-button-danger main-button-style"
+                  className='uk-button uk-button-danger main-button-style'
                 >
                   Cancel
                 </button>
                 <button
-                  className="uk-button uk-button-primary main-button-style"
-                  type="submit"
+                  className='uk-button uk-button-primary main-button-style'
+                  type='submit'
                 >
                   Save
                 </button>
               </div>
             </form>
           </div>
-          <div className="title-post-form-down"></div>
+          <div className='title-post-form-down'></div>
         </div>
       </div>
     </div>

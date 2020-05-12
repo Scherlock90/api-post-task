@@ -12,7 +12,7 @@ const composeEnhancers =
 const store = createStore(
   rootReducer,
   initialState,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 export default store;

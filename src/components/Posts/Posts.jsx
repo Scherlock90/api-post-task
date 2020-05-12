@@ -26,9 +26,7 @@ const Posts = () => {
 
   const users = useSelector(({ users: { users } }) => users);
 
-  const notification = useSelector(
-    ({ notification: { notification } }) => notification
-  );
+  const notification = useSelector(({ notification: { notification } }) => notification);
 
   const { notificationClassName } = useNotification(notification);
 
@@ -36,10 +34,10 @@ const Posts = () => {
 
   const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
-  const handleDeletedPost = (id) => dispatch(deletePost(+id));
+  const handleDeletedPost = id => dispatch(deletePost(+id));
 
   const Loaders = (
-    <Spinner size={120} spinnerColor="#333" spinnerWidth={2} visible={true} />
+    <Spinner size={120} spinnerColor='#333' spinnerWidth={2} visible={true} />
   );
 
   useEffect(() => {
@@ -55,14 +53,12 @@ const Posts = () => {
   const filteredAuthor = compareData(users, 'id', +params.userId);
 
   return (
-    <div className="container-posts-main">
+    <div className='container-posts-main'>
       <NavigationPosts
         nameAuthor={filteredAuthor.map(({ name }) => name)}
         toggleModal={toggleModal}
       />
-      {notification && (
-        <Notification {...{ notification, notificationClassName }} />
-      )}
+      {notification && <Notification {...{ notification, notificationClassName }} />}
       {post.length
         ? post
             .filter(({ userId }) => userId === +params.userId)
@@ -78,10 +74,11 @@ const Posts = () => {
         : Loaders}
       <ReactModal
         isOpen={modalMainOpen}
-        contentLabel="onRequestClose Example"
+        contentLabel='onRequestClose Example'
         onRequestClose={toggleModal}
-        className="Modal"
-        overlayClassName="Overlay mainOverlay"
+        className='Modal'
+        overlayClassName='Overlay mainOverlay'
+        ariaHideApp={false}
       >
         <PostForm userId={+params.userId} closeModal={toggleModal} />
       </ReactModal>

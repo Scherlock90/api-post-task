@@ -1,0 +1,30 @@
+@mixin flex-center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin center-items {
+    display: grid;
+    justify-content: center;
+    align-items:center;
+    align-content: center;
+}
+
+@mixin notification($translate) {
+    position: absolute;
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2rem;
+    right: 0;
+    min-width: 10rem;
+    min-height: 4rem;
+    font-size: 1.2rem;
+    z-index: 1000;
+    opacity: 1;
+    transform: translateX($translate);
+    transition: transform 200ms ease-out 200ms;
+}

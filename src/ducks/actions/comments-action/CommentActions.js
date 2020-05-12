@@ -4,7 +4,7 @@ import { FETCH_COMMENTS, NEW_COMMENT } from '../types';
 import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
 
-export const fetchComments = () => (dispatch) => {
+export const fetchComments = () => dispatch => {
   ajax(`${URL}/comments`).subscribe(
     ({ response }) => {
       dispatch({
@@ -12,11 +12,11 @@ export const fetchComments = () => (dispatch) => {
         payload: response,
       });
     },
-    (err) => errorInformation(err)
+    err => errorInformation(err),
   );
 };
 
-export const createComment = (commentData) => (dispatch) => {
+export const createComment = commentData => dispatch => {
   ajax(optionsAjax(`${URL}/comments`, 'POST', commentData)).subscribe(
     ({ response: { body, email, id, name, postId } }) => {
       dispatch({
@@ -30,6 +30,6 @@ export const createComment = (commentData) => (dispatch) => {
         },
       });
     },
-    (err) => errorInformation(err)
+    err => errorInformation(err),
   );
 };

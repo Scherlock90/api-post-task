@@ -50,20 +50,17 @@ const Comments = () => {
   const filteredAuthor = compareData(
     users,
     'id',
-    filteredPost.map(({ userId }) => userId)[0]
+    filteredPost.map(({ userId }) => userId)[0],
   );
 
   const Loaders = (
-    <Spinner size={120} spinnerColor="#333" spinnerWidth={2} visible={true} />
+    <Spinner size={120} spinnerColor='#333' spinnerWidth={2} visible={true} />
   );
 
   return (
-    <div className="container-posts-main">
+    <div className='container-posts-main'>
       {filteredAuthor.length ? (
-        <NavigationComments
-          post={filteredAuthor}
-          nameAuthor={filteredAuthor[0].name}
-        />
+        <NavigationComments post={filteredAuthor} nameAuthor={filteredAuthor[0].name} />
       ) : null}
       {filteredPost.length
         ? filteredPost.map(({ title, body }, i) => (
@@ -77,9 +74,7 @@ const Comments = () => {
       />
       <div
         className={
-          isActive
-            ? 'container-comments-show--active'
-            : 'container-comments-show'
+          isActive ? 'container-comments-show--active' : 'container-comments-show'
         }
       >
         {comments.length > 1
@@ -92,10 +87,11 @@ const Comments = () => {
       </div>
       <ReactModal
         isOpen={modalMainOpen}
-        contentLabel="onRequestClose Example"
+        contentLabel='onRequestClose Example'
         onRequestClose={toggleModal}
-        className="Modal"
-        overlayClassName="Overlay mainOverlay"
+        className='Modal'
+        overlayClassName='Overlay mainOverlay'
+        ariaHideApp={false}
       >
         <CommentForm postId={+params.postId} closeModal={() => toggleModal()} />
       </ReactModal>

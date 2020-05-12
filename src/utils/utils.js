@@ -1,3 +1,3 @@
-export const errorInformation = (message) => {
+export const errorInformation = message => {
   throw new Error(message);
-}
+};
