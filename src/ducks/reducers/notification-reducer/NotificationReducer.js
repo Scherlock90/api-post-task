@@ -14,7 +14,7 @@ export default function (state = initialState, { type }) {
     case PENDING:
       return {
         ...state,
-        notification: 'Loading...',
+        notification: 'Adding...',
       };
     case DELETE:
       return {

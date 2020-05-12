@@ -4,7 +4,7 @@ export const useNotification = notification => {
   const [notificationClassName, setNotificationClassName] = useState('');
 
   const notificationHandler = notificationTxt => {
-    if (notificationTxt.includes('Loading') || notificationTxt.includes('Removing'))
+    if (notificationTxt.includes('Adding') || notificationTxt.includes('Removing'))
       return setNotificationClassName('info');
     else if (notificationTxt.includes('Success'))
       return setNotificationClassName('success');
