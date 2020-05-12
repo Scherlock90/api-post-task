@@ -18,7 +18,7 @@ export default function useUsersArray () {
     }
 
     return () => fetchData();
-  }, [fetchData]);
+  }, []);
 
   return { user };
 }
