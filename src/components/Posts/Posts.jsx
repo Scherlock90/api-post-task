@@ -10,8 +10,7 @@ import PostsCards from './post-cards/PostsCards';
 import NavigationPosts from './navigation-posts/NavigationPosts';
 import { Notification } from '../common/index';
 
-import { deletePost, fetchPosts } from '../../ducks/actions/index';
-import { compareData } from '../common/utils';
+import { deletePost, fetchPosts, fetchSingleUser } from '../../ducks/actions/index';
 import { errorInformation } from '../../utils/utils';
 import { useNotification } from '../../custom-hooks/index';
 
@@ -24,13 +23,15 @@ const Posts = () => {
 
   const post = useSelector(({ posts: { posts } }) => posts);
 
-  const users = useSelector(({ users: { users } }) => users);
+  const users = useSelector(({ users: { user } }) => user);
 
   const notification = useSelector(({ notification: { notification } }) => notification);
 
   const { notificationClassName } = useNotification(notification);
 
-  const fetchData = () => dispatch(fetchPosts());
+  const fetchData = () => dispatch(fetchPosts(+params.userId));
+
+  const fetchUser = () => dispatch(fetchSingleUser(+params.userId));
 
   const toggleModal = () => setModalMainOpen(!modalMainOpen);
 
@@ -43,6 +44,7 @@ const Posts = () => {
   useEffect(() => {
     try {
       fetchData();
+      fetchUser();
     } catch (err) {
       errorInformation(err);
     }
@@ -50,14 +52,9 @@ const Posts = () => {
     return () => fetchData();
   }, []);
 
-  const filteredAuthor = compareData(users, 'id', +params.userId);
-
   return (
     <div className='container-posts-main'>
-      <NavigationPosts
-        nameAuthor={filteredAuthor.map(({ name }) => name)}
-        toggleModal={toggleModal}
-      />
+      <NavigationPosts nameAuthor={users.name} toggleModal={toggleModal} />
       {notification && (
         <Notification
           {...{ notificationClassName }}
@@ -71,17 +68,15 @@ const Posts = () => {
         />
       )}
       {post.length
-        ? post
-            .filter(({ userId }) => userId === +params.userId)
-            .map(({ id, title, name }, i) => (
-              <PostsCards
-                key={i}
-                handleDeletedPost={() => handleDeletedPost(id)}
-                title={title}
-                pathnameId={id}
-                name={name}
-              />
-            ))
+        ? post.map(({ id, title, name }, i) => (
+            <PostsCards
+              key={i}
+              handleDeletedPost={() => handleDeletedPost(id)}
+              title={title}
+              pathnameId={id}
+              name={name}
+            />
+          ))
         : Loaders}
       <ReactModal
         isOpen={modalMainOpen}

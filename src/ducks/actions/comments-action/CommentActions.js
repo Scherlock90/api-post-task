@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ajax } from 'rxjs/ajax';
-import { ERROR, FETCH_COMMENTS, NEW_COMMENT, INITIAL, PENDING, SUCCESS } from '../types';
+import { ERROR, FETCH_COMMENTS, INITIAL, NEW_COMMENT, PENDING, SUCCESS } from '../types';
 import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
 import { notification } from '../common-action/index';

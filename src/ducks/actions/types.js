@@ -4,6 +4,7 @@ export const NEW_POST = 'NEW_POST';
 export const NEW_COMMENT = 'NEW_COMMENT';
 export const DELETE_POST = 'DELETE_POST';
 export const FETCH_USERS = 'FETCH_USERS';
+export const FETCH_SINGLE_USERS = 'FETCH_SINGLE_USERS';
 
 export const DELETE = 'DELETE';
 export const PENDING = 'PENDING';

@@ -1,7 +1,8 @@
-import { FETCH_USERS } from '../../actions/types';
+import { FETCH_SINGLE_USERS, FETCH_USERS, } from '../../actions/types';
 
 const initialState = {
   users: [],
+  user: {},
 };
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+    case FETCH_SINGLE_USERS:
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;

@@ -15,8 +15,8 @@ import {
 } from '../types';
 import { notification } from '../common-action/index';
 
-export const fetchPosts = () => dispatch => {
-  ajax(`${URL}/posts`).subscribe(
+export const fetchPosts = userId => dispatch => {
+  ajax(`${URL}/users/${userId}/posts`).subscribe(
     ({ response }) => {
       dispatch({
         type: FETCH_POSTS,
