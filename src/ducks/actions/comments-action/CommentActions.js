@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import { ajax } from 'rxjs/ajax';
-import { FETCH_COMMENTS, NEW_COMMENT } from '../types';
+import { ERROR, FETCH_COMMENTS, NEW_COMMENT, INITIAL, PENDING, SUCCESS } from '../types';
 import { URL, optionsAjax } from '../utils';
 import { errorInformation } from '../../../utils/utils';
+import { notification } from '../common-action/index';
 
 export const fetchComments = () => dispatch => {
   ajax(`${URL}/comments`).subscribe(
@@ -17,6 +18,8 @@ export const fetchComments = () => dispatch => {
 };
 
 export const createComment = commentData => dispatch => {
+  notification(dispatch, PENDING);
+
   ajax(optionsAjax(`${URL}/comments`, 'POST', commentData)).subscribe(
     ({ response: { body, email, id, name, postId } }) => {
       dispatch({
@@ -29,7 +32,14 @@ export const createComment = commentData => dispatch => {
           postId: +postId,
         },
       });
+
+      notification(dispatch, SUCCESS);
+      setTimeout(() => notification(dispatch, INITIAL), 2000);
     },
-    err => errorInformation(err),
+    err => {
+      notification(dispatch, ERROR);
+      setTimeout(() => notification(dispatch, INITIAL), 5000);
+      errorInformation(err);
+    },
   );
 };

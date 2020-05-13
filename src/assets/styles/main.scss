@@ -465,16 +465,15 @@ a {
     }
 
     &__info {
+        -webkit-box-reflect: below -5px linear-gradient(transparent, rgba(0,0,0,0.2));
+        background: #40c4ff;
+        @include notification(-10px);
+
         .notification {
             position: relative;
             top: 0.5rem;
             color: #212121;
         }
-
-        -webkit-box-reflect: below -5px linear-gradient(transparent, rgba(0,0,0,0.2));
-
-        @include notification(-10px);
-        background: #40c4ff;
 
         @for $i from 1 through 11 {
             span:nth-child(#{$i}n) {
@@ -487,14 +486,26 @@ a {
     }
 
     &__success {
-        @include notification(-10px);
         background: #76ff03;
+        @include notification(-10px);
+
+        .notification {
+            position: relative;
+            top: 0.5rem;
+            color: #212121;
+        }
     }
 
 
     &__error {
-        @include notification(-10px);
         background: #ff5252;
+        @include notification(-10px);
+
+        .notification {
+            position: relative;
+            top: 0.5rem;
+            color: #212121;
+        }
     }
 }
 

@@ -7,8 +7,10 @@ import Spinner from 'react-spinner-material';
 import { fetchComments } from '../../ducks/actions/index';
 import { compareData } from '../common/utils';
 import { errorInformation } from '../../utils/utils';
+import { useNotification } from '../../custom-hooks/index';
 
 import NavigationComments from './navigation-comments/NavigationComments';
+import { Notification } from '../common/index';
 import CommentForm from './comment-form/CommentForm';
 import Post from './post/Post';
 import ToggleComments from './toggle-comments/ToggleComments';
@@ -28,6 +30,10 @@ const Comments = () => {
   const users = useSelector(({ users: { users } }) => users);
 
   const post = useSelector(({ posts: { posts } }) => posts);
+
+  const notification = useSelector(({ notification: { notification } }) => notification);
+
+  const { notificationClassName } = useNotification(notification);
 
   const fetchData = () => dispatch(fetchComments());
 
@@ -67,6 +73,18 @@ const Comments = () => {
             <Post key={i} title={title} body={body} />
           ))
         : Loaders}
+      {notification && (
+        <Notification
+          {...{ notificationClassName }}
+          notification={
+            <>
+              {[...notification].map((letter, id) => (
+                <span key={id}>{letter}</span>
+              ))}
+            </>
+          }
+        />
+      )}
       <ToggleComments
         isActive={isActive}
         activeComments={() => activeComments()}
