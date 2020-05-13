@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/api-post-task/static/css/main.8427f329.chunk.css",
+    "main.js": "/api-post-task/static/js/main.4b1bda99.chunk.js",
+    "main.js.map": "/api-post-task/static/js/main.4b1bda99.chunk.js.map",
+    "runtime~main.js": "/api-post-task/static/js/runtime~main.0da33bdd.js",
+    "runtime~main.js.map": "/api-post-task/static/js/runtime~main.0da33bdd.js.map",
+    "static/css/2.627926fe.chunk.css": "/api-post-task/static/css/2.627926fe.chunk.css",
+    "static/js/2.5744113e.chunk.js": "/api-post-task/static/js/2.5744113e.chunk.js",
+    "static/js/2.5744113e.chunk.js.map": "/api-post-task/static/js/2.5744113e.chunk.js.map",
+    "index.html": "/api-post-task/index.html",
+    "precache-manifest.2ccdb074cfa6aa8152f528e7e8ea8e74.js": "/api-post-task/precache-manifest.2ccdb074cfa6aa8152f528e7e8ea8e74.js",
+    "service-worker.js": "/api-post-task/service-worker.js",
+    "static/css/2.627926fe.chunk.css.map": "/api-post-task/static/css/2.627926fe.chunk.css.map",
+    "static/css/main.8427f329.chunk.css.map": "/api-post-task/static/css/main.8427f329.chunk.css.map"
+  }
+}
