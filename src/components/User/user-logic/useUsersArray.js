@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../../ducks/actions/index';
-import { errorInformation } from '../../../utils/utils';
-
 
 import { observable } from '../../../singleton/instance'
-
-
 
 export default function useUsersArray() {
   const [userData, setUserData] = useState([]);

@@ -1,6 +1,4 @@
-import { ajax } from 'rxjs/ajax';
 import { BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 export const fetchUsers = async () => {
 
@@ -9,34 +7,12 @@ export const fetchUsers = async () => {
     const response = await resJson.json()
 
     return response
-
-    // let responseData = []
-
-    // const response = ajax(`https://jsonplaceholder.typicode.com/users`).subscribe(
-    //     ({ response }) => {
-    //         responseData = response
-
-    //         debugger
-
-    //         return response
-    //     },
-    //     err => console.error(err),
-    // );
-
-    // debugger
-
-
-    // return responseData
 };
 
 export const observable = new BehaviorSubject(null);
-// const observableOnlyChanged = observable.pipe(distinctUntilChanged());
 
 export default class SingletonData {
-    // stateUsers = []
-
     constructor() {
-
 
         if (!!SingletonData.instance) {
             return SingletonData.instance;
@@ -47,13 +23,11 @@ export default class SingletonData {
         SingletonData.instance = this;
 
         return this;
-
     }
 
     get getUsers() {
         return this.stateUsers
     }
-
 
     fetchUsersData = async () => {
         const users = await fetchUsers()
@@ -63,13 +37,7 @@ export default class SingletonData {
         this.stateUsers = users;
     }
 
-
-
     init = () => {
         this.fetchUsersData()
-
-        // console.info(observableOnlyChanged, 'observableOnlyChanged')
-        // console.info(observable, 'observable')
     }
-
 }
