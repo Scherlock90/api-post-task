@@ -12,6 +12,11 @@ import store from './ducks/store';
 
 import './assets/styles/main.scss';
 
+import Singleton from './singleton/instance'
+
+Singleton.init()
+
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>

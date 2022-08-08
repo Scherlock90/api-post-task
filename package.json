@@ -6,7 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "react": "^16.8.6",
     "react-confirm-alert": "^2.4.1",
     "react-dom": "^16.8.6",
@@ -25,7 +25,7 @@
     "uikit": "^3.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint --fix --ext .js,.jsx .",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
