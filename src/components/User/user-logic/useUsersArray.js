@@ -1,24 +1,19 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../../ducks/actions/index';
-import { errorInformation } from '../../../utils/utils';
+import { useEffect, useState } from 'react';
 
-export default function useUsersArray () {
-  const dispatch = useDispatch();
+import { observable } from '../../../singleton/instance'
 
-  const user = useSelector(({ users }) => users);
+export default function useUsersArray() {
+  const [userData, setUserData] = useState([]);
 
-  const fetchData = () => dispatch(fetchUsers());
+
+  const fetchData = (data) => {
+    setUserData(data)
+  }
 
   useEffect(() => {
-    try {
-      fetchData();
-    } catch (err) {
-      errorInformation(err);
-    }
-
-    return () => fetchData();
+    observable.subscribe(userList => userList !== null && fetchData(userList))
   }, []);
 
-  return { user };
+
+  return { user: userData };
 }
